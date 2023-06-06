@@ -4,6 +4,42 @@ import { PointOfInterestType } from "./types";
 
 const activities: Activity[] = [
   {
+    id: "food",
+    name: "Food",
+    associated_types: [
+      PointOfInterestType.Food,
+      PointOfInterestType.FoodRestaurant,
+      PointOfInterestType.FoodFast,
+    ],
+    vocab: [
+      { name: "Restaurant", chinese: "餐厅", pinyin: "Cāntīng" },
+      { name: "Menu", chinese: "菜单", pinyin: "Càidān" },
+      { name: "Order", chinese: "点菜", pinyin: "Diǎn cài" },
+      { name: "Waiter/Waitress", chinese: "服务员", pinyin: "Fúwùyuán" },
+      { name: "Bill/Check", chinese: "账单", pinyin: "Zhàngdān" },
+      { name: "Tip", chinese: "小费", pinyin: "Xiǎofèi" },
+      { name: "Reservation", chinese: "预订", pinyin: "Yùdìng" },
+      { name: "Table", chinese: "桌子", pinyin: "Zhuōzi" },
+      { name: "Chair", chinese: "椅子", pinyin: "Yǐzi" },
+      { name: "Dishes", chinese: "菜肴", pinyin: "Càiyáo" },
+      { name: "Beverage", chinese: "饮料", pinyin: "Yǐnliào" },
+      { name: "Spicy", chinese: "辣", pinyin: "Là" },
+      { name: "Sweet", chinese: "甜", pinyin: "Tián" },
+      { name: "Salty", chinese: "咸", pinyin: "Xián" },
+      { name: "Vegetarian", chinese: "素食", pinyin: "Sùshí" },
+      { name: "Seafood", chinese: "海鲜", pinyin: "Hǎixiān" },
+      { name: "Meat", chinese: "肉", pinyin: "Ròu" },
+      { name: "Noodles", chinese: "面条", pinyin: "Miàntiáo" },
+      { name: "Rice", chinese: "米饭", pinyin: "Mǐfàn" },
+      { name: "Soup", chinese: "汤", pinyin: "Tāng" },
+      { name: "Dessert", chinese: "甜点", pinyin: "Tiándiǎn" },
+      { name: "Bathroom", chinese: "洗手间", pinyin: "Xǐshǒujiān" },
+      { name: "Non-smoking Area", chinese: "禁烟区", pinyin: "Jìnyān qū" },
+      { name: "Credit Card", chinese: "信用卡", pinyin: "Xìnyòngkǎ" },
+      { name: "Cash", chinese: "现金", pinyin: "Xiànjīn" },
+    ],
+  },
+  {
     id: "hiking",
     name: "Hiking",
     associated_places: [
