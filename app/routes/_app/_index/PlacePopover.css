@@ -1,0 +1,12 @@
+.tooltip {
+  padding-left: calc(1rem + 10px);
+  clip-path: polygon(
+    /* Top left point: */ 10px 0,
+    /* Top right point: */ 100% 0,
+    /* Bottom right point: */ 100% 100%,
+    /* Bottom left point: */ 10px 100%,
+    /* Center bottom of the triangle: */ 10px calc(50% + 10px),
+    /* Tip of the triangle: */ 0 50%,
+    /* Center top of the triangle: */ 10px calc(50% - 10px)
+  );
+}

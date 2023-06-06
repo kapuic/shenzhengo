@@ -1,0 +1,60 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "typecheck": "tsc",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "build": "remix build",
+    "dev:remix": "remix watch",
+    "dev:wrangler": "cross-env NODE_ENV=development npm run wrangler",
+    "dev": "npm-run-all build --parallel \"dev:*\"",
+    "start": "cross-env NODE_ENV=production npm run wrangler",
+    "wrangler": "wrangler pages dev ./public"
+  },
+  "dependencies": {
+    "@remix-run/cloudflare": "^1.16.1",
+    "@remix-run/cloudflare-pages": "^1.16.1",
+    "@remix-run/css-bundle": "^1.16.1",
+    "@remix-run/react": "^1.16.1",
+    "@tabler/icons-react": "^2.21.0",
+    "@uiw/react-amap": "^5.0.2",
+    "cross-env": "^7.0.3",
+    "framer-motion": "^10.12.16",
+    "fuse.js": "^6.6.2",
+    "isbot": "^3.6.10",
+    "lodash": "^4.17.21",
+    "react": "^18.3.0-canary-e1ad4aa36-20230601",
+    "react-dom": "^18.3.0-canary-e1ad4aa36-20230601",
+    "react-modal-sheet": "^1.10.2",
+    "remix-utils": "^6.3.0",
+    "tailwind-merge": "^1.13.0",
+    "tailwindcss": "^3.3.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230518.0",
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "@remix-run/dev": "^1.16.1",
+    "@remix-run/eslint-config": "^1.16.1",
+    "@types/lodash": "^4.14.195",
+    "@types/react": "^18.2.8",
+    "@types/react-dom": "^18.2.4",
+    "eslint": "^8.42.0",
+    "eslint-plugin-hooks": "^0.4.3",
+    "eslint-plugin-jsdoc": "^46.2.3",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^8.0.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.8",
+    "prettier-plugin-jsdoc": "^0.4.2",
+    "prettier-plugin-tailwindcss": "^0.3.0",
+    "remix-flat-routes": "^0.5.8",
+    "typescript": "^5.1.3",
+    "wrangler": "^2.15.1"
+  },
+  "engines": {
+    "node": ">=16.13"
+  }
+}

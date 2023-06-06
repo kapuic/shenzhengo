@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply outline-none;
+}
+
+.delay-visible {
+  animation: delayVisibleAnimation 0.5s 1s forwards;
+  opacity: 0;
+}
+
+@keyframes delayVisibleAnimation {
+  to {
+    opacity: 1;
+  }
+}
