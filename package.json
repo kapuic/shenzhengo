@@ -13,12 +13,12 @@
     "wrangler": "wrangler pages dev ./public"
   },
   "dependencies": {
-    "@remix-run/cloudflare": "^1.16.1",
-    "@remix-run/cloudflare-pages": "^1.16.1",
-    "@remix-run/css-bundle": "^1.16.1",
-    "@remix-run/react": "^1.16.1",
-    "@tabler/icons-react": "^2.21.0",
-    "@uiw/react-amap": "^5.0.2",
+    "@remix-run/cloudflare": "^1.17.0",
+    "@remix-run/cloudflare-pages": "^1.17.0",
+    "@remix-run/css-bundle": "^1.17.0",
+    "@remix-run/react": "^1.17.0",
+    "@tabler/icons-react": "^2.22.0",
+    "@uiw/react-amap": "^5.0.3",
     "cross-env": "^7.0.3",
     "framer-motion": "^10.12.16",
     "fuse.js": "^6.6.2",
@@ -28,7 +28,7 @@
     "react-dom": "^18.3.0-canary-e1ad4aa36-20230601",
     "react-modal-sheet": "^1.10.2",
     "remix-utils": "^6.3.0",
-    "tailwind-merge": "^1.13.0",
+    "tailwind-merge": "^1.13.1",
     "tailwindcss": "^3.3.2",
     "usehooks-ts": "^2.9.1"
   },
@@ -36,14 +36,14 @@
     "@cloudflare/workers-types": "^4.20230518.0",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
-    "@remix-run/dev": "^1.16.1",
-    "@remix-run/eslint-config": "^1.16.1",
+    "@remix-run/dev": "^1.17.0",
+    "@remix-run/eslint-config": "^1.17.0",
     "@types/lodash": "^4.14.195",
-    "@types/react": "^18.2.8",
+    "@types/react": "^18.2.9",
     "@types/react-dom": "^18.2.4",
     "eslint": "^8.42.0",
     "eslint-plugin-hooks": "^0.4.3",
-    "eslint-plugin-jsdoc": "^46.2.3",
+    "eslint-plugin-jsdoc": "^46.2.6",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "husky": "^8.0.3",
@@ -53,7 +53,7 @@
     "prettier-plugin-tailwindcss": "^0.3.0",
     "remix-flat-routes": "^0.5.8",
     "typescript": "^5.1.3",
-    "wrangler": "^2.15.1"
+    "wrangler": "^2.20.0"
   },
   "engines": {
     "node": ">=16.13"
