@@ -1,8 +1,8 @@
 import { type Place } from "~/routes/_app/types";
 
-import { PointOfInterestType } from "./types";
+import { PointOfInterestType } from "../types";
 
-const places: Place[] = [
+const placesNearby: Place[] = [
   {
     location: [114.300844, 22.600616],
     name: "东海岸运动公园",
@@ -402,4 +402,4 @@ const places: Place[] = [
   },
 ];
 
-export default places;
+export default placesNearby;

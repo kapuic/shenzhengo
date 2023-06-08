@@ -11,11 +11,12 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import activities from "~/data/activities";
-import places from "~/data/places";
+import placesCitywide from "~/data/places/citywide";
+import placesNearby from "~/data/places/nearby";
 import { useUpdateQueryStringValueWithoutNavigation } from "~/utilities/hooks";
 
 import AppMapContext from "./AppMapContext";
-import { type Activity, type Place } from "./types";
+import { type Place } from "./types";
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "MeishaGo" }];
@@ -23,8 +24,8 @@ export const meta: V2_MetaFunction = () => {
 
 export function loader() {
   return json({
-    places: places as Place[],
-    activities: activities as Activity[],
+    places: { nearby: placesNearby, citywide: placesCitywide },
+    activities: activities,
   });
 }
 
@@ -47,7 +48,8 @@ function NavButton({ className, children, ...props }: RemixNavLinkProps) {
 }
 
 export default function App() {
-  const { places } = useLoaderData<typeof loader>();
+  const { nearby, citywide } = useLoaderData<typeof loader>().places;
+  const places = [...nearby, ...citywide];
 
   const [searchParams] = useSearchParams();
   const queryLng = searchParams.get("lng");

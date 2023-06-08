@@ -6,6 +6,7 @@ import {
   IconGlassFull,
   IconIceCream,
   IconMedicalCross,
+  IconShoppingBag,
   IconToolsKitchen2,
   IconTrees,
   IconVaccineBottle,
@@ -27,6 +28,8 @@ export const enum PointOfInterestType {
   FoodBeverage,
 
   Fitness,
+
+  ShoppingMall,
 }
 
 export const PointOfInterestTypeNames = {
@@ -44,6 +47,8 @@ export const PointOfInterestTypeNames = {
   [PointOfInterestType.FoodBeverage]: "Beverage",
 
   [PointOfInterestType.Fitness]: "Fitness",
+
+  [PointOfInterestType.ShoppingMall]: "Shopping Mall",
 };
 
 export const PointOfInterestTypeIcons = {
@@ -61,6 +66,8 @@ export const PointOfInterestTypeIcons = {
   [PointOfInterestType.FoodBeverage]: IconGlassFull,
 
   [PointOfInterestType.Fitness]: IconBarbell,
+
+  [PointOfInterestType.ShoppingMall]: IconShoppingBag,
 };
 
 export const PointOfInterestTypeMarkerUrl = {
@@ -75,4 +82,6 @@ export const PointOfInterestTypeMarkerUrl = {
   [PointOfInterestType.FoodBeverage]: "/assets/markers/beverage.png",
 
   [PointOfInterestType.Fitness]: "/assets/markers/fitness.png",
+
+  [PointOfInterestType.ShoppingMall]: "/assets/markers/shopping-mall.png",
 };

@@ -6,10 +6,11 @@ import {
   ScaleControl,
   ToolBarControl,
 } from "@uiw/react-amap";
-import { useEffect, useState } from "react";
+import { isEqual } from "lodash";
+import { useEffect, useMemo, useState } from "react";
+import { useMediaQuery } from "usehooks-ts";
 
 import { getPointOfInterestTypeMarkerUrl } from "~/utilities/data";
-import { useMediaQuery } from "~/utilities/hooks";
 
 import { useAppMapContext } from "../AppMapContext";
 import { type Place } from "../types";
@@ -18,9 +19,10 @@ import PlaceSheet from "./PlaceSheet";
 
 interface CustomMarkerProps {
   place: Place;
+  visible: boolean;
 }
 
-function CustomMarker({ place }: CustomMarkerProps) {
+function CustomMarker({ place, visible }: CustomMarkerProps) {
   const { focus, setFocus } = useAppMapContext();
 
   return (
@@ -30,21 +32,70 @@ function CustomMarker({ place }: CustomMarkerProps) {
       offset={new AMap.Pixel(-16, -37)}
       position={place.location}
       title={place.name}
+      visiable={visible}
       onClick={() => setFocus(focus ? null : place)}
     />
   );
 }
 
 export interface MapProps {
-  places: Place[];
+  allPlaces: Place[];
+  visiblePlaces: Place[];
+  center?: [number, number];
+  zoom: number;
+  zooms: [number, number];
 }
 
-export default function Map({ places }: MapProps) {
+export default function Map({
+  allPlaces,
+  visiblePlaces,
+  center: defaultCenter,
+  zoom,
+  zooms,
+}: MapProps) {
   const { focus, setFocus } = useAppMapContext();
-  const [center, setCenter] = useState<[number, number]>([114.31, 22.6]);
+
+  const [center, setCenter] = useState<[number, number]>();
+  const fitCenter = useMemo(
+    () =>
+      visiblePlaces
+        .reduce(
+          (acc, { location }) => [acc[0] + location[0], acc[1] + location[1]],
+          [0, 0]
+        )
+        .map((coord) => coord / visiblePlaces.length) as [number, number],
+    [visiblePlaces]
+  );
   useEffect(() => {
-    if (focus) setCenter(focus.location);
+    if (!focus) return console.log("[Map] `focus` was cleared");
+    console.log(
+      "[Map] `focus` changed to",
+      focus,
+      ", setting center to",
+      focus.location
+    );
+    setCenter(focus.location);
   }, [focus]);
+  useEffect(() => {
+    if (!defaultCenter) return;
+    console.log(
+      "[Map] `defaultCenter` changed to",
+      defaultCenter,
+      ", resetting center to this new value",
+      defaultCenter
+    );
+    setCenter(defaultCenter);
+  }, [defaultCenter]);
+  useEffect(() => {
+    if (defaultCenter) return;
+    console.log(
+      "[Map] `fitCenter` changed to",
+      fitCenter,
+      ", resetting center to this new value",
+      fitCenter
+    );
+    setCenter(fitCenter);
+  }, [defaultCenter, fitCenter]);
 
   const darkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
@@ -57,8 +108,8 @@ export default function Map({ places }: MapProps) {
         features={["bg", "road", "building"]}
         mapStyle={darkMode ? "amap://styles/dark" : "amap://styles/normal"}
         scrollWheel={!focus}
-        zoom={15}
-        zooms={[14, 18]}
+        zoom={zoom}
+        zooms={zooms}
         onClick={({ target }) => {
           if (!(target instanceof AMap.Marker)) setFocus(null);
         }}
@@ -67,8 +118,14 @@ export default function Map({ places }: MapProps) {
           <ScaleControl offset={[20, 30]} position="LB" />
           <ToolBarControl offset={[20, 20]} position="RB" />
           <ControlBarControl offset={[20, 20]} position="RT" />
-          {places.map((place, i) => (
-            <CustomMarker key={i} place={place} />
+          {allPlaces.map((place, i) => (
+            <CustomMarker
+              key={i}
+              place={place}
+              visible={visiblePlaces.some(({ location }) =>
+                isEqual(location, place.location)
+              )}
+            />
           ))}
           <PlacePopover />
           <PlaceSheet />

@@ -6,10 +6,12 @@ import {
 } from "@remix-run/cloudflare";
 import { useLoaderData, useRouteLoaderData } from "@remix-run/react";
 import { IconExclamationCircle } from "@tabler/icons-react";
-import { lazy, Suspense, useId } from "react";
-import { ClientOnly } from "remix-utils";
+import { lazy, Suspense, useEffect, useId, useState } from "react";
+import { ClientOnly, useHydrated } from "remix-utils";
 
 import Alert from "~/components/ui/Alert";
+import TabSelect, { type TabSelectTab } from "~/components/ui/TabSelect";
+import { PointOfInterestType } from "~/data/types";
 
 import { type loader as appLoader } from "..";
 import { useAppMapContext } from "../AppMapContext";
@@ -36,12 +38,40 @@ export async function action() {
 }
 
 export default function Index() {
-  const { places } = useRouteLoaderData("routes/_app/index") as SerializeFrom<
-    typeof appLoader
-  >;
+  const { nearby: nearbyPlaces, citywide: citywidePlaces } = (
+    useRouteLoaderData("routes/_app/index") as SerializeFrom<typeof appLoader>
+  ).places;
+  const allPlaces = [...nearbyPlaces, ...citywidePlaces];
   const { tipDismissed } = useLoaderData<typeof loader>();
 
-  const { setFocus } = useAppMapContext();
+  const { focus, setFocus } = useAppMapContext();
+
+  const tabs: TabSelectTab[] = [
+    {
+      id: "nearby",
+      label: "Nearby",
+    },
+    {
+      id: "citywide",
+      label: "Citywide",
+    },
+  ];
+  const [active, setActive] = useState("nearby");
+
+  /* eslint-disable hooks/sort */
+  const hydrated = useHydrated();
+  useEffect(() => {
+    if (hydrated) {
+      console.log(
+        `active tab changed to "${active}", focus was`,
+        focus,
+        ", clearing `focus`"
+      );
+      setFocus(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active]);
+  /* eslint-enable hooks/sort */
 
   const pointsOfInterestLabelId = useId();
 
@@ -51,29 +81,62 @@ export default function Index() {
         <div className="flex h-[100dvh] w-72 flex-col overflow-y-auto border-r bg-white px-4 py-6 dark:border-gray-700 dark:bg-gray-900">
           <div className="flex flex-col gap-4">
             {!tipDismissed && <MapTip />}
-            <div className="flex flex-col gap-3">
-              <span
-                className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
-                id={pointsOfInterestLabelId}
-              >
-                Points of Interest
-              </span>
-              <ul
-                aria-labelledby={pointsOfInterestLabelId}
-                className="flex flex-col gap-3"
-              >
-                {places.map((place, i) => (
-                  <li key={i}>
-                    <button
-                      className="group w-full"
-                      onClick={() => setFocus(place)}
-                    >
-                      <PlaceCard withButtonStyle place={place} />
-                    </button>
-                  </li>
-                ))}
-              </ul>
+            <div className="flex justify-center">
+              <TabSelect active={active} setActive={setActive} tabs={tabs} />
             </div>
+            {active === "citywide" ? (
+              <div className="flex flex-col gap-3">
+                <span
+                  className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
+                  id={pointsOfInterestLabelId}
+                >
+                  Major Shopping Malls
+                </span>
+                <ul
+                  aria-labelledby={pointsOfInterestLabelId}
+                  className="flex flex-col gap-3"
+                >
+                  {citywidePlaces
+                    .filter(
+                      ({ type }) => type === PointOfInterestType.ShoppingMall
+                    )
+                    .map((place, i) => (
+                      <li key={i}>
+                        <button
+                          className="group w-full"
+                          onClick={() => setFocus(place)}
+                        >
+                          <PlaceCard withButtonStyle place={place} />
+                        </button>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-3">
+                <span
+                  className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
+                  id={pointsOfInterestLabelId}
+                >
+                  Points of Interest
+                </span>
+                <ul
+                  aria-labelledby={pointsOfInterestLabelId}
+                  className="flex flex-col gap-3"
+                >
+                  {nearbyPlaces.map((place, i) => (
+                    <li key={i}>
+                      <button
+                        className="group w-full"
+                        onClick={() => setFocus(place)}
+                      >
+                        <PlaceCard withButtonStyle place={place} />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </aside>
@@ -106,7 +169,14 @@ export default function Index() {
             }
           >
             <div className="h-full w-full bg-white dark:bg-gray-900">
-              <Map places={places} />
+              <Map
+                allPlaces={allPlaces}
+                zoom={active === "citywide" ? 11 : 15}
+                zooms={[10, 18]}
+                visiblePlaces={
+                  active === "citywide" ? citywidePlaces : nearbyPlaces
+                }
+              />
             </div>
           </Suspense>
         )}

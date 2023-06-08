@@ -2,8 +2,7 @@ import { InfoWindow, useMapContext } from "@uiw/react-amap";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-
-import { useMediaQuery } from "~/utilities/hooks";
+import { useMediaQuery } from "usehooks-ts";
 
 import { useAppMapContext } from "../AppMapContext";
 import { type Place } from "../types";

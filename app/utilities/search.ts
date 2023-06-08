@@ -1,11 +1,11 @@
 import Fuse from "fuse.js";
 
-import places from "~/data/places";
+import allPlaces from "~/data/places";
 
 import { getPointOfInterestTypeName } from "./data";
 
 const fusePlaces = new Fuse(
-  places.map(({ type, ...other }) => ({
+  allPlaces.map(({ type, ...other }) => ({
     type: getPointOfInterestTypeName(type),
     ...other,
   })),

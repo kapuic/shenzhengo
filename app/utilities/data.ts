@@ -1,7 +1,8 @@
 import { isEqual } from "lodash";
 
 import activities from "~/data/activities";
-import places from "~/data/places";
+import placesCitywide from "~/data/places/citywide";
+import placesNearby from "~/data/places/nearby";
 import {
   type PointOfInterestType,
   PointOfInterestTypeIcons,
@@ -26,12 +27,29 @@ export function getPointOfInterestTypeMarkerUrl(type: PointOfInterestType) {
   );
 }
 
-export function getPlaceByLocation(location: [number, number]) {
-  return places.find((place) => isEqual(place.location, location));
+export interface GetPlacesOptions {
+  nearby?: boolean;
+  citywide?: boolean;
 }
 
-export function getPlacesByType(type: PointOfInterestType) {
-  return places.filter((place) => place.type === type);
+export function getPlaceByLocation(
+  location: [number, number],
+  options: GetPlacesOptions = { nearby: true, citywide: true }
+) {
+  return [
+    ...(options.nearby ? placesNearby : []),
+    ...(options.citywide ? placesCitywide : []),
+  ].find((place) => isEqual(place.location, location));
+}
+
+export function getPlacesByType(
+  type: PointOfInterestType,
+  options: GetPlacesOptions = { nearby: true, citywide: true }
+) {
+  return [
+    ...(options.nearby ? placesNearby : []),
+    ...(options.citywide ? placesCitywide : []),
+  ].filter((place) => place.type === type);
 }
 
 export function getActivitiesByPlace(place: Place) {

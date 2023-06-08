@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Sheet from "react-modal-sheet";
-
-import { useMediaQuery } from "~/utilities/hooks";
+import { useMediaQuery } from "usehooks-ts";
 
 import { useAppMapContext } from "../AppMapContext";
 import PlaceInfoCommon from "./PlaceInfoCommon";
