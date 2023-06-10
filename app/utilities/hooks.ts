@@ -1,4 +1,19 @@
-import { useEffect } from "react";
+import { type DependencyList, type EffectCallback, useEffect } from "react";
+import { useHydrated } from "remix-utils";
+
+export function useHydratedEffect(
+  effect: EffectCallback,
+  deps?: DependencyList
+) {
+  /* eslint-disable hooks/sort */
+  const hydrated = useHydrated();
+  useEffect(() => {
+    if (!hydrated) return;
+    return effect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
+  /* eslint-enable hooks/sort */
+}
 
 export function useUpdateQueryStringValueWithoutNavigation(
   queryKey: string,

@@ -4,14 +4,25 @@ import {
   type SerializeFrom,
   type V2_MetaFunction,
 } from "@remix-run/cloudflare";
-import { useLoaderData, useRouteLoaderData } from "@remix-run/react";
+import {
+  useLoaderData,
+  useRouteLoaderData,
+  useSearchParams,
+} from "@remix-run/react";
 import { IconExclamationCircle } from "@tabler/icons-react";
-import { lazy, Suspense, useEffect, useId, useState } from "react";
-import { ClientOnly, useHydrated } from "remix-utils";
+import { lazy, Suspense, useId, useState } from "react";
+import { ClientOnly } from "remix-utils";
+import { useEffectOnce } from "usehooks-ts";
 
 import Alert from "~/components/ui/Alert";
+import Spinner from "~/components/ui/Spinner";
 import TabSelect, { type TabSelectTab } from "~/components/ui/TabSelect";
 import { PointOfInterestType } from "~/data/types";
+import { getPlaceByLocation } from "~/utilities/data";
+import {
+  useHydratedEffect,
+  useUpdateQueryStringValueWithoutNavigation,
+} from "~/utilities/hooks";
 
 import { type loader as appLoader } from "..";
 import { useAppMapContext } from "../AppMapContext";
@@ -46,32 +57,50 @@ export default function Index() {
 
   const { focus, setFocus } = useAppMapContext();
 
+  const [searchParams] = useSearchParams();
+  const rawQueryLng = searchParams.get("lng");
+  const queryLng = rawQueryLng ? parseFloat(rawQueryLng) : null;
+  const rawQueryLat = searchParams.get("lat");
+  const queryLat = rawQueryLat ? parseFloat(rawQueryLat) : null;
+  const queryPlace =
+    queryLng && queryLat
+      ? getPlaceByLocation([queryLng, queryLat]) ?? null
+      : null;
+  useEffectOnce(() => setFocus(focus ?? queryPlace));
+
+  useUpdateQueryStringValueWithoutNavigation(
+    "lng",
+    focus?.location[0].toString() ?? ""
+  );
+  useUpdateQueryStringValueWithoutNavigation(
+    "lat",
+    focus?.location[1].toString() ?? ""
+  );
+
   const tabs: TabSelectTab[] = [
-    {
-      id: "nearby",
-      label: "Nearby",
-    },
-    {
-      id: "citywide",
-      label: "Citywide",
-    },
+    { id: "nearby", label: "Nearby" },
+    { id: "citywide", label: "Citywide" },
   ];
   const [active, setActive] = useState("nearby");
 
-  /* eslint-disable hooks/sort */
-  const hydrated = useHydrated();
-  useEffect(() => {
-    if (hydrated) {
-      console.log(
-        `active tab changed to "${active}", focus was`,
-        focus,
-        ", clearing `focus`"
+  const [
+    willChangeCenterWhenFocusChanges,
+    setWillChangeCenterWhenFocusChanges,
+  ] = useState(false);
+  useHydratedEffect(() => {
+    if (!focus)
+      return console.log(
+        `Active tab changed to "${active}". \`focus\` was null`
       );
-      setFocus(null);
-    }
+    console.log(
+      `Active tab changed to "${active}". Clearing \`focus\` (was `,
+      focus,
+      ") and settings `willChangeCenterWhenFocusChanges` to true"
+    );
+    setFocus(null);
+    setWillChangeCenterWhenFocusChanges(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
-  /* eslint-enable hooks/sort */
 
   const pointsOfInterestLabelId = useId();
 
@@ -144,10 +173,16 @@ export default function Index() {
         fallback={
           <div className="grid h-full w-full place-items-center bg-white dark:bg-gray-900">
             <Alert className="delay-visible m-4 max-w-md" variant="dark">
+              <Spinner
+                className="mr-3 inline h-5 w-5 flex-shrink-0"
+                size={20}
+              />
               <div>
-                <span className="font-medium">Loading map...</span> If this
-                message does not disappear (and the map does not load), please
-                try refreshing the page. Check your network connection and if
+                <span className="font-medium">
+                  Waiting for the page to finish loading...
+                </span>{" "}
+                Your network seems to be slow. If this is taking too long, check
+                your network connection and try refreshing the page. Check if
                 JavaScript is enabled.
               </div>
             </Alert>
@@ -159,10 +194,16 @@ export default function Index() {
             fallback={
               <div className="grid h-full w-full place-items-center bg-white dark:bg-gray-900">
                 <Alert className="delay-visible m-4 max-w-md" variant="dark">
+                  <Spinner
+                    className="mr-3 inline h-5 w-5 flex-shrink-0"
+                    size={20}
+                  />
                   <div>
-                    <span className="font-medium">Loading map...</span> If this
-                    message appears for too long, check your network connection
-                    and refresh the page.
+                    <span className="font-medium">
+                      Waiting for the map to load...
+                    </span>{" "}
+                    Your network seems to be slow. If this is taking too long,
+                    check your network connection and try refreshing the page.
                   </div>
                 </Alert>
               </div>
@@ -173,8 +214,14 @@ export default function Index() {
                 allPlaces={allPlaces}
                 zoom={active === "citywide" ? 11 : 15}
                 zooms={[10, 18]}
+                setWillChangeCenterWhenFocusChanges={
+                  setWillChangeCenterWhenFocusChanges
+                }
                 visiblePlaces={
                   active === "citywide" ? citywidePlaces : nearbyPlaces
+                }
+                willChangeCenterWhenFocusChanges={
+                  willChangeCenterWhenFocusChanges
                 }
               />
             </div>

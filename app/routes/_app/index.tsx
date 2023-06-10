@@ -1,10 +1,5 @@
 import { json, type V2_MetaFunction } from "@remix-run/cloudflare";
-import {
-  NavLink,
-  Outlet,
-  useLoaderData,
-  useSearchParams,
-} from "@remix-run/react";
+import { NavLink, Outlet } from "@remix-run/react";
 import { type RemixNavLinkProps } from "@remix-run/react/dist/components";
 import { IconBook, IconMap2 } from "@tabler/icons-react";
 import { useState } from "react";
@@ -13,7 +8,6 @@ import { twMerge } from "tailwind-merge";
 import activities from "~/data/activities";
 import placesCitywide from "~/data/places/citywide";
 import placesNearby from "~/data/places/nearby";
-import { useUpdateQueryStringValueWithoutNavigation } from "~/utilities/hooks";
 
 import AppMapContext from "./AppMapContext";
 import { type Place } from "./types";
@@ -48,31 +42,7 @@ function NavButton({ className, children, ...props }: RemixNavLinkProps) {
 }
 
 export default function App() {
-  const { nearby, citywide } = useLoaderData<typeof loader>().places;
-  const places = [...nearby, ...citywide];
-
-  const [searchParams] = useSearchParams();
-  const queryLng = searchParams.get("lng");
-  const queryLat = searchParams.get("lat");
-  const queryPlace =
-    queryLng && queryLat
-      ? places.find(
-          ({ location }) =>
-            location[0] === parseFloat(queryLng) &&
-            location[1] === parseFloat(queryLat)
-        ) ?? null
-      : null;
-
-  const [focus, setFocus] = useState<Place | null>(queryPlace);
-
-  useUpdateQueryStringValueWithoutNavigation(
-    "lng",
-    focus?.location[0].toString() ?? ""
-  );
-  useUpdateQueryStringValueWithoutNavigation(
-    "lat",
-    focus?.location[1].toString() ?? ""
-  );
+  const [focus, setFocus] = useState<Place | null>(null);
 
   return (
     <AppMapContext.Provider value={{ focus, setFocus }}>

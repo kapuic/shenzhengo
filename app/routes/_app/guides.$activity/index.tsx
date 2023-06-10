@@ -5,12 +5,10 @@ import Alert from "~/components/ui/Alert";
 import { getPlaceByLocation, getPlacesByType } from "~/utilities/data";
 
 import PlaceCard from "../_index/PlaceCard";
-import { useAppMapContext } from "../AppMapContext";
 import { type Activity, type Place } from "../types";
 
 export default function ActivityPage() {
   const activity = useOutletContext<Activity | undefined>();
-  const { setFocus } = useAppMapContext();
 
   const places = [
     ...((activity?.associated_places
@@ -47,7 +45,6 @@ export default function ActivityPage() {
                   key={i}
                   className="group"
                   to={`/?lng=${place.location[0]}&lat=${place.location[1]}`}
-                  onClick={() => setFocus(place)}
                 >
                   <PlaceCard withButtonStyle place={place} />
                 </Link>
