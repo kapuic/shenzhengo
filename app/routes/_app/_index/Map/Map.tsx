@@ -90,6 +90,7 @@ export default function Map({
         <AMapMap
           showIndoorMap
           center={center}
+          className="bg-transparent"
           features={["bg", "road", "building"]}
           mapStyle={darkMode ? "amap://styles/dark" : "amap://styles/normal"}
           scrollWheel={!focus}
