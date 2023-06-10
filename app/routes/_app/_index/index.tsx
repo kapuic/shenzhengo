@@ -14,9 +14,9 @@ import { lazy, Suspense, useId, useState } from "react";
 import { ClientOnly } from "remix-utils";
 import { useEffectOnce } from "usehooks-ts";
 
-import Alert from "~/components/ui/Alert";
-import Spinner from "~/components/ui/Spinner";
-import TabSelect, { type TabSelectTab } from "~/components/ui/TabSelect";
+import Alert from "~/components/Alert";
+import Spinner from "~/components/Spinner";
+import TabSelect, { type TabSelectTab } from "~/components/TabSelect";
 import { PointOfInterestType } from "~/data/types";
 import { getPlaceByLocation } from "~/utilities/data";
 import {
@@ -26,10 +26,10 @@ import {
 
 import { type loader as appLoader } from "..";
 import { useAppMapContext } from "../AppMapContext";
+import PlaceCard from "../PlaceCard";
 import MapTip, { mapTipCookie } from "./MapTip";
-import PlaceCard from "./PlaceCard";
 
-const Map = lazy(() => import("./Map"));
+const Map = lazy(() => import("./Map/Map"));
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "Map | MeishaGo" }];
@@ -214,13 +214,13 @@ export default function Index() {
                 allPlaces={allPlaces}
                 zoom={active === "citywide" ? 11 : 15}
                 zooms={[10, 18]}
-                setWillChangeCenterWhenFocusChanges={
+                setWillResetCenterWhenFocusClears={
                   setWillChangeCenterWhenFocusChanges
                 }
                 visiblePlaces={
                   active === "citywide" ? citywidePlaces : nearbyPlaces
                 }
-                willChangeCenterWhenFocusChanges={
+                willResetCenterWhenFocusClears={
                   willChangeCenterWhenFocusChanges
                 }
               />

@@ -11,10 +11,10 @@ import { useMediaQuery } from "usehooks-ts";
 
 import { getPointOfInterestTypeMarkerUrl } from "~/utilities/data";
 
-import { useAppMapContext } from "../AppMapContext";
-import { type Place } from "../types";
-import PlacePopover from "./PlacePopover";
-import PlaceSheet from "./PlaceSheet";
+import { useAppMapContext } from "../../AppMapContext";
+import { type Place } from "../../types";
+import PlacePopover from "../PlacePopover";
+import PlaceSheet from "../PlaceSheet";
 
 /** @ignore */
 export interface MapProps {

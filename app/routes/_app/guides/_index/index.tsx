@@ -1,4 +1,4 @@
-import Alert from "~/components/ui/Alert";
+import Alert from "~/components/Alert";
 
 export default function ActivityNull() {
   return (

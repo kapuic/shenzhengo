@@ -1,6 +1,6 @@
-import BaseCard, { type BaseCardProps } from "~/components/ui/BaseCard";
+import BaseCard, { type BaseCardProps } from "~/components/BaseCard";
 
-import { type Place } from "../types";
+import { type Place } from "./types";
 
 export interface PlaceCardProps extends BaseCardProps {
   place: Place;

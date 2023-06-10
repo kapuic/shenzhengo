@@ -1,6 +1,6 @@
 import { IconQuestionMark } from "@tabler/icons-react";
 
-import Alert from "~/components/ui/Alert";
+import Alert from "~/components/Alert";
 
 export default function PageNotFound() {
   return (

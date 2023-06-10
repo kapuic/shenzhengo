@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 import { IconNavigation, IconUser } from "@tabler/icons-react";
 import { twMerge } from "tailwind-merge";
 
-import BaseCard from "~/components/ui/BaseCard";
+import BaseCard from "~/components/BaseCard";
 import { getDirectionsUrl } from "~/utilities/amap";
 import {
   getActivitiesByPlace,
@@ -10,7 +10,7 @@ import {
   getPointOfInterestTypeName,
 } from "~/utilities/data";
 
-import ActivityCard from "../guides/ActivityCard";
+import ActivityCard from "../ActivityCard";
 import { type Place } from "../types";
 
 export interface PlaceInfoCommonProps

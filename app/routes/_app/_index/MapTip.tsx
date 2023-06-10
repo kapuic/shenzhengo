@@ -2,8 +2,8 @@ import { createCookie } from "@remix-run/cloudflare";
 import { Form } from "@remix-run/react";
 import { IconClick, IconMapPin, IconMouse } from "@tabler/icons-react";
 
-import Alert from "~/components/ui/Alert";
-import Button from "~/components/ui/Button";
+import Alert from "~/components/Alert";
+import Button from "~/components/Button";
 
 export const mapTipCookie = createCookie("mapTipDismissed");
 

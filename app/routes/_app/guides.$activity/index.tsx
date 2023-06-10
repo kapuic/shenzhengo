@@ -1,10 +1,10 @@
 import { Link, useOutletContext } from "@remix-run/react";
 import { IconChevronLeft, IconQuestionMark } from "@tabler/icons-react";
 
-import Alert from "~/components/ui/Alert";
+import Alert from "~/components/Alert";
 import { getPlaceByLocation, getPlacesByType } from "~/utilities/data";
 
-import PlaceCard from "../_index/PlaceCard";
+import PlaceCard from "../PlaceCard";
 import { type Activity, type Place } from "../types";
 
 export default function ActivityPage() {

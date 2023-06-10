@@ -1,6 +1,6 @@
-import BaseCard, { type BaseCardProps } from "~/components/ui/BaseCard";
+import BaseCard, { type BaseCardProps } from "~/components/BaseCard";
 
-import { type Activity } from "../../_app/types";
+import { type Activity } from "./types";
 
 export interface ActivityCardProps extends BaseCardProps {
   activity: Activity;

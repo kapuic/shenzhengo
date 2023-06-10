@@ -12,11 +12,11 @@ import { IconExclamationCircle } from "@tabler/icons-react";
 import { useId, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 
-import Alert from "~/components/ui/Alert";
+import Alert from "~/components/Alert";
 import activities from "~/data/activities";
 
 import { type loader } from "../../_app";
-import ActivityCard from "./ActivityCard";
+import ActivityCard from "../ActivityCard";
 
 export const meta: V2_MetaFunction = ({ params }) => {
   const activity = activities.find(({ id }) => id === params.activity);
