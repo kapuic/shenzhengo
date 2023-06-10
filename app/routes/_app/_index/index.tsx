@@ -10,6 +10,7 @@ import {
   useSearchParams,
 } from "@remix-run/react";
 import { IconExclamationCircle } from "@tabler/icons-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { isEqual } from "lodash";
 import { lazy, Suspense, useId, useState } from "react";
 import { ClientOnly } from "remix-utils";
@@ -122,23 +123,62 @@ export default function Index() {
             <div className="flex justify-center">
               <TabSelect active={active} setActive={setActive} tabs={tabs} />
             </div>
-            {active === "citywide" ? (
-              <div className="flex flex-col gap-3">
-                <span
-                  className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
-                  id={pointsOfInterestLabelId}
-                >
-                  Major Shopping Malls
-                </span>
-                <ul
-                  aria-labelledby={pointsOfInterestLabelId}
+            <AnimatePresence initial={false} mode="popLayout">
+              {active === "citywide" ? (
+                <motion.div
+                  key="citywide"
+                  animate={{ x: 0, opacity: 1 }}
                   className="flex flex-col gap-3"
+                  exit={{ x: "120%", opacity: 0.5 }}
+                  initial={{ x: "120%", opacity: 0.5 }}
+                  transition={{ ease: [0.6, -0.05, 0.01, 0.99], duration: 0.3 }}
                 >
-                  {citywidePlaces
-                    .filter(
-                      ({ type }) => type === PointOfInterestType.ShoppingMall
-                    )
-                    .map((place, i) => (
+                  <span
+                    className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
+                    id={pointsOfInterestLabelId}
+                  >
+                    Major Shopping Malls
+                  </span>
+                  <ul
+                    aria-labelledby={pointsOfInterestLabelId}
+                    className="flex flex-col gap-3"
+                  >
+                    {citywidePlaces
+                      .filter(
+                        ({ type }) => type === PointOfInterestType.ShoppingMall
+                      )
+                      .map((place, i) => (
+                        <li key={i}>
+                          <button
+                            className="group w-full"
+                            onClick={() => setFocus(place)}
+                          >
+                            <PlaceCard withButtonStyle place={place} />
+                          </button>
+                        </li>
+                      ))}
+                  </ul>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="nearby"
+                  animate={{ x: 0, opacity: 1 }}
+                  className="flex flex-col gap-3"
+                  exit={{ x: "-120%", opacity: 0.5 }}
+                  initial={{ x: "-120%", opacity: 0.5 }}
+                  transition={{ ease: [0.6, -0.05, 0.01, 0.99], duration: 0.3 }}
+                >
+                  <span
+                    className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
+                    id={pointsOfInterestLabelId}
+                  >
+                    Points of Interest
+                  </span>
+                  <ul
+                    aria-labelledby={pointsOfInterestLabelId}
+                    className="flex flex-col gap-3"
+                  >
+                    {nearbyPlaces.map((place, i) => (
                       <li key={i}>
                         <button
                           className="group w-full"
@@ -148,33 +188,10 @@ export default function Index() {
                         </button>
                       </li>
                     ))}
-                </ul>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-3">
-                <span
-                  className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
-                  id={pointsOfInterestLabelId}
-                >
-                  Points of Interest
-                </span>
-                <ul
-                  aria-labelledby={pointsOfInterestLabelId}
-                  className="flex flex-col gap-3"
-                >
-                  {nearbyPlaces.map((place, i) => (
-                    <li key={i}>
-                      <button
-                        className="group w-full"
-                        onClick={() => setFocus(place)}
-                      >
-                        <PlaceCard withButtonStyle place={place} />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </aside>

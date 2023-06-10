@@ -85,7 +85,7 @@ export default function Map({
   const darkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative z-10 h-full w-full">
       <APILoader akey="***REMOVED***" version="2.0.5">
         <AMapMap
           showIndoorMap

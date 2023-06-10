@@ -47,7 +47,7 @@ export default function App() {
   return (
     <AppMapContext.Provider value={{ focus, setFocus }}>
       <div className="flex h-[100dvh] flex-col md:flex-row">
-        <aside className="hidden md:block">
+        <aside className="z-10 hidden md:block">
           <div className="flex h-[100dvh] w-16 flex-col items-center border-r bg-white py-6 dark:border-gray-700 dark:bg-gray-900">
             <nav className="flex flex-col items-center gap-4">
               <NavButton to="/">
