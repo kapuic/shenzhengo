@@ -10,6 +10,7 @@ import {
   useSearchParams,
 } from "@remix-run/react";
 import { IconExclamationCircle } from "@tabler/icons-react";
+import { isEqual } from "lodash";
 import { lazy, Suspense, useId, useState } from "react";
 import { ClientOnly } from "remix-utils";
 import { useEffectOnce } from "usehooks-ts";
@@ -81,7 +82,15 @@ export default function Index() {
     { id: "nearby", label: "Nearby" },
     { id: "citywide", label: "Citywide" },
   ];
-  const [active, setActive] = useState("nearby");
+  const [active, setActive] = useState(
+    queryPlace
+      ? citywidePlaces.some(({ location }) =>
+          isEqual(location, queryPlace.location)
+        )
+        ? "citywide"
+        : "nearby"
+      : "nearby"
+  );
 
   const [
     willChangeCenterWhenFocusChanges,
