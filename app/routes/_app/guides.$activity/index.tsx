@@ -23,20 +23,20 @@ export default function ActivityPage() {
     <div className="flex h-full flex-col gap-6 overflow-y-scroll p-10 md:p-20">
       <div className="md:hidden">
         <Link
-          className="inline-flex items-center justify-center gap-2 rounded-md border bg-white px-4 py-3 align-middle text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:hover:bg-slate-800 dark:hover:text-white dark:focus:ring-offset-gray-900"
+          className="inline-flex items-center justify-center gap-2 rounded-md border bg-white px-4 py-3 align-middle text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:hover:bg-slate-800 dark:hover:text-gray-100 dark:focus:ring-offset-gray-900"
           to="/guides"
         >
           <IconChevronLeft />
           Guides
         </Link>
       </div>
-      <h1 className="text-4xl font-bold text-gray-800 dark:text-white">
+      <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">
         {activity.name}
       </h1>
       <div className="flex flex-col gap-4">
         {places.length > 0 && (
           <div className="flex flex-col gap-2">
-            <h2 className="text-xl text-gray-800 dark:text-white">
+            <h2 className="text-xl text-gray-800 dark:text-gray-100">
               Associated Places
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -54,7 +54,7 @@ export default function ActivityPage() {
         )}
         {activity.vocab && (
           <div className="flex flex-col gap-2">
-            <h2 className="text-xl text-gray-800 dark:text-white">
+            <h2 className="text-xl text-gray-800 dark:text-gray-100">
               Commonly Used Vocabulary
             </h2>
             <div className="flex flex-wrap justify-between gap-2">
@@ -65,16 +65,18 @@ export default function ActivityPage() {
                 >
                   <div className="flex items-center gap-2">
                     <p
-                      className="text-lg font-semibold text-gray-800 dark:text-white"
+                      className="text-lg font-semibold text-gray-800 dark:text-gray-100"
                       lang="zh_CN"
                     >
                       {word.chinese}
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-500">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
                       {word.pinyin}
                     </p>
                   </div>
-                  <p className="text-gray-800 dark:text-white">{word.name}</p>
+                  <p className="text-gray-800 dark:text-gray-100">
+                    {word.name}
+                  </p>
                 </div>
               ))}
             </div>

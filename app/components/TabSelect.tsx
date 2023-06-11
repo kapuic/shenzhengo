@@ -28,6 +28,7 @@ export default function TabSelect<T extends TabSelectTab[]>({
   }, [active]);
 
   return (
+    // This component uses many non-standard colors because of its complexity.
     <div className="flex rounded-lg bg-gray-100 p-1 transition hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700">
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role */}
       <nav aria-label="Tabs" className="flex space-x-2" role="tablist">
@@ -39,6 +40,7 @@ export default function TabSelect<T extends TabSelectTab[]>({
               role="tab"
               type="button"
               className={twMerge(
+                // `dark:text-gray-400` is used instead of `dark:text-gray-500` because the latter does not have enough contrast with the dark hover background.
                 "absolute inset-0 z-10 rounded-md bg-transparent font-medium text-gray-500 transition-all hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 dark:text-gray-400 dark:hover:text-gray-100 dark:focus-visible:ring-offset-gray-800",
                 active === id && "text-gray-700 dark:text-gray-300"
               )}

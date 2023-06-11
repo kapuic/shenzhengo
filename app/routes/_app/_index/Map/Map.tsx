@@ -131,7 +131,7 @@ export default function Map({
             <div className="flex flex-col">
               Loading map assets...
               {showLoadingTip && (
-                <span className="text-xs text-gray-500 dark:text-gray-500">
+                <span className="text-xs text-gray-500 dark:text-gray-400">
                   Try turning off your proxy or VPN if this is taking too long.
                   If the map is instead already loaded, interacting with the map
                   will automatically hide this message.

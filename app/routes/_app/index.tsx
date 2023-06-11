@@ -30,8 +30,9 @@ function NavButton({ className, children, ...props }: RemixNavLinkProps) {
         twMerge(
           "inline-block rounded-lg p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900",
           isActive
-            ? "bg-blue-100 text-blue-500 dark:bg-gray-800 dark:text-blue-400"
-            : "focus:outline-nones text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+            ? "bg-gray-100 text-blue-500 dark:bg-gray-800 dark:text-blue-400"
+            : // Uses a darker shade of gray because the element is small.
+              "focus:outline-nones text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
         )
       }
       {...props}

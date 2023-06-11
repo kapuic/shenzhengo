@@ -29,22 +29,22 @@ export default function PlaceInfoCommon({
   return (
     <div className={twMerge("flex flex-col gap-4", className)} {...props}>
       <div className="flex flex-col gap-1">
-        <h3 className="text-xl font-extrabold leading-tight text-gray-800 dark:text-white">
+        <h3 className="text-xl font-extrabold leading-tight text-gray-800 dark:text-gray-100">
           {place.translation}
         </h3>
         <p
-          className="text-xs font-medium text-gray-500 dark:text-gray-500"
+          className="text-xs font-medium text-gray-500 dark:text-gray-400"
           lang="zh_CN"
         >
           {place.name}
         </p>
-        <div className="flex items-center gap-1 text-gray-800 dark:text-white">
+        <div className="flex items-center gap-1 text-gray-800 dark:text-gray-100">
           <Icon />
           {getPointOfInterestTypeName(place.type)}
         </div>
       </div>
       <Link
-        className="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+        className="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
         hrefLang="zh_CN"
         target="_blank"
         to={getDirectionsUrl(place).href}
@@ -54,17 +54,18 @@ export default function PlaceInfoCommon({
       </Link>
       {place.description && (
         <div className="flex flex-col gap-1">
-          <span className="font-semibold text-gray-800 dark:text-white">
+          <span className="font-semibold text-gray-800 dark:text-gray-100">
             Description
           </span>
-          <p className="text-sm text-gray-800 dark:text-gray-400">
+          {/* `text-gray-600` is used in place of `text-gray-500` for readability. */}
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             {place.description}
           </p>
         </div>
       )}
       {place.signature_dishes && (
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-gray-800 dark:text-white">
+          <span className="font-semibold text-gray-800 dark:text-gray-100">
             Signature Dishes
           </span>
           <div className="flex flex-col gap-2">
@@ -77,17 +78,17 @@ export default function PlaceInfoCommon({
                 />
                 <div className="flex h-full flex-col justify-between p-2">
                   <div className="flex flex-col gap-1">
-                    <span className="line-clamp-2 text-sm font-semibold leading-tight text-gray-800 dark:text-white">
+                    <span className="line-clamp-2 text-sm font-semibold leading-tight text-gray-800 dark:text-gray-100">
                       {dish.translation}
                     </span>
                     <span
-                      className="line-clamp-1 text-xs text-gray-500 dark:text-gray-500"
+                      className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400"
                       lang="zh_CN"
                     >
                       {dish.name}
                     </span>
                   </div>
-                  <span className="line-clamp-1 font-medium text-gray-800 dark:text-white">
+                  <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-100">
                     CN¥ {dish.price}
                   </span>
                 </div>
@@ -98,7 +99,7 @@ export default function PlaceInfoCommon({
       )}
       {activities.length > 0 && (
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-gray-800 dark:text-white">
+          <span className="font-semibold text-gray-800 dark:text-gray-100">
             Guides
           </span>
           <div className="flex flex-col gap-2">
@@ -111,7 +112,7 @@ export default function PlaceInfoCommon({
         </div>
       )}
       {place.author && (
-        <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-500">
+        <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
           <IconUser size={18} />
           <span>Provided by {place.author}</span>
         </div>

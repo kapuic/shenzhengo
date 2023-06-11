@@ -12,11 +12,11 @@ export default function ActivityCard({
 }: ActivityCardProps) {
   return (
     <BaseCard {...props}>
-      <h3 className="text-lg font-bold leading-tight text-gray-800 dark:text-white">
+      <h3 className="text-lg font-bold leading-tight text-gray-800 dark:text-gray-100">
         {activity.name}
       </h3>
       {activity.vocab && (
-        <p className="text-xs font-medium text-gray-500 dark:text-gray-500">
+        <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
           {activity.vocab.length} Words in Vocabulary
         </p>
       )}

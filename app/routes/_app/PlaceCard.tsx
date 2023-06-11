@@ -9,11 +9,11 @@ export interface PlaceCardProps extends BaseCardProps {
 export default function PlaceCard({ place, ...props }: PlaceCardProps) {
   return (
     <BaseCard {...props}>
-      <h3 className="text-lg font-bold leading-tight text-gray-800 dark:text-white">
+      <h3 className="text-lg font-bold leading-tight text-gray-800 dark:text-gray-100">
         {place.translation}
       </h3>
       <p
-        className="text-xs font-medium text-gray-500 dark:text-gray-500"
+        className="text-xs font-medium text-gray-500 dark:text-gray-400"
         lang="zh_CN"
       >
         {place.name}
