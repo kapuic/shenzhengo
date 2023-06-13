@@ -13,7 +13,14 @@ import AppMapContext from "./AppMapContext";
 import { type Place } from "./types";
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "MeishaGo" }];
+  return [
+    { title: "MeishaGo" },
+    {
+      name: "description",
+      content:
+        "MeishaGo offers comprehensive information & lists of guides of local places/points of interest in Dameisha, located in Shenzhen, China, helping foreign residents and tourists.",
+    },
+  ];
 };
 
 export function loader() {
