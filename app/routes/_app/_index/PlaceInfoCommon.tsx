@@ -1,9 +1,8 @@
 import { Link } from "@remix-run/react";
-import { IconNavigation, IconUser } from "@tabler/icons-react";
+import { IconUser } from "@tabler/icons-react";
 import { twMerge } from "tailwind-merge";
 
 import BaseCard from "~/components/BaseCard";
-import { getDirectionsUrl } from "~/utilities/amap";
 import {
   getActivitiesByPlace,
   getPointOfInterestTypeIcon,
@@ -43,7 +42,7 @@ export default function PlaceInfoCommon({
           {getPointOfInterestTypeName(place.type)}
         </div>
       </div>
-      <Link
+      {/* <Link
         className="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
         hrefLang="zh_CN"
         target="_blank"
@@ -51,7 +50,7 @@ export default function PlaceInfoCommon({
       >
         <IconNavigation className="h-3.5 w-3.5" size={16} />
         Directions (Chinese)
-      </Link>
+      </Link> */}
       {place.description && (
         <div className="flex flex-col gap-1">
           <span className="font-semibold text-gray-800 dark:text-gray-100">
