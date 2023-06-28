@@ -1,6 +1,18 @@
-import { json, type V2_MetaFunction } from "@remix-run/cloudflare";
+import {
+  getGrowthBookSSRData,
+  type GrowthBookSSRData,
+  useGrowthBookSSR,
+} from "@growthbook/growthbook-react";
+import {
+  json,
+  type LoaderArgs,
+  type V2_MetaFunction,
+} from "@remix-run/cloudflare";
 import { NavLink, Outlet } from "@remix-run/react";
-import { type RemixNavLinkProps } from "@remix-run/react/dist/components";
+import {
+  type RemixNavLinkProps,
+  useLoaderData,
+} from "@remix-run/react/dist/components";
 import { IconBook, IconMap2 } from "@tabler/icons-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -23,8 +35,15 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
-export function loader() {
+export async function loader({ context }: LoaderArgs) {
+  const featureCtlData = (await getGrowthBookSSRData({
+    apiHost: context.env.GROWTHBOOK_API_HOST,
+    clientKey: context.env.GROWTHBOOK_CLIENT_KEY,
+    enableDevMode: process.env.NODE_ENV === "development",
+  })) as unknown;
+
   return json({
+    featureCtlData,
     places: { nearby: placesNearby, citywide: placesCitywide },
     activities: activities,
   });
@@ -50,6 +69,9 @@ function NavButton({ className, children, ...props }: RemixNavLinkProps) {
 }
 
 export default function App() {
+  const { featureCtlData } = useLoaderData<typeof loader>();
+  useGrowthBookSSR(featureCtlData as unknown as GrowthBookSSRData);
+
   const [focus, setFocus] = useState<Place | null>(null);
 
   return (

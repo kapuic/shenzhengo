@@ -1,4 +1,9 @@
-import { type LinksFunction } from "@remix-run/cloudflare";
+import { GrowthBook, GrowthBookProvider } from "@growthbook/growthbook-react";
+import {
+  json,
+  type LinksFunction,
+  type LoaderArgs,
+} from "@remix-run/cloudflare";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import {
   Links,
@@ -7,7 +12,11 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  type ShouldRevalidateFunction,
+  useLoaderData,
+  useLocation,
 } from "@remix-run/react";
+import { useEffect, useMemo } from "react";
 
 import tailwind from "~/tailwind.css";
 
@@ -42,21 +51,55 @@ export const links: LinksFunction = () => [
   // })),
 ];
 
+export async function loader({ context }: LoaderArgs) {
+  return json({
+    featureCtl: {
+      apiHost: context.env.GROWTHBOOK_API_HOST,
+      clientKey: context.env.GROWTHBOOK_CLIENT_KEY,
+    },
+  });
+}
+
+export const shouldRevalidate: ShouldRevalidateFunction = ({ formMethod }) =>
+  !!formMethod;
+
 export default function App() {
+  const location = useLocation();
+  const { featureCtl } = useLoaderData<typeof loader>();
+
+  const growthBook = useMemo(
+    () =>
+      new GrowthBook({
+        apiHost: featureCtl.apiHost,
+        clientKey: featureCtl.clientKey,
+        enableDevMode: process.env.NODE_ENV === "development",
+      }),
+    [featureCtl.apiHost, featureCtl.clientKey]
+  );
+  useEffect(() => {
+    growthBook.loadFeatures({ autoRefresh: true });
+  }, [growthBook]);
+  useEffect(
+    () => growthBook.setURL(location.pathname),
+    [growthBook, location.pathname]
+  );
+
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta content="width=device-width,initial-scale=1" name="viewport" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
-    </html>
+    <GrowthBookProvider growthbook={growthBook}>
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta content="width=device-width,initial-scale=1" name="viewport" />
+          <Meta />
+          <Links />
+        </head>
+        <body>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </body>
+      </html>
+    </GrowthBookProvider>
   );
 }

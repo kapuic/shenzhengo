@@ -1,8 +1,10 @@
+import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
 import { Link } from "@remix-run/react";
-import { IconUser } from "@tabler/icons-react";
+import { IconNavigation, IconUser } from "@tabler/icons-react";
 import { twMerge } from "tailwind-merge";
 
 import BaseCard from "~/components/BaseCard";
+import { getDirectionsUrl } from "~/utilities/amap";
 import {
   getActivitiesByPlace,
   getPointOfInterestTypeIcon,
@@ -22,6 +24,17 @@ export default function PlaceInfoCommon({
   className,
   ...props
 }: PlaceInfoCommonProps) {
+  const enablePoiType = useFeatureIsOn("place-info:poi-type");
+  const enableDirections = useFeatureIsOn("place-info:directions");
+  const enableDescription = useFeatureIsOn("place-info:description");
+  const enableSignatureDishes = useFeatureIsOn("place-info:signature-dishes");
+  const enableGuides = useFeatureIsOn("place-info:guides");
+  const enableAttribution = useFeatureIsOn("place-info:attribution");
+  const signatureDishesLimit = useFeatureValue<number>(
+    "place-info:signature-dishes:limit",
+    3
+  );
+
   const Icon = getPointOfInterestTypeIcon(place.type);
   const activities = getActivitiesByPlace(place);
 
@@ -37,21 +50,25 @@ export default function PlaceInfoCommon({
         >
           {place.name}
         </p>
-        <div className="flex items-center gap-1 text-gray-800 dark:text-gray-100">
-          <Icon />
-          {getPointOfInterestTypeName(place.type)}
-        </div>
+        {enablePoiType && (
+          <div className="flex items-center gap-1 text-gray-800 dark:text-gray-100">
+            <Icon />
+            {getPointOfInterestTypeName(place.type)}
+          </div>
+        )}
       </div>
-      {/* <Link
-        className="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-        hrefLang="zh_CN"
-        target="_blank"
-        to={getDirectionsUrl(place).href}
-      >
-        <IconNavigation className="h-3.5 w-3.5" size={16} />
-        Directions (Chinese)
-      </Link> */}
-      {place.description && (
+      {enableDirections && (
+        <Link
+          className="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+          hrefLang="zh_CN"
+          target="_blank"
+          to={getDirectionsUrl(place).href}
+        >
+          <IconNavigation className="h-3.5 w-3.5" size={16} />
+          Directions (Chinese)
+        </Link>
+      )}
+      {enableDescription && place.description && (
         <div className="flex flex-col gap-1">
           <span className="font-semibold text-gray-800 dark:text-gray-100">
             Description
@@ -62,41 +79,43 @@ export default function PlaceInfoCommon({
           </p>
         </div>
       )}
-      {place.signature_dishes && (
+      {enableSignatureDishes && place.signature_dishes && (
         <div className="flex flex-col gap-2">
           <span className="font-semibold text-gray-800 dark:text-gray-100">
             Signature Dishes
           </span>
           <div className="flex flex-col gap-2">
-            {place.signature_dishes.map((dish, i) => (
-              <BaseCard key={i} className="block h-24 columns-2 gap-0 p-0">
-                <img
-                  alt="Signature Dish"
-                  className="h-full w-full rounded-l-xl object-cover"
-                  src={dish.image}
-                />
-                <div className="flex h-full flex-col justify-between p-2">
-                  <div className="flex flex-col gap-1">
-                    <span className="line-clamp-2 text-sm font-semibold leading-tight text-gray-800 dark:text-gray-100">
-                      {dish.translation}
-                    </span>
-                    <span
-                      className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400"
-                      lang="zh_CN"
-                    >
-                      {dish.name}
+            {place.signature_dishes
+              .slice(0, signatureDishesLimit)
+              .map((dish, i) => (
+                <BaseCard key={i} className="block h-24 columns-2 gap-0 p-0">
+                  <img
+                    alt="Signature Dish"
+                    className="h-full w-full rounded-l-xl object-cover"
+                    src={dish.image}
+                  />
+                  <div className="flex h-full flex-col justify-between p-2">
+                    <div className="flex flex-col gap-1">
+                      <span className="line-clamp-2 text-sm font-semibold leading-tight text-gray-800 dark:text-gray-100">
+                        {dish.translation}
+                      </span>
+                      <span
+                        className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400"
+                        lang="zh_CN"
+                      >
+                        {dish.name}
+                      </span>
+                    </div>
+                    <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-100">
+                      CN¥ {dish.price}
                     </span>
                   </div>
-                  <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-100">
-                    CN¥ {dish.price}
-                  </span>
-                </div>
-              </BaseCard>
-            ))}
+                </BaseCard>
+              ))}
           </div>
         </div>
       )}
-      {activities.length > 0 && (
+      {enableGuides && activities.length > 0 && (
         <div className="flex flex-col gap-2">
           <span className="font-semibold text-gray-800 dark:text-gray-100">
             Guides
@@ -110,7 +129,7 @@ export default function PlaceInfoCommon({
           </div>
         </div>
       )}
-      {place.author && (
+      {enableAttribution && place.author && (
         <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
           <IconUser size={18} />
           <span>Provided by {place.author}</span>

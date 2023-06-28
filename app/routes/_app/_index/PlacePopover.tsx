@@ -1,3 +1,4 @@
+import { useFeatureIsOn } from "@growthbook/growthbook-react";
 import { InfoWindow, useMapContext } from "@uiw/react-amap";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -15,8 +16,9 @@ import PlaceInfoCommon from "./PlaceInfoCommon";
 // };
 
 export default function PlacePopover() {
+  const enableCoverImage = useFeatureIsOn("place-popover:cover-image");
+
   const { focus, setFocus } = useAppMapContext();
-  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   // Disable map scroll wheel when `InfoWindow` is open.
   // This solves the conflict between map scroll and `InfoWindow` scroll.
@@ -33,6 +35,8 @@ export default function PlacePopover() {
   useEffect(() => {
     if (focus) setCachedPlace(focus);
   }, [focus]);
+
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   return isDesktop ? (
     <InfoWindow
@@ -58,7 +62,7 @@ export default function PlacePopover() {
                 // "snap-y"
               )}
             >
-              {focus.cover_image && (
+              {enableCoverImage && focus.cover_image && (
                 <img
                   alt="Cover"
                   className="-mx-4 h-32 snap-start rounded-t-xl object-cover"

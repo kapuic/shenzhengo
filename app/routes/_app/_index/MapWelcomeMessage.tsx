@@ -1,13 +1,15 @@
-import { createCookie } from "@remix-run/cloudflare";
-import { Form } from "@remix-run/react";
 import { IconClick, IconMapPin, IconMouse } from "@tabler/icons-react";
+import { useLocalStorage } from "usehooks-ts";
 
 import Alert from "~/components/Alert";
 import Button from "~/components/Button";
 
-export const mapTipCookie = createCookie("mapTipDismissed");
+export default function MapWelcomeMessage() {
+  const [, setWelcomeMessageDismissed] = useLocalStorage(
+    "map.welcomeMessageDismissed",
+    false
+  );
 
-export default function MapTip() {
   return (
     <Alert className="flex-col gap-2" variant="dark">
       <div className="flex flex-col gap-2 text-sm">
@@ -31,9 +33,9 @@ export default function MapTip() {
           </li>
         </ul>
       </div>
-      <Form method="post">
-        <Button type="submit">Do Not Show Again</Button>
-      </Form>
+      <Button onClick={() => setWelcomeMessageDismissed(true)}>
+        Do Not Show Again
+      </Button>
     </Alert>
   );
 }

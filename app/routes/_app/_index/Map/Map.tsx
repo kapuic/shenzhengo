@@ -1,3 +1,4 @@
+import { useFeatureIsOn } from "@growthbook/growthbook-react";
 import {
   APILoader,
   ControlBarControl,
@@ -49,6 +50,11 @@ export default function Map({
   willResetCenterWhenFocusClears: willResetWhenFocusClears,
   setWillResetCenterWhenFocusClears: setWillResetWhenFocusClears,
 }: MapProps) {
+  const enableScaleControl = useFeatureIsOn("map:scale-control");
+  const enableToolbarControl = useFeatureIsOn("map:toolbar-control");
+  const enableCompassControl = useFeatureIsOn("map:compass-control");
+  const enableLoadingMessage = useFeatureIsOn("map:loading-message");
+
   const { focus, setFocus } = useAppMapContext();
   const [center, setCenter] = useState<[number, number]>();
 
@@ -104,9 +110,15 @@ export default function Map({
           }}
         >
           <>
-            <ScaleControl offset={[20, 30]} position="LB" />
-            <ToolBarControl offset={[20, 20]} position="RB" />
-            <ControlBarControl offset={[20, 20]} position="RT" />
+            {enableScaleControl && (
+              <ScaleControl offset={[20, 30]} position="LB" />
+            )}
+            {enableToolbarControl && (
+              <ToolBarControl offset={[20, 20]} position="RB" />
+            )}
+            {enableCompassControl && (
+              <ControlBarControl offset={[20, 20]} position="RT" />
+            )}
             {allPlaces.map((place, i) => (
               <Marker
                 key={i}
@@ -121,7 +133,7 @@ export default function Map({
           </>
         </AMapMap>
       </APILoader>
-      {loading && (
+      {enableLoadingMessage && loading && (
         <div className="absolute left-0 right-0 top-0">
           <Alert
             className="rounded-none border-none transition-all"
