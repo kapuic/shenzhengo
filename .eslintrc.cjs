@@ -33,48 +33,104 @@ module.exports = {
       "warn",
       {
         groups: [
-          // Routes
-          "useMatches", // Remix
-          "useRouteData", // Remix
-          "useLoaderData", // Remix
-          "useActionData", // Remix
-          "useParams", // Remix
-          "useSearchParams", // Remix
+          /** Features Control */
+          ...[
+            require("@growthbook/growthbook-react").useFeatureIsOn, // Scope: Meta, ↩️ Readonly Value, Complexity: 1
+            require("@growthbook/growthbook-react").useFeatureValue, // Scope: Meta, ↩️ Readonly Value, Complexity: 1
+            require("@growthbook/growthbook-react").useFeature, // Scope: Meta, ↩️ Readonly Value, Complexity: 2
+            require("@growthbook/growthbook-react").useExperiment, // Scope: Meta, ↩️ Readonly Value, Complexity: 2
+            require("@growthbook/growthbook-react").useGrowthBook, // Scope: Meta, ↩️ Returns Complex, Complexity: 3
+          ],
 
-          // Navigation
-          "useLocation", // Remix
-          "useNavigation", // Remix
-          "useNavigate", // Remix
+          /** Location and Navigation */
+          ...[
+            require("@remix-run/react").useParams, // ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useSearchParams, // ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useMatch, // ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useLocation, // ↩️ Returns Value, Complexity: Complex
 
-          // Data
-          "useFetcher", // Remix
-          "useFetchers", // Remix
-          "useRevalidator", // Remix
+            require("@remix-run/react").useNavigation, // ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useNavigationType, // ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useNavigate, // ↩️ Runnable Function
+            require("@remix-run/react").unstable_useBlocker, // ↩️ Returns Complex
+            require("@remix-run/react").unstable_usePrompt, // ▶️ Executes Function
+            // ^ Abstraction of `unstable_useBlocker`.
 
-          // Forms
-          "useSubmit", // Remix
-          "useFormAction", // Remix
+            require("@remix-run/react").useHref, // ↩️ Readonly Value, Return Complexity: Simple
+            require("@remix-run/react").useResolvedPath, // ↩️ Readonly Value, Return Complexity: Complex
+          ],
 
-          // Misc
-          "useBeforeUnload", // Remix
+          /** Data Loading and Fetching */
+          ...[
+            require("@remix-run/react").useRouteLoaderData, // Scope: Context, ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useMatches, // Scope: Context, ↩️ Readonly Value, Complexity: Complex
+            require("@remix-run/react").useLoaderData, // Scope: Route, ↩️ Readonly Value
+            require("@remix-run/react").useActionData, // Scope: Route, ↩️ Readonly Value
+            require("@remix-run/react").useRouteError, // Scope: Route, Special Case, ↩️ Readonly Value
+            require("@remix-run/react").useAsyncValue, // Scope: `<Await />`, ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useAsyncError, // Scope: `<Await />`, ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useOutletContext, // Scope: Children, ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useOutlet, // Scope: Children, ↩️ Readonly Value, Complexity: Complex
 
-          // Components
-          "useState", // React
-          "useRef", // React
-          "useMemo", // React
-          "useEffect", // React
-          "useCallback", // React
-          "useContext", // React
-          "useReducer", // React
-          "useImperativeHandle", // React
-          "useLayoutEffect", // React
-          "useDebugValue", // React
+            require("@remix-run/react").useFetcher, // ↩️ Returns Complex
+            require("@remix-run/react").useFetchers, // ↩️ Readonly Value
+            // ^ Summary of `useFetcher`.
+            require("@remix-run/react").useRevalidator, // ▶️ Executes Function
+            // ^ Revalidation is typically used after fetching.
+          ],
 
-          "useGuard",
+          /** Integration (requires loading environmental data) */
+          ...[
+            require("@growthbook/growthbook-react").useGrowthBookSSR, // ▶️ Executes Function
+          ],
 
-          // Other Features
-          "useHydrated",
-        ],
+          /** Form and Submission */
+          ...[
+            require("@remix-run/react").useFormAction, // ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useSubmit, // ↩️ Runnable Function, Complexity: Complex
+          ],
+
+          /** Component: React */
+          ...[
+            // Context Hooks
+            require("react").useContext, // ↩️ Readonly Value
+
+            // State-Related Hooks
+            require("react").useState, // ↩️ Returns Value, Complexity: Simple
+            require("react").useReducer, // ↩️ Returns Value, Complexity: Complex
+            // ^ Alternative to `useState`.
+            require("react").useRef, // ↩️ Returns Value, Complexity: Simple
+            require("react").useSyncExternalStore, // ↩️ Readonly Value, Complexity: Complex
+
+            // Computation And Memoization Hooks
+            require("react").useDeferredValue, // ↩️ Readonly Value, Complexity: Simple
+            require("react").useMemo, // ↩️ Readonly Value, Complexity: Complex
+            require("react").useCallback, // ↩️ Readonly Value, Complexity: Complex
+            require("@remix-run/react").useBeforeUnload, // ▶️ Executes Function
+            // ^ Must be after `useCallback`.
+
+            // Effect Hooks
+            // Commonly used hooks are sorted first.
+            require("react").useEffect, // ▶️ Executes Function
+            require("react").useLayoutEffect, // ▶️ Executes Function
+            require("react").useInsertionEffect, // ▶️ Executes Function
+
+            // Other Hooks
+            // Alphabetical order.
+            require("react").useImperativeHandle, // ▶️ Executes Function
+            require("react").useTransition, // ↩️ Returns Value
+
+            // Debug Hooks
+            require("react").useDebugValue, // ▶️ Executes Function
+          ],
+
+          /** Component: HTML */
+          ...[
+            require("remix-utils").useHydrated, // ↩️ Readonly Value
+            require("usehooks-ts").useMediaQuery, // ↩️ Readonly Value
+            require("react").useId, // ↩️ Readonly Value
+          ],
+        ].map(({ name }) => name),
       },
     ],
   },

@@ -25,7 +25,6 @@ export interface MapProps {
 /** @ignore */
 export default function Map({ places, zoom }: MapProps) {
   const { focus, setFocus } = useAppMapContext();
-  const darkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   const ref = useRef<
     ReactMapProps & {
@@ -60,6 +59,8 @@ export default function Map({ places, zoom }: MapProps) {
     return () => map?.remove(markers);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [places]);
+
+  const darkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   return (
     <APILoader akey="***REMOVED***" version="2.0.5">
