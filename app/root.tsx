@@ -92,6 +92,11 @@ export default function App() {
           <meta content="width=device-width,initial-scale=1" name="viewport" />
           <Meta />
           <Links />
+          <script
+            defer
+            data-domain="meishago.kapui.net"
+            src="https://analytics.kapui.net/js/script.js"
+          />
         </head>
         <body>
           <Outlet />

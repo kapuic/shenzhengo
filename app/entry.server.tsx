@@ -41,8 +41,8 @@ export default async function handleRequest(
   // Security Headers
   responseHeaders.set(
     "Content-Security-Policy",
-    `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://static.cloudflareinsights.com https://webapi.amap.com/maps https://webapi.amap.com/mapsplugin https://webapi.amap.com/style2; style-src 'self' 'unsafe-inline'; img-src 'self' http://webapi.amap.com https://vdata.amap.com https://*.is.autonavi.com/appmaptile; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; worker-src blob:; connect-src ${
-      true ? "*" : "https://cloudflareinsights.com"
+    `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://webapi.amap.com/maps https://webapi.amap.com/mapsplugin https://webapi.amap.com/style2; style-src 'self' 'unsafe-inline'; img-src 'self' http://webapi.amap.com https://vdata.amap.com https://*.is.autonavi.com/appmaptile; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; worker-src blob:${
+      process.env.NODE_ENV === "development" ? "; connect-src *" : ""
     }`
   );
   responseHeaders.set("X-Frame-Options", "DENY");
