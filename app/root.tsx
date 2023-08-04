@@ -96,7 +96,7 @@ export default function App() {
             defer
             data-domain="meishago.kapui.net"
             src="https://analytics.kapui.net/js/script.js"
-          />
+          ></script>
         </head>
         <body>
           <Outlet />
