@@ -41,7 +41,7 @@ export default async function handleRequest(
   // Security Headers
   responseHeaders.set(
     "Content-Security-Policy",
-    `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://features-control.kapui.net https://analytics.kapui.net https://challenges.cloudflare.com https://webapi.amap.com/maps https://webapi.amap.com/mapsplugin https://webapi.amap.com/style2; style-src 'self' 'unsafe-inline'; img-src 'self' https://webapi.amap.com/theme https://vdata.amap.com/style_icon; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; worker-src blob:; connect-src 'self' https://features-control.kapui.net https://analytics.kapui.net https://*.amap.com${
+    `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://features-control.kapui.net https://analytics.kapui.net https://challenges.cloudflare.com https://webapi.amap.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://webapi.amap.com https://vdata.amap.com https://*.is.autonavi.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; worker-src blob:; connect-src 'self' https://features-control.kapui.net https://analytics.kapui.net https://*.amap.com${
       process.env.NODE_ENV === "development" ? " *" : ""
     }`
   );
