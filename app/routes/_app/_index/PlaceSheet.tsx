@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Sheet from "react-modal-sheet";
-import { twMerge } from "tailwind-merge";
 import { useMediaQuery } from "usehooks-ts";
 
 import { useAppMapContext } from "../AppMapContext";
