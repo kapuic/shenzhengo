@@ -1,14 +1,12 @@
 import { useFeatureIsOn } from "@growthbook/growthbook-react";
-import {
-  type SerializeFrom,
-  type V2_MetaFunction,
-} from "@remix-run/cloudflare";
+import { type MetaFunction, type SerializeFrom } from "@remix-run/cloudflare";
 import { useRouteLoaderData, useSearchParams } from "@remix-run/react";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { isEqual } from "lodash";
 import { lazy, Suspense, useId, useState } from "react";
-import { ClientOnly, useHydrated } from "remix-utils";
+import { ClientOnly } from "remix-utils/build/react/client-only";
+import { useHydrated } from "remix-utils/build/react/use-hydrated";
 import { useEffectOnce, useLocalStorage } from "usehooks-ts";
 
 import Alert from "~/components/Alert";
@@ -28,7 +26,7 @@ import MapWelcomeMessage from "./MapWelcomeMessage";
 
 const Map = lazy(() => import("./Map/Map"));
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
   return [{ title: "Map | MeishaGo" }];
 };
 

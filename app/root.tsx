@@ -2,7 +2,7 @@ import { GrowthBook, GrowthBookProvider } from "@growthbook/growthbook-react";
 import {
   json,
   type LinksFunction,
-  type LoaderArgs,
+  type LoaderFunctionArgs,
 } from "@remix-run/cloudflare";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import {
@@ -51,7 +51,7 @@ export const links: LinksFunction = () => [
   // })),
 ];
 
-export async function loader({ context }: LoaderArgs) {
+export async function loader({ context }: LoaderFunctionArgs) {
   return json({
     featureCtl: {
       apiHost: context.env.GROWTHBOOK_API_HOST,

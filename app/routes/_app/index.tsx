@@ -5,8 +5,8 @@ import {
 } from "@growthbook/growthbook-react";
 import {
   json,
-  type LoaderArgs,
-  type V2_MetaFunction,
+  type LoaderFunctionArgs,
+  type MetaFunction,
 } from "@remix-run/cloudflare";
 import { NavLink, Outlet } from "@remix-run/react";
 import {
@@ -24,7 +24,7 @@ import placesNearby from "~/data/places/nearby";
 import AppMapContext from "./AppMapContext";
 import { type Place } from "./types";
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
   return [
     { title: "MeishaGo" },
     {
@@ -35,7 +35,7 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
-export async function loader({ context }: LoaderArgs) {
+export async function loader({ context }: LoaderFunctionArgs) {
   const featureCtlData = (await getGrowthBookSSRData({
     apiHost: context.env.GROWTHBOOK_API_HOST,
     clientKey: context.env.GROWTHBOOK_CLIENT_KEY,

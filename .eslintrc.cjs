@@ -126,7 +126,6 @@ module.exports = {
 
           /** Component: HTML */
           ...[
-            require("remix-utils").useHydrated, // ↩️ Readonly Value
             require("usehooks-ts").useMediaQuery, // ↩️ Readonly Value
             require("react").useId, // ↩️ Readonly Value
           ],

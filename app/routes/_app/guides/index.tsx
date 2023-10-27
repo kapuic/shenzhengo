@@ -1,7 +1,4 @@
-import {
-  type SerializeFrom,
-  type V2_MetaFunction,
-} from "@remix-run/cloudflare";
+import { type MetaFunction, type SerializeFrom } from "@remix-run/cloudflare";
 import {
   NavLink,
   Outlet,
@@ -18,7 +15,7 @@ import activities from "~/data/activities";
 import { type loader } from "../../_app";
 import ActivityCard from "../ActivityCard";
 
-export const meta: V2_MetaFunction = ({ params }) => {
+export const meta: MetaFunction = ({ params }) => {
   const activity = activities.find(({ id }) => id === params.activity);
   return [{ title: `${activity ? activity.name : "Guides"} | MeishaGo` }];
 };
