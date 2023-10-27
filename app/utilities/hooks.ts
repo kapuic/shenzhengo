@@ -8,7 +8,7 @@ import { useHydrated } from "remix-utils/build/react/use-hydrated";
 
 export function useHydratedEffect(
   effect: EffectCallback,
-  deps?: DependencyList
+  deps?: DependencyList,
 ) {
   /* eslint-disable hooks/sort */
   const hydrated = useHydrated();
@@ -36,7 +36,7 @@ export function useDelayedBoolean(value: boolean, delay: number = 3000) {
 
 export function useUpdateQueryStringValueWithoutNavigation(
   queryKey: string,
-  queryValue: string
+  queryValue: string,
 ) {
   useEffect(() => {
     const currentSearchParams = new URLSearchParams(window.location.search);

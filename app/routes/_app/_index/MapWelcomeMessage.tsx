@@ -7,7 +7,7 @@ import Button from "~/components/Button";
 export default function MapWelcomeMessage() {
   const [, setWelcomeMessageDismissed] = useLocalStorage(
     "map.welcomeMessageDismissed",
-    false
+    false,
   );
 
   return (

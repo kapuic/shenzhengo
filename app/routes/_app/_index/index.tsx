@@ -55,11 +55,11 @@ export default function Index() {
 
   useUpdateQueryStringValueWithoutNavigation(
     "lng",
-    focus?.location[0].toString() ?? ""
+    focus?.location[0].toString() ?? "",
   );
   useUpdateQueryStringValueWithoutNavigation(
     "lat",
-    focus?.location[1].toString() ?? ""
+    focus?.location[1].toString() ?? "",
   );
 
   const tabs: TabSelectTab[] = [
@@ -69,11 +69,11 @@ export default function Index() {
   const [active, setActive] = useState(
     queryPlace
       ? citywidePlaces.some(({ location }) =>
-          isEqual(location, queryPlace.location)
+          isEqual(location, queryPlace.location),
         )
         ? "citywide"
         : "nearby"
-      : "nearby"
+      : "nearby",
   );
 
   const [
@@ -83,12 +83,12 @@ export default function Index() {
   useHydratedEffect(() => {
     if (!focus)
       return console.log(
-        `Active tab changed to "${active}". \`focus\` was null`
+        `Active tab changed to "${active}". \`focus\` was null`,
       );
     console.log(
       `Active tab changed to "${active}". Clearing \`focus\` (was `,
       focus,
-      ") and settings `willChangeCenterWhenFocusChanges` to true"
+      ") and settings `willChangeCenterWhenFocusChanges` to true",
     );
     setFocus(null);
     setWillChangeCenterWhenFocusChanges(true);
@@ -97,7 +97,7 @@ export default function Index() {
 
   const [welcomeMessageDismissed] = useLocalStorage(
     "map.welcomeMessageDismissed",
-    false
+    false,
   );
 
   const hydrated = useHydrated();
@@ -138,7 +138,7 @@ export default function Index() {
                   >
                     {citywidePlaces
                       .filter(
-                        ({ type }) => type === PointOfInterestType.ShoppingMall
+                        ({ type }) => type === PointOfInterestType.ShoppingMall,
                       )
                       .map((place, i) => (
                         <li key={i}>

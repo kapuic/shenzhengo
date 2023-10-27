@@ -32,7 +32,7 @@ export function useSetCenterWhenFocusChanges({
           defaultCenter ? "defaultCenter" : "fitCenter"
         }\` (`,
         defaultCenter ?? fitCenter,
-        ")"
+        ")",
       );
       setCenter(defaultCenter ?? fitCenter);
       setWillResetWhenFocusClears(false);
@@ -42,7 +42,7 @@ export function useSetCenterWhenFocusChanges({
       "[Map] `focus` changed to",
       focus,
       ", setting center to",
-      focus.location
+      focus.location,
     );
     setCenter(focus.location);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +69,7 @@ export function useSetCenterWhenDefaultCenterChanges({
     console.log(
       "[Map] `defaultCenter` changed to",
       defaultCenter,
-      ", resetting center to this new value"
+      ", resetting center to this new value",
     );
     setCenter(defaultCenter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,7 +98,7 @@ export function useSetCenterWhenFitCenterChanges({
     console.log(
       "[Map] `fitCenter` changed to",
       fitCenter,
-      ", resetting center to this new value"
+      ", resetting center to this new value",
     );
     setCenter(fitCenter);
     // eslint-disable-next-line react-hooks/exhaustive-deps

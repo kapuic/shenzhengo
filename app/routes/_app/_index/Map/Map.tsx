@@ -66,10 +66,10 @@ export default function Map({
       visiblePlaces
         .reduce(
           (acc, { location }) => [acc[0] + location[0], acc[1] + location[1]],
-          [0, 0]
+          [0, 0],
         )
         .map((coord) => coord / visiblePlaces.length) as [number, number],
-    [visiblePlaces]
+    [visiblePlaces],
   );
 
   useSetCenterWhenFocusChanges({
@@ -124,7 +124,7 @@ export default function Map({
                 key={i}
                 place={place}
                 visible={visiblePlaces.some(({ location }) =>
-                  isEqual(location, place.location)
+                  isEqual(location, place.location),
                 )}
               />
             ))}

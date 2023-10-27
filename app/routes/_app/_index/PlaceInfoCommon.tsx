@@ -32,7 +32,7 @@ export default function PlaceInfoCommon({
   const enableAttribution = useFeatureIsOn("place-info:attribution");
   const signatureDishesLimit = useFeatureValue<number>(
     "place-info:signature-dishes:limit",
-    3
+    3,
   );
 
   const Icon = getPointOfInterestTypeIcon(place.type);

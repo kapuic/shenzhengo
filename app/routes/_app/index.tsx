@@ -58,7 +58,7 @@ function NavButton({ className, children, ...props }: RemixNavLinkProps) {
           isActive
             ? "bg-gray-100 text-blue-500 dark:bg-gray-800 dark:text-blue-400"
             : // Uses a darker shade of gray because the element is small.
-              "focus:outline-nones text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+              "focus:outline-nones text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800",
         )
       }
       {...props}

@@ -42,7 +42,7 @@ export default function TabSelect<T extends TabSelectTab[]>({
               className={twMerge(
                 // `dark:text-gray-400` is used instead of `dark:text-gray-500` because the latter does not have enough contrast with the dark hover background.
                 "absolute inset-0 z-10 rounded-md bg-transparent font-medium text-gray-500 transition-all hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 dark:text-gray-400 dark:hover:text-gray-100 dark:focus-visible:ring-offset-gray-800",
-                active === id && "text-gray-700 dark:text-gray-300"
+                active === id && "text-gray-700 dark:text-gray-300",
               )}
               onClick={() => setActive(id)}
             >

@@ -16,7 +16,7 @@ export default function Spinner({
       className={twMerge(
         "inline-block animate-spin rounded-full border-[3px] border-current border-t-transparent",
         `h-${size} w-${size}`,
-        className
+        className,
       )}
       {...props}
     />

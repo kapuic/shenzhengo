@@ -21,7 +21,7 @@ export default function Alert({ className, children, variant }: AlertProps) {
           : variant === "warning"
           ? "border-yellow-300 bg-yellow-50 text-yellow-800 dark:border-yellow-800 dark:text-yellow-300"
           : "border-gray-300 bg-gray-50 text-gray-800 dark:border-gray-600 dark:text-gray-300",
-        className
+        className,
       )}
     >
       {children}

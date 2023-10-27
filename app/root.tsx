@@ -74,14 +74,14 @@ export default function App() {
         clientKey: featureCtl.clientKey,
         enableDevMode: process.env.NODE_ENV === "development",
       }),
-    [featureCtl.apiHost, featureCtl.clientKey]
+    [featureCtl.apiHost, featureCtl.clientKey],
   );
   useEffect(() => {
     growthBook.loadFeatures({ autoRefresh: true });
   }, [growthBook]);
   useEffect(
     () => growthBook.setURL(location.pathname),
-    [growthBook, location.pathname]
+    [growthBook, location.pathname],
   );
 
   return (

@@ -15,7 +15,7 @@ export default function DropdownMenu({
       role="menu"
       className={twMerge(
         "absolute right-0 z-50 mt-2 min-w-[15rem] rounded-lg border bg-white p-2 shadow-md dark:border-zinc-700 dark:bg-zinc-800",
-        className?.toString()
+        className?.toString(),
       )}
       {...props}
     >

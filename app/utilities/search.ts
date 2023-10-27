@@ -17,7 +17,7 @@ const fusePlaces = new Fuse(
       { name: "keywords", weight: 0.5 },
       { name: "description", weight: 0.3 },
     ],
-  }
+  },
 );
 
 export function searchPlaces(query: string) {

@@ -22,12 +22,12 @@ export const meta: MetaFunction = ({ params }) => {
 
 export default function Guide() {
   const { activities } = useRouteLoaderData(
-    "routes/_app/index"
+    "routes/_app/index",
   ) as SerializeFrom<typeof loader>;
   const { activity: activityId } = useParams() as { activity: string };
   const activity = useMemo(
     () => activities.find(({ id }) => id === activityId),
-    [activities, activityId]
+    [activities, activityId],
   );
 
   const activitiesLabelId = useId();
@@ -37,7 +37,7 @@ export default function Guide() {
       <div
         className={twMerge(
           "flex h-[calc(100dvh-4.5rem)] w-full flex-shrink-0 flex-col overflow-y-scroll bg-white px-4 py-6 dark:bg-gray-900 md:h-[100dvh] md:w-72 md:border-r dark:md:border-gray-700",
-          activityId && "hidden md:block"
+          activityId && "hidden md:block",
         )}
       >
         <div className="flex flex-col gap-4">
@@ -66,7 +66,7 @@ export default function Guide() {
       <div
         className={twMerge(
           "h-[calc(100dvh-4.5rem)] w-full bg-white dark:bg-gray-900 md:h-[100dvh]",
-          !activityId && "hidden md:block"
+          !activityId && "hidden md:block",
         )}
       >
         <Outlet context={activity} />

@@ -10,7 +10,7 @@ export default function DropdownTarget({
       tabIndex={-1}
       className={twMerge(
         "list-none group-open:before:fixed group-open:before:inset-0 group-open:before:z-40 group-open:before:cursor-pointer",
-        className?.toString()
+        className?.toString(),
       )}
       {...props}
     >

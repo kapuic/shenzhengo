@@ -34,7 +34,7 @@ export interface GetPlacesOptions {
 
 export function getPlaceByLocation(
   location: [number, number],
-  options: GetPlacesOptions = { nearby: true, citywide: true }
+  options: GetPlacesOptions = { nearby: true, citywide: true },
 ) {
   return [
     ...(options.nearby ? placesNearby : []),
@@ -44,7 +44,7 @@ export function getPlaceByLocation(
 
 export function getPlacesByType(
   type: PointOfInterestType,
-  options: GetPlacesOptions = { nearby: true, citywide: true }
+  options: GetPlacesOptions = { nearby: true, citywide: true },
 ) {
   return [
     ...(options.nearby ? placesNearby : []),
@@ -56,7 +56,7 @@ export function getActivitiesByPlace(place: Place) {
   return activities.filter(
     (activity) =>
       activity.associated_places?.some((location) =>
-        isEqual(location, place.location)
-      ) || activity.associated_types?.includes(place.type)
+        isEqual(location, place.location),
+      ) || activity.associated_types?.includes(place.type),
   );
 }

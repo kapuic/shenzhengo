@@ -20,7 +20,7 @@ export default function BaseCard({
         "flex flex-col gap-1 rounded-xl border bg-white p-4 text-left shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]",
         withButtonStyle &&
           "transition-all hover:bg-gray-50 group-focus:outline-none group-focus:ring-2 group-focus:ring-blue-500 group-focus:ring-offset-2 group-focus:ring-offset-white dark:hover:bg-gray-700 dark:group-focus:ring-offset-gray-900",
-        className
+        className,
       )}
       {...props}
     >

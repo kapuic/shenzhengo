@@ -15,7 +15,7 @@ export default async function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  loadContext: AppLoadContext
+  loadContext: AppLoadContext,
 ) {
   const body = await renderToReadableStream(
     <RemixServer context={remixContext} url={request.url} />,
@@ -25,7 +25,7 @@ export default async function handleRequest(
         console.error(error);
         responseStatusCode = 500;
       },
-    }
+    },
   );
 
   if (isbot(request.headers.get("user-agent"))) {
@@ -43,7 +43,7 @@ export default async function handleRequest(
     "Content-Security-Policy",
     `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://features-control.kapui.net https://analytics.kapui.net https://challenges.cloudflare.com https://webapi.amap.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://webapi.amap.com https://vdata.amap.com https://*.is.autonavi.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; worker-src blob:; connect-src 'self' https://features-control.kapui.net https://analytics.kapui.net https://*.amap.com${
       process.env.NODE_ENV === "development" ? " *" : ""
-    }`
+    }`,
   );
   responseHeaders.set("X-Frame-Options", "DENY");
   responseHeaders.set("X-Content-Type-Options", "nosniff");
