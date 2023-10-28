@@ -5,8 +5,8 @@ import { IconExclamationCircle } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { isEqual } from "lodash";
 import { lazy, Suspense, useId, useState } from "react";
-import { ClientOnly } from "remix-utils/build/react/client-only";
-import { useHydrated } from "remix-utils/build/react/use-hydrated";
+import { ClientOnly } from "remix-utils/client-only";
+import { useHydrated } from "remix-utils/use-hydrated";
 import { useEffectOnce, useLocalStorage } from "usehooks-ts";
 
 import Alert from "~/components/Alert";

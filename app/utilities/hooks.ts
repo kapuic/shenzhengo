@@ -4,7 +4,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useHydrated } from "remix-utils/build/react/use-hydrated";
+import { useHydrated } from "remix-utils/use-hydrated";
 
 export function useHydratedEffect(
   effect: EffectCallback,
