@@ -69,7 +69,6 @@ export default function App() {
       new GrowthBook({
         apiHost: featureCtl.apiHost,
         clientKey: featureCtl.clientKey,
-        decryptionKey: featureCtl.decryptionKey,
         remoteEval: true,
         enableDevMode: process.env.NODE_ENV === "development",
         subscribeToChanges: true,
