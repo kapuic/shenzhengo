@@ -3,12 +3,13 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "typecheck": "tsc",
-    "lint": "eslint .",
-    "format": "prettier --write .",
     "build": "remix build",
     "dev": "remix dev --manual -c \"npm run start\"",
-    "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public"
+    "format": "prettier --write .",
+    "postinstall": "remix-esbuild-override",
+    "lint": "eslint .",
+    "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@growthbook/growthbook-react": "^0.20.0",
@@ -25,6 +26,7 @@
     "react": "next",
     "react-dom": "next",
     "react-modal-sheet": "^2.2.0",
+    "remix-esbuild-override": "^3.1.0",
     "remix-utils": "^7.1.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.5",
@@ -39,6 +41,7 @@
     "@types/lodash": "^4.14.200",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
+    "chalk": "^5.3.0",
     "eslint": "^8.52.0",
     "eslint-plugin-hooks": "^0.4.3",
     "eslint-plugin-jsdoc": "^46.8.2",

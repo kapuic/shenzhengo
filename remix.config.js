@@ -1,5 +1,15 @@
 // @ts-check
+import { withEsbuildOverride } from "remix-esbuild-override";
 import { flatRoutes } from "remix-flat-routes";
+
+withEsbuildOverride((option) => {
+  option.legalComments = "none";
+  option.inject =
+    process.env.NODE_ENV === "development" ? ["app/entry.dev.ts"] : undefined;
+  option.keepNames = process.env.NODE_ENV === "development";
+  option.minify = true;
+  return option;
+});
 
 /** @type {import("@remix-run/dev").AppConfig} */
 export default {
