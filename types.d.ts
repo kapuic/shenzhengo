@@ -199,6 +199,7 @@ module "@remix-run/cloudflare" {
 
         readonly GROWTHBOOK_API_HOST?: string;
         readonly GROWTHBOOK_CLIENT_KEY?: string;
+        readonly GROWTHBOOK_DECRYPTION_KEY?: string;
       },
       unknown,
       Record<string, unknown>

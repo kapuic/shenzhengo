@@ -56,6 +56,7 @@ export async function loader({ context }: LoaderFunctionArgs) {
     featureCtl: {
       apiHost: context.env.GROWTHBOOK_API_HOST,
       clientKey: context.env.GROWTHBOOK_CLIENT_KEY,
+      decryptionKey: context.env.GROWTHBOOK_DECRYPTION_KEY,
     },
   });
 }
@@ -72,12 +73,15 @@ export default function App() {
       new GrowthBook({
         apiHost: featureCtl.apiHost,
         clientKey: featureCtl.clientKey,
+        decryptionKey: featureCtl.decryptionKey,
+        remoteEval: true,
         enableDevMode: process.env.NODE_ENV === "development",
+        subscribeToChanges: true,
       }),
     [featureCtl.apiHost, featureCtl.clientKey],
   );
   useEffect(() => {
-    growthBook.loadFeatures({ autoRefresh: true });
+    growthBook.loadFeatures();
   }, [growthBook]);
   useEffect(
     () => growthBook.setURL(location.pathname),
