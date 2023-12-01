@@ -52,7 +52,7 @@ module.exports = {
             require("@remix-run/react").useNavigation, // ↩️ Readonly Value, Complexity: Simple
             require("@remix-run/react").useNavigationType, // ↩️ Readonly Value, Complexity: Simple
             require("@remix-run/react").useNavigate, // ↩️ Runnable Function
-            require("@remix-run/react").unstable_useBlocker, // ↩️ Returns Complex
+            require("@remix-run/react").useBlocker, // ↩️ Returns Complex
             require("@remix-run/react").unstable_usePrompt, // ▶️ Executes Function
             // ^ Abstraction of `unstable_useBlocker`.
 
