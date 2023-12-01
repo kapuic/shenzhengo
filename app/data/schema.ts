@@ -1,17 +1,28 @@
-import { type PointOfInterestType } from "~/data/types";
+export interface Category {
+  id: string;
+  name: string;
+  markerUrl: string;
+  parentId?: string;
+}
+
+export interface Range {
+  id: string;
+  name: string;
+}
 
 export interface Place {
   location: [number, number];
 
   name: string;
-  translation: string;
-  type: PointOfInterestType;
+  originalName: string;
+  rangeId: Range["id"];
+  categoryId: Category["id"];
 
   description?: string;
-  cover_image?: string;
+  coverImage?: string;
   keywords?: string[];
 
-  signature_dishes?: {
+  signatureDishes?: {
     name: string;
     translation: string;
     price: number;
@@ -25,8 +36,8 @@ export interface Activity {
   id: string;
   name: string;
 
-  associated_types?: PointOfInterestType[];
-  associated_places?: [number, number][];
+  categoryIds?: Category["id"][];
+  placeLocations?: [number, number][];
 
   vocab?: {
     name: string;

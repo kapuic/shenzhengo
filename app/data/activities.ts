@@ -1,16 +1,10 @@
-import { type Activity } from "~/routes/_app/types";
-
-import { PointOfInterestType } from "./types";
+import { type Activity } from "./schema";
 
 const activities: Activity[] = [
   {
     id: "food",
     name: "Food",
-    associated_types: [
-      PointOfInterestType.Food,
-      PointOfInterestType.FoodRestaurant,
-      PointOfInterestType.FoodFast,
-    ],
+    categoryIds: ["food", "restaurant", "fast-food"],
     vocab: [
       { name: "Restaurant", chinese: "餐厅", pinyin: "Cāntīng" },
       { name: "Menu", chinese: "菜单", pinyin: "Càidān" },
@@ -42,12 +36,15 @@ const activities: Activity[] = [
   {
     id: "hiking",
     name: "Hiking",
-    associated_places: [
+    placeLocations: [
       [114.300844, 22.600616],
       [114.312739, 22.59973],
       [114.307954, 22.592429],
     ],
-    associated_types: [PointOfInterestType.Walkway],
+    categoryIds: [
+      // "walkway"
+      "walkway",
+    ],
     vocab: [
       { name: "Trail/Walk way", chinese: "栈道", pinyin: "Zhàndào" },
       { name: "distance", chinese: "距离", pinyin: "Jùlí" },
@@ -88,7 +85,7 @@ const activities: Activity[] = [
   {
     id: "parks",
     name: "Parks",
-    associated_types: [PointOfInterestType.Park],
+    categoryIds: ["park"],
     vocab: [
       { name: "Park", chinese: "公园", pinyin: "Gōngyuán" },
       { name: "Beach", chinese: "海滩", pinyin: "Hǎitān" },
@@ -152,7 +149,7 @@ const activities: Activity[] = [
   {
     id: "hospital",
     name: "Hospital",
-    associated_types: [PointOfInterestType.HealthHospital],
+    categoryIds: ["hospital"],
     vocab: [
       { name: "Hospital", chinese: "医院", pinyin: "Yīyuàn" },
       { name: "Doctor", chinese: "医生", pinyin: "Yīshēng" },
@@ -243,7 +240,7 @@ const activities: Activity[] = [
   {
     id: "pharmacy",
     name: "Pharmacy",
-    associated_types: [PointOfInterestType.HealthPharmacy],
+    categoryIds: ["pharmacy"],
     vocab: [
       { name: "Pharmacy", chinese: "药房", pinyin: "Yàofáng" },
       { name: "Prescription", chinese: "处方", pinyin: "Chǔfāng" },
@@ -322,7 +319,7 @@ const activities: Activity[] = [
   {
     id: "coffee-shop",
     name: "Coffee Shop",
-    associated_types: [PointOfInterestType.FoodBeverage],
+    categoryIds: ["beverage"],
     vocab: [
       { name: "Coffee", chinese: "咖啡", pinyin: "Kāfēi" },
       { name: "Espresso", chinese: "浓缩咖啡", pinyin: "Nóngsuō kāfēi" },
@@ -350,7 +347,7 @@ const activities: Activity[] = [
   {
     id: "skydiving",
     name: "Skydiving",
-    associated_places: [[114.289192, 22.59186]],
+    placeLocations: [[114.289192, 22.59186]],
     vocab: [
       { name: "Skydiving", chinese: "跳伞", pinyin: "Tiàosǎn" },
       {
@@ -402,7 +399,7 @@ const activities: Activity[] = [
   {
     id: "yacht-and-sailing",
     name: "Yacht & Sailing",
-    associated_places: [
+    placeLocations: [
       [114.309633, 22.594766],
       [114.312238, 22.598236],
     ],
@@ -453,7 +450,7 @@ const activities: Activity[] = [
   {
     id: "surfing",
     name: "Surfing",
-    associated_places: [[114.311454, 22.597956]],
+    placeLocations: [[114.311454, 22.597956]],
     vocab: [
       { name: "Surfing", chinese: "冲浪", pinyin: "Chōnglàng" },
       { name: "Surfboard", chinese: "冲浪板", pinyin: "Chōnglàng bǎn" },
