@@ -13,9 +13,9 @@ globalThis.fetch = async (...args) => {
       typeof args[0] === "string"
         ? args[0]
         : args[0] instanceof URL
-        ? args[0].href
-        : // @ts-expect-error
-          args[0].url
+          ? args[0].href
+          : // @ts-expect-error
+            args[0].url
     } ...`,
   );
 
@@ -31,9 +31,9 @@ globalThis.fetch = async (...args) => {
       typeof args[0] === "string"
         ? args[0]
         : args[0] instanceof URL
-        ? args[0].href
-        : // @ts-expect-error
-          args[0].url
+          ? args[0].href
+          : // @ts-expect-error
+            args[0].url
     } ${chalk[response.ok ? "green" : "red"](
       `${chalk.bold(response.status)} ${response.statusText}`,
     )}`,
