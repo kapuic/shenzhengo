@@ -125,6 +125,7 @@ const places: Place[] = [
 
     description:
       "This is the closest public hospital to the Dameisha community. It has complete services and equipments for a variety of treatments.",
+    coverImage: "/images/meisha-hospital/cover.png",
     keywords: ["healthcare"],
 
     author: "Oliver",
@@ -569,6 +570,8 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "hotel",
 
+    coverImage: "/images/intercontinental-shenzhen-dameisha-resort/cover.jpeg",
+
     author: "Hao Du",
   },
   {
@@ -578,6 +581,8 @@ const places: Place[] = [
     originalName: "东部华侨城茵特拉根酒店",
     rangeId: "nearby",
     categoryId: "hotel",
+
+    coverImage: "/images/interlaken-oct-hotel/cover.jpeg",
 
     author: "Hao Du",
   },
@@ -589,6 +594,8 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "hotel",
 
+    coverImage: "/images/kingkey-palace-hotel/cover.jpeg",
+
     author: "Hao Du",
   },
   {
@@ -599,6 +606,8 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "hotel",
 
+    coverImage: "/images/hilton-hampton/cover.png",
+
     author: "Hao Du",
   },
   {
@@ -608,6 +617,8 @@ const places: Place[] = [
     originalName: "维也纳国际酒店",
     rangeId: "nearby",
     categoryId: "hotel",
+
+    coverImage: "/images/vienna-international-hotel/cover.png",
 
     author: "Hao Du",
   },
@@ -629,6 +640,8 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "hotel",
 
+    coverImage: "/images/pattaya-hotel/cover.png",
+
     author: "Hao Du",
   },
   {
@@ -638,6 +651,8 @@ const places: Place[] = [
     originalName: "维也纳酒店",
     rangeId: "nearby",
     categoryId: "hotel",
+
+    coverImage: "/images/vienna-hotel/cover.png",
 
     author: "Hao Du",
   },
@@ -649,6 +664,8 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "apartment-rental",
 
+    coverImage: "/images/leyoujia/cover.png",
+
     author: "Hao Du",
   },
   {
@@ -658,6 +675,8 @@ const places: Place[] = [
     originalName: "中原地产",
     rangeId: "nearby",
     categoryId: "apartment-rental",
+
+    coverImage: "/images/zhongyuan-real-estate/cover.png",
 
     author: "Hao Du",
   },
@@ -669,6 +688,8 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "bank",
 
+    coverImage: "/images/pinan-bank/cover.png",
+
     author: "Hao Du",
   },
   {
@@ -678,6 +699,8 @@ const places: Place[] = [
     originalName: "建行自助取款机",
     rangeId: "nearby",
     categoryId: "atm",
+
+    coverImage: "/images/ccb-atm/cover.png",
 
     author: "Hao Du",
   },
@@ -689,6 +712,8 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "police",
 
+    coverImage: "/images/meisha-police-station/cover.png",
+
     author: "Hao Du",
   },
   {
@@ -698,6 +723,8 @@ const places: Place[] = [
     originalName: "杏林大药房",
     rangeId: "nearby",
     categoryId: "pharmacy",
+
+    coverImage: "/images/xlct-pharmacy-shop/cover.png",
 
     author: "Hao Du",
   },
