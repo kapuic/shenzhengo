@@ -153,6 +153,12 @@ export default function Index() {
     return results;
   }, [categories, placesInRange, filterCategory, filterSearch]);
 
+  /** Filtered places that have cover images. */
+  const filteredPlacesWithCoverImages = useMemo(
+    () => filteredPlaces.filter(({ coverImage }) => coverImage),
+    [filteredPlaces],
+  );
+
   /** Categories that include filtered places. */
   const recommendedCategories = useMemo(
     () =>
@@ -230,11 +236,30 @@ export default function Index() {
             >
               {(filterCategory || filterSearch) && (
                 <div
-                  className="rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
+                  className="flex flex-col gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
                   role="alert"
                 >
+                  {filteredPlacesWithCoverImages.length >= 5 && (
+                    <div className="flex justify-center -space-x-4">
+                      <div className="inline-flex h-[3.875rem] w-[3.875rem] flex-shrink-0 items-center justify-center rounded-full bg-gray-100 ring-2 ring-gray-50 dark:bg-gray-700 dark:ring-gray-800">
+                        <CurrentFilterIcon className="h-8 w-8 text-gray-800 dark:text-gray-100" />
+                      </div>
+                      {filteredPlacesWithCoverImages
+                        .slice(0, 4)
+                        .map(({ coverImage, name }, i) => (
+                          <img
+                            key={i}
+                            alt={`Cover of ${name}`}
+                            className="inline-block h-[3.875rem] w-[3.875rem] rounded-full ring-2 ring-gray-50 dark:ring-gray-800"
+                            src={coverImage}
+                          />
+                        ))}
+                    </div>
+                  )}
                   <div className="flex gap-4">
-                    <CurrentFilterIcon className="h-5 w-5 flex-shrink-0" />
+                    {!(filteredPlacesWithCoverImages.length >= 5) && (
+                      <CurrentFilterIcon className="h-5 w-5 flex-shrink-0" />
+                    )}
                     <div className="flex flex-grow flex-col items-start gap-2">
                       <span>
                         <span className="font-bold">
