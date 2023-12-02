@@ -57,9 +57,11 @@ export default function PlaceInfoCommon({
         </p>
         {enablePoiType && (
           <div className="flex items-center gap-1 text-gray-800 dark:text-gray-100">
-            <Icon />
-            {categories.find(({ id }) => id === place.categoryId)?.name ??
-              "Other"}
+            <Icon className="h-5 w-5" />
+            <span>
+              {categories.find(({ id }) => id === place.categoryId)?.name ??
+                "Other"}
+            </span>
           </div>
         )}
       </div>
