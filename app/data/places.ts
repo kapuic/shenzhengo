@@ -561,6 +561,146 @@ const places: Place[] = [
 
     author: "Rachel",
   },
+  {
+    location: [114.314845, 22.597653],
+
+    name: "Intercontinental Shenzhen Dameisha Resort",
+    originalName: "大梅沙洲际酒店",
+    rangeId: "nearby",
+    categoryId: "hotel",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.27579, 22.631594],
+
+    name: "The Interlaken OCT Hotel",
+    originalName: "东部华侨城茵特拉根酒店",
+    rangeId: "nearby",
+    categoryId: "hotel",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.310454, 22.598002],
+
+    name: "Shenzhen Dameisha Kingkey Palace Hotel",
+    originalName: "深圳大梅沙京基海湾酒店",
+    rangeId: "nearby",
+    categoryId: "hotel",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.30655, 22.593824],
+
+    name: "Hilton Hampton",
+    originalName: "喜来登欢朋酒店",
+    rangeId: "nearby",
+    categoryId: "hotel",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.30598, 22.59289],
+
+    name: "Vienna International Hotel",
+    originalName: "维也纳国际酒店",
+    rangeId: "nearby",
+    categoryId: "hotel",
+
+    author: "Hao Du",
+  },
+  // {
+  //   location: [114.305634, 22.591975],
+
+  //   name: "Green Tree Alliance Hotel",
+  //   originalName: "格林联盟酒店",
+  //   rangeId: "nearby",
+  //   categoryId: "hotel",
+
+  //   author: "Hao Du",
+  // },
+  {
+    location: [114.310054, 22.599981],
+
+    name: "Pattaya Hotel",
+    originalName: "芭提雅酒店",
+    rangeId: "nearby",
+    categoryId: "hotel",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.30598, 22.59289],
+
+    name: "Vienna Hotel",
+    originalName: "维也纳酒店",
+    rangeId: "nearby",
+    categoryId: "hotel",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.303333, 22.603265],
+
+    name: "Leyoujia.com",
+    originalName: "乐有家",
+    rangeId: "nearby",
+    categoryId: "apartment-rental",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.305604, 22.601214],
+
+    name: "Zhongyuan Real Estate",
+    originalName: "中原地产",
+    rangeId: "nearby",
+    categoryId: "apartment-rental",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.313683, 22.599189],
+
+    name: "PinAn Bank",
+    originalName: "平安银行",
+    rangeId: "nearby",
+    categoryId: "bank",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.307825, 22.594095],
+
+    name: "CCB ATM",
+    originalName: "建行自助取款机",
+    rangeId: "nearby",
+    categoryId: "atm",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.311149, 22.599617],
+
+    name: "Meisha Police Station",
+    originalName: "梅沙派出所",
+    rangeId: "nearby",
+    categoryId: "police",
+
+    author: "Hao Du",
+  },
+  {
+    location: [114.305297, 22.59448],
+
+    name: "XLCT Pharmacy Shop",
+    originalName: "杏林大药房",
+    rangeId: "nearby",
+    categoryId: "pharmacy",
+
+    author: "Hao Du",
+  },
 ];
 
 export default places;

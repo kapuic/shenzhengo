@@ -1,11 +1,17 @@
 import {
   IconBarbell,
+  IconBed,
+  IconBuilding,
+  IconBuildingBank,
   IconBuildingCarousel,
   IconBuildingHospital,
   IconChefHat,
+  IconCurrencyYuan,
   IconGlassFull,
+  IconHomeSearch,
   IconIceCream,
   IconMedicalCross,
+  IconShield,
   IconShoppingBag,
   IconToolsKitchen2,
   IconTrees,
@@ -84,6 +90,40 @@ const categories: Category[] = [
     name: "Shopping Mall",
     markerUrl: "/assets/markers/shopping-mall.png",
   },
+  {
+    id: "hotel",
+    name: "Hotel",
+    markerUrl: "/assets/markers/hotel.png",
+  },
+  {
+    id: "other",
+    name: "Other",
+    markerUrl: "/assets/markers/other.png",
+  },
+  {
+    id: "bank",
+    name: "Bank",
+    markerUrl: "/assets/markers/bank.png",
+    parentId: "other",
+  },
+  {
+    id: "atm",
+    name: "ATM",
+    markerUrl: "/assets/markers/atm.png",
+    parentId: "other",
+  },
+  {
+    id: "police",
+    name: "Police",
+    markerUrl: "/assets/markers/police.png",
+    parentId: "other",
+  },
+  {
+    id: "apartment-rental",
+    name: "Apartment Rental",
+    markerUrl: "/assets/markers/other.png",
+    parentId: "other",
+  },
 ];
 
 export default categories;
@@ -104,4 +144,10 @@ export const categoryIcons: Record<
   beverage: IconGlassFull,
   fitness: IconBarbell,
   "shopping-mall": IconShoppingBag,
+  hotel: IconBed,
+  other: IconBuilding,
+  bank: IconBuildingBank,
+  atm: IconCurrencyYuan,
+  police: IconShield,
+  "apartment-rental": IconHomeSearch,
 };
