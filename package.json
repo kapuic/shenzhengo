@@ -55,7 +55,7 @@
     "prettier-plugin-tailwindcss": "^0.5.7",
     "remix-flat-routes": "^0.6.2",
     "typescript": "^5.3.2",
-    "wrangler": "^3.18.0"
+    "wrangler": "beta"
   },
   "engines": {
     "node": ">=18.16.0"
