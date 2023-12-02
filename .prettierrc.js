@@ -1,5 +1,5 @@
 // @ts-check
 /** @type {import("prettier").Config} */
-module.exports = {
+export default {
   plugins: ["prettier-plugin-jsdoc", "prettier-plugin-tailwindcss"],
 };
