@@ -1,18 +1,16 @@
 import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
 import { Link } from "@remix-run/react";
-import { IconNavigation, IconUser } from "@tabler/icons-react";
+import { IconMapPin, IconNavigation, IconUser } from "@tabler/icons-react";
+import { isEqual } from "lodash";
 import { twMerge } from "tailwind-merge";
 
 import BaseCard from "~/components/BaseCard";
+import { categoryIcons } from "~/data/categories";
+import { type Place } from "~/data/schema";
 import { getDirectionsUrl } from "~/utilities/amap";
-import {
-  getActivitiesByPlace,
-  getPointOfInterestTypeIcon,
-  getPointOfInterestTypeName,
-} from "~/utilities/data";
 
+import { useAppLoaderData } from "..";
 import ActivityCard from "../ActivityCard";
-import { type Place } from "../types";
 
 export interface PlaceInfoCommonProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -24,6 +22,8 @@ export default function PlaceInfoCommon({
   className,
   ...props
 }: PlaceInfoCommonProps) {
+  const { categories, activities } = useAppLoaderData();
+
   const enablePoiType = useFeatureIsOn("place-info:poi-type");
   const enableDirections = useFeatureIsOn("place-info:directions");
   const enableDescription = useFeatureIsOn("place-info:description");
@@ -35,31 +35,37 @@ export default function PlaceInfoCommon({
     3,
   );
 
-  const Icon = getPointOfInterestTypeIcon(place.type);
-  const activities = getActivitiesByPlace(place);
+  const Icon = categoryIcons[place.categoryId] ?? IconMapPin;
+  const relevantActivities = activities.filter(
+    (activity) =>
+      activity.placeLocations?.some((location) =>
+        isEqual(location, place.location),
+      ) || activity.categoryIds?.includes(place.categoryId),
+  );
 
   return (
     <div className={twMerge("flex flex-col gap-4", className)} {...props}>
       <div className="flex flex-col gap-1">
         <h3 className="text-xl font-extrabold leading-tight text-gray-800 dark:text-gray-100">
-          {place.translation}
+          {place.name}
         </h3>
         <p
           className="text-xs font-medium text-gray-500 dark:text-gray-400"
           lang="zh_CN"
         >
-          {place.name}
+          {place.originalName}
         </p>
         {enablePoiType && (
           <div className="flex items-center gap-1 text-gray-800 dark:text-gray-100">
             <Icon />
-            {getPointOfInterestTypeName(place.type)}
+            {categories.find(({ id }) => id === place.categoryId)?.name ??
+              "Other"}
           </div>
         )}
       </div>
       {enableDirections && (
         <Link
-          className="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+          className="focus-ring inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 dark:hover:bg-blue-400 dark:focus:ring-offset-gray-800"
           hrefLang="zh_CN"
           target="_blank"
           to={getDirectionsUrl(place).href}
@@ -79,13 +85,13 @@ export default function PlaceInfoCommon({
           </p>
         </div>
       )}
-      {enableSignatureDishes && place.signature_dishes && (
+      {enableSignatureDishes && place.signatureDishes && (
         <div className="flex flex-col gap-2">
           <span className="font-semibold text-gray-800 dark:text-gray-100">
             Signature Dishes
           </span>
           <div className="flex flex-col gap-2">
-            {place.signature_dishes
+            {place.signatureDishes
               .slice(0, signatureDishesLimit)
               .map((dish, i) => (
                 <BaseCard key={i} className="block h-24 columns-2 gap-0 p-0">
@@ -115,16 +121,21 @@ export default function PlaceInfoCommon({
           </div>
         </div>
       )}
-      {enableGuides && activities.length > 0 && (
+      {enableGuides && relevantActivities.length > 0 && (
         <div className="flex flex-col gap-2">
           <span className="font-semibold text-gray-800 dark:text-gray-100">
             Guides
           </span>
           <div className="flex flex-col gap-2">
-            {activities.map((activity, i) => (
-              <Link key={i} className="group" to={`/guides/${activity.id}`}>
-                <ActivityCard withButtonStyle activity={activity} />
-              </Link>
+            {relevantActivities.map((activity, i) => (
+              <ActivityCard
+                key={i}
+                withButtonStyle
+                activity={activity}
+                as={Link}
+                className="group"
+                to={`/guides/${activity.id}`}
+              />
             ))}
           </div>
         </div>

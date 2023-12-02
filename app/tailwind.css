@@ -2,17 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply outline-none;
+@layer base {
+  * {
+    @apply transition-colors;
+  }
 }
 
-.delay-visible {
-  animation: delayVisibleAnimation 0.5s 1s forwards;
-  opacity: 0;
-}
+@layer utilities {
+  .text-center *,
+  .flex.flex-col.items-center * {
+    text-align: center;
+  }
 
-@keyframes delayVisibleAnimation {
-  to {
-    opacity: 1;
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900;
+  }
+
+  .delay-visible {
+    animation: delayVisibleAnimation 0.5s 1s forwards;
+    opacity: 0;
+  }
+
+  @keyframes delayVisibleAnimation {
+    to {
+      opacity: 1;
+    }
   }
 }

@@ -1,9 +1,9 @@
 import { Marker as AMapMarker } from "@uiw/react-amap";
 
-import { getPointOfInterestTypeMarkerUrl } from "~/utilities/data";
+import { type Place } from "~/data/schema";
 
+import { useAppLoaderData } from "../..";
 import { useAppMapContext } from "../../AppMapContext";
-import { type Place } from "../../types";
 
 export interface MarkerProps {
   place: Place;
@@ -11,15 +11,17 @@ export interface MarkerProps {
 }
 
 export default function Marker({ place, visible }: MarkerProps) {
+  const { categories } = useAppLoaderData();
+
   const { focus, setFocus } = useAppMapContext();
 
   return (
     <AMapMarker
       topWhenClick
-      icon={getPointOfInterestTypeMarkerUrl(place.type)}
+      icon={categories.find(({ id }) => id === place.categoryId)?.markerUrl}
       offset={new AMap.Pixel(-16, -37)}
       position={place.location}
-      title={place.name}
+      title={place.originalName}
       visiable={visible}
       onClick={() => setFocus(focus ? null : place)}
     />

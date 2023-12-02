@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Sheet from "react-modal-sheet";
+import { twMerge } from "tailwind-merge";
 import { useMediaQuery } from "usehooks-ts";
 
 import { useAppMapContext } from "../AppMapContext";
@@ -34,6 +35,12 @@ export default function PlaceSheet() {
           </Sheet.Scroller>
         </Sheet.Content>
       </Sheet.Container>
+      <Sheet.Backdrop
+        className={twMerge(
+          "transition-opacity",
+          expanded ? "!opacity-100" : "!opacity-0",
+        )}
+      />
     </Sheet>
   ) : null;
 }

@@ -1,71 +1,81 @@
 import { useEffect } from "react";
 
-import { type Place } from "../../types";
+import { type Place } from "~/data/schema";
+
+interface CommonArgs {
+  setCenter: (value: [number, number]) => void;
+  focus: Place | null;
+  defaultCenter: [number, number] | undefined;
+}
 
 /**
- * Change map center when `focus` changes.
+ * Calls `setCenter` to recenter the map view when `focus` changes.
  *
- * Does nothing when `focus` changes to null, except if
- * `willResetWhenFocusClears` is true, resets the center to default.
+ * Subscribes to both of the following scenarios:
+ *
+ * - When `focus` is added or changed to a {@link Place}, recenters to
+ *   `focus.location`.
+ * - When `focus` is cleared to `null`, does nothing by default.
+ *
+ *   - However, if `willResetWhenFocusClears` is true, recenters to the default
+ *       center (`defaultCenter` or `fitCenter`, in order) if present.
  */
-export function useSetCenterWhenFocusChanges({
-  focus,
+export function useRecenterWhenFocusChanges({
   setCenter,
-  willResetWhenFocusClears,
-  setWillResetWhenFocusClears,
+  focus,
   defaultCenter,
   fitCenter,
-}: {
-  focus: Place | null;
-  setCenter: (value: [number, number]) => void;
-  willResetWhenFocusClears: boolean;
-  setWillResetWhenFocusClears: (value: boolean) => void;
-  defaultCenter: [number, number] | undefined;
-  fitCenter: [number, number];
+  willRecenterWhenFocusClears,
+  setWillRecenterWhenFocusClears,
+}: CommonArgs & {
+  fitCenter: [number, number] | null;
+  willRecenterWhenFocusClears: boolean;
+  setWillRecenterWhenFocusClears: (value: boolean) => void;
 }) {
   useEffect(() => {
-    if (!focus) {
-      if (!willResetWhenFocusClears)
-        return console.log("[Map] `focus` was cleared");
+    if (focus) {
       console.log(
-        `[Map] \`focus\` was cleared, but \`willChangeCenterWhenFocusChanges\` is true. Setting center to \`${
-          defaultCenter ? "defaultCenter" : "fitCenter"
-        }\` (`,
-        defaultCenter ?? fitCenter,
-        ")",
+        "[Map] `focus` changed to",
+        focus,
+        ", setting center to",
+        focus.location,
       );
-      setCenter(defaultCenter ?? fitCenter);
-      setWillResetWhenFocusClears(false);
-      return;
+      setCenter(focus.location);
+    } else {
+      if (!willRecenterWhenFocusClears)
+        return console.log("[Map] `focus` was cleared");
+      let fallbackCenter = defaultCenter ?? fitCenter;
+      if (fallbackCenter) {
+        console.log(
+          `[Map] \`focus\` was cleared, but \`willChangeCenterWhenFocusChanges\` is true. Setting center to \`${
+            defaultCenter ? "defaultCenter" : "fitCenter"
+          }\` (`,
+          fallbackCenter,
+          ")",
+        );
+        setCenter(fallbackCenter);
+      }
+      setWillRecenterWhenFocusClears(false);
     }
-    console.log(
-      "[Map] `focus` changed to",
-      focus,
-      ", setting center to",
-      focus.location,
-    );
-    setCenter(focus.location);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
 }
 
 /**
- * Reset map center when `defaultCenter` changes.
+ * Calls `setCenter` to recenter the map view when `defaultCenter` changes.
  *
- * Does nothing when `defaultCenter` is not set or when `focus` is set (often at
- * startup).
+ * Does nothing when:
+ *
+ * - `focus` is set, as it always has the highest priority.
+ * - `defaultCenter` is not set or cleared to `null`.
  */
-export function useSetCenterWhenDefaultCenterChanges({
-  defaultCenter,
+export function useRecenterWhenDefaultCenterChanges({
   setCenter,
   focus,
-}: {
-  defaultCenter: [number, number] | undefined;
-  setCenter: (value: [number, number]) => void;
-  focus: Place | null;
-}) {
+  defaultCenter,
+}: CommonArgs) {
   useEffect(() => {
-    if (!defaultCenter || focus) return;
+    if (focus || !defaultCenter) return;
     console.log(
       "[Map] `defaultCenter` changed to",
       defaultCenter,
@@ -77,24 +87,22 @@ export function useSetCenterWhenDefaultCenterChanges({
 }
 
 /**
- * Reset map center when `fitCenter` changes.
+ * Calls `setCenter` to recenter the map view when `fitCenter` changes.
  *
- * Does nothing when `defaultCenter` is set or when `focus` is set (often at
- * startup).
+ * Does nothing when:
+ *
+ * - `focus` is set, as it always has the highest priority.
+ * - `defaultCenter` is set, as it always has a higher priority.
+ * - `fitCenter` is not set or cleared to `null`.
  */
-export function useSetCenterWhenFitCenterChanges({
-  fitCenter,
+export function useRecenterWhenFitCenterChanges({
   setCenter,
-  defaultCenter,
   focus,
-}: {
-  fitCenter: [number, number];
-  setCenter: (value: [number, number]) => void;
-  defaultCenter: [number, number] | undefined;
-  focus: Place | null;
-}) {
+  defaultCenter,
+  fitCenter,
+}: CommonArgs & { fitCenter: [number, number] | null }) {
   useEffect(() => {
-    if (defaultCenter || focus) return;
+    if (focus || defaultCenter || !fitCenter) return;
     console.log(
       "[Map] `fitCenter` changed to",
       fitCenter,

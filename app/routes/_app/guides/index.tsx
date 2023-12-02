@@ -1,29 +1,24 @@
-import { type MetaFunction, type SerializeFrom } from "@remix-run/cloudflare";
-import {
-  NavLink,
-  Outlet,
-  useParams,
-  useRouteLoaderData,
-} from "@remix-run/react";
+import { type MetaFunction } from "@remix-run/cloudflare";
+import { NavLink, Outlet, useParams } from "@remix-run/react";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { useId, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 
 import Alert from "~/components/Alert";
-import activities from "~/data/activities";
 
-import { type loader } from "../../_app";
+import { useAppLoaderData } from "../../_app";
 import ActivityCard from "../ActivityCard";
 
-export const meta: MetaFunction = ({ params }) => {
-  const activity = activities.find(({ id }) => id === params.activity);
-  return [{ title: `${activity ? activity.name : "Guides"} | MeishaGo` }];
+export const meta: MetaFunction = ({ params, data }) => {
+  console.log(data);
+  // const activity = activities.find(({ id }) => id === params.activity);
+  // return [{ title: `${activity ? activity.name : "Guides"} | MeishaGo` }];
+  return [{ title: `Guides | MeishaGo` }];
 };
 
 export default function Guide() {
-  const { activities } = useRouteLoaderData(
-    "routes/_app/index",
-  ) as SerializeFrom<typeof loader>;
+  const { activities } = useAppLoaderData();
+
   const { activity: activityId } = useParams() as { activity: string };
   const activity = useMemo(
     () => activities.find(({ id }) => id === activityId),
@@ -36,7 +31,7 @@ export default function Guide() {
     <div className="flex flex-grow">
       <div
         className={twMerge(
-          "flex h-[calc(100dvh-4.5rem)] w-full flex-shrink-0 flex-col overflow-y-scroll bg-white px-4 py-6 dark:bg-gray-900 md:h-[100dvh] md:w-72 md:border-r dark:md:border-gray-700",
+          "flex w-full flex-shrink-0 flex-col overflow-y-scroll bg-white px-4 py-6 dark:bg-gray-900 md:w-72 md:border-r dark:md:border-gray-700",
           activityId && "hidden md:block",
         )}
       >
@@ -54,9 +49,13 @@ export default function Guide() {
             >
               {activities.map((activity, i) => (
                 <li key={i}>
-                  <NavLink className="group" to={activity.id}>
-                    <ActivityCard withButtonStyle activity={activity} />
-                  </NavLink>
+                  <ActivityCard
+                    withButtonStyle
+                    activity={activity}
+                    as={NavLink}
+                    className="group"
+                    to={activity.id}
+                  />
                 </li>
               ))}
             </ul>
@@ -65,7 +64,7 @@ export default function Guide() {
       </div>
       <div
         className={twMerge(
-          "h-[calc(100dvh-4.5rem)] w-full bg-white dark:bg-gray-900 md:h-[100dvh]",
+          "w-full bg-white dark:bg-gray-900",
           !activityId && "hidden md:block",
         )}
       >

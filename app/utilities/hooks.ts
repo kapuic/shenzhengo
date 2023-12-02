@@ -36,7 +36,7 @@ export function useDelayedBoolean(value: boolean, delay: number = 3000) {
 
 export function useUpdateQueryStringValueWithoutNavigation(
   queryKey: string,
-  queryValue: string,
+  queryValue?: string | null,
 ) {
   useEffect(() => {
     const currentSearchParams = new URLSearchParams(window.location.search);

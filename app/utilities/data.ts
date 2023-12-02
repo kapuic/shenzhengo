@@ -1,62 +1,23 @@
 import { isEqual } from "lodash";
 
-import activities from "~/data/activities";
-import placesCitywide from "~/data/places/citywide";
-import placesNearby from "~/data/places/nearby";
-import {
-  type PointOfInterestType,
-  PointOfInterestTypeIcons,
-  PointOfInterestTypeMarkerUrl,
-  PointOfInterestTypeNames,
-} from "~/data/types";
-import { type Place } from "~/routes/_app/types";
+import { type Category, type Place } from "~/data/schema";
 
-export function getPointOfInterestTypeName(type: PointOfInterestType) {
-  return PointOfInterestTypeNames[type];
+export function findLocation(places: Place[], location: [number, number]) {
+  return places.find((place) => isEqual(place.location, location));
 }
 
-export function getPointOfInterestTypeIcon(type: PointOfInterestType) {
-  return PointOfInterestTypeIcons[type];
-}
-
-export function getPointOfInterestTypeMarkerUrl(type: PointOfInterestType) {
+export function isPlaceUnderCategory(
+  place: Place,
+  category: string,
+  /**
+   * Enable recursive mode: If `allCategories` is provided, it will be used to
+   * check if `place` belongs to a child category of `category`.
+   */
+  allCategories?: Category[],
+) {
   return (
-    PointOfInterestTypeMarkerUrl[
-      type as keyof typeof PointOfInterestTypeMarkerUrl
-    ] ?? "/assets/markers/default.png"
-  );
-}
-
-export interface GetPlacesOptions {
-  nearby?: boolean;
-  citywide?: boolean;
-}
-
-export function getPlaceByLocation(
-  location: [number, number],
-  options: GetPlacesOptions = { nearby: true, citywide: true },
-) {
-  return [
-    ...(options.nearby ? placesNearby : []),
-    ...(options.citywide ? placesCitywide : []),
-  ].find((place) => isEqual(place.location, location));
-}
-
-export function getPlacesByType(
-  type: PointOfInterestType,
-  options: GetPlacesOptions = { nearby: true, citywide: true },
-) {
-  return [
-    ...(options.nearby ? placesNearby : []),
-    ...(options.citywide ? placesCitywide : []),
-  ].filter((place) => place.type === type);
-}
-
-export function getActivitiesByPlace(place: Place) {
-  return activities.filter(
-    (activity) =>
-      activity.associated_places?.some((location) =>
-        isEqual(location, place.location),
-      ) || activity.associated_types?.includes(place.type),
+    place.categoryId === category ||
+    allCategories?.find(({ id }) => id === place.categoryId)?.parentId ===
+      category
   );
 }

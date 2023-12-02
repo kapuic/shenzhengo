@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import { type Place } from "./types";
+import { type Place } from "~/data/schema";
 
 interface AppMapContextData {
   focus: Place | null;

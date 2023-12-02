@@ -12,16 +12,16 @@ import { useMediaQuery } from "usehooks-ts";
 
 import Alert from "~/components/Alert";
 import Spinner from "~/components/Spinner";
+import { type Place } from "~/data/schema";
 import { useDelayedBoolean } from "~/utilities/hooks";
 
 import { useAppMapContext } from "../../AppMapContext";
-import { type Place } from "../../types";
 import PlacePopover from "../PlacePopover";
 import PlaceSheet from "../PlaceSheet";
 import {
-  useSetCenterWhenDefaultCenterChanges,
-  useSetCenterWhenFitCenterChanges,
-  useSetCenterWhenFocusChanges,
+  useRecenterWhenDefaultCenterChanges,
+  useRecenterWhenFitCenterChanges,
+  useRecenterWhenFocusChanges,
 } from "./hooks";
 import Marker from "./Marker";
 
@@ -34,8 +34,8 @@ interface MapPropsBase {
 }
 
 interface MapPropsWithWillResetCenterWhenFocusClears extends MapPropsBase {
-  willResetCenterWhenFocusClears: boolean;
-  setWillResetCenterWhenFocusClears: (value: boolean) => void;
+  willRecenterWhenFocusClears: boolean;
+  setWillRecenterWhenFocusClears: (value: boolean) => void;
 }
 
 export type MapProps = MapPropsBase &
@@ -47,8 +47,8 @@ export default function Map({
   center: defaultCenter,
   zoom,
   zooms,
-  willResetCenterWhenFocusClears: willResetWhenFocusClears,
-  setWillResetCenterWhenFocusClears: setWillResetWhenFocusClears,
+  willRecenterWhenFocusClears,
+  setWillRecenterWhenFocusClears,
 }: MapProps) {
   const enableScaleControl = useFeatureIsOn("map:scale-control");
   const enableToolbarControl = useFeatureIsOn("map:toolbar-control");
@@ -63,29 +63,34 @@ export default function Map({
 
   const fitCenter = useMemo(
     () =>
-      visiblePlaces
-        .reduce(
-          (acc, { location }) => [acc[0] + location[0], acc[1] + location[1]],
-          [0, 0],
-        )
-        .map((coord) => coord / visiblePlaces.length) as [number, number],
+      visiblePlaces.length !== 0
+        ? (visiblePlaces
+            .reduce(
+              (acc, { location }) => [
+                acc[0] + location[0],
+                acc[1] + location[1],
+              ],
+              [0, 0],
+            )
+            .map((coord) => coord / visiblePlaces.length) as [number, number])
+        : null,
     [visiblePlaces],
   );
 
-  useSetCenterWhenFocusChanges({
-    focus,
+  useRecenterWhenFocusChanges({
     setCenter,
-    willResetWhenFocusClears,
-    setWillResetWhenFocusClears,
+    focus,
     defaultCenter,
     fitCenter,
+    willRecenterWhenFocusClears,
+    setWillRecenterWhenFocusClears,
   });
-  useSetCenterWhenDefaultCenterChanges({ defaultCenter, setCenter, focus });
-  useSetCenterWhenFitCenterChanges({
-    fitCenter,
+  useRecenterWhenDefaultCenterChanges({ setCenter, focus, defaultCenter });
+  useRecenterWhenFitCenterChanges({
     setCenter,
-    defaultCenter,
     focus,
+    defaultCenter,
+    fitCenter,
   });
 
   const darkMode = useMediaQuery("(prefers-color-scheme: dark)");

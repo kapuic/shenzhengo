@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useMediaQuery } from "usehooks-ts";
 
+import { type Place } from "~/data/schema";
+
 import { useAppMapContext } from "../AppMapContext";
-import { type Place } from "../types";
 import PlaceInfoCommon from "./PlaceInfoCommon";
 
 // import PlacePopoverStyles from "./PlacePopover.css";
@@ -62,11 +63,11 @@ export default function PlacePopover() {
                 // "snap-y"
               )}
             >
-              {enableCoverImage && focus.cover_image && (
+              {enableCoverImage && focus.coverImage && (
                 <img
                   alt="Cover"
                   className="-mx-4 h-32 snap-start rounded-t-xl object-cover"
-                  src={focus.cover_image}
+                  src={focus.coverImage}
                 />
               )}
               <PlaceInfoCommon className="snap-start pb-4 pt-4" place={focus} />
