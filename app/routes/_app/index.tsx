@@ -17,6 +17,7 @@ import {
   IconBook,
   IconCloudRain,
   IconMap2,
+  IconSearch,
   IconShare,
 } from "@tabler/icons-react";
 import { useState } from "react";
@@ -126,11 +127,16 @@ export default function App() {
               </NavButton> */}
             </div>
           </aside>
-          <Outlet />
+          <div className="relative h-full w-full overflow-x-hidden overflow-y-scroll bg-white dark:bg-gray-900">
+            <Outlet />
+          </div>
         </div>
-        <nav className="flex h-[4.5rem] flex-shrink-0 items-center justify-evenly border-t bg-white dark:border-t-gray-700 dark:bg-gray-900 md:hidden">
+        <nav className="z-10 flex h-[4.5rem] flex-shrink-0 items-center justify-evenly border-t bg-white dark:border-t-gray-700 dark:bg-gray-900 md:hidden">
           <NavButton to="/">
             <IconMap2 />
+          </NavButton>
+          <NavButton to="/search">
+            <IconSearch />
           </NavButton>
           <NavButton to="/guides">
             <IconBook />
