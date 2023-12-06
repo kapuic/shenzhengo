@@ -302,14 +302,17 @@ export default function Index() {
                           className="flex flex-col items-center gap-2"
                         >
                           <button
-                            className="focus-ring rounded-full border bg-white p-4 text-gray-500 shadow-sm transition-all hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-100"
+                            className="focus-ring group rounded-full border bg-white p-4 shadow-sm transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
                             onClick={() =>
                               type.id === filterCategory
                                 ? setFilterCategory(null)
                                 : setFilterCategory(type.id)
                             }
                           >
-                            <Icon size={36} />
+                            <Icon
+                              className="text-gray-500 transition-none group-hover:text-gray-800 dark:text-gray-400 dark:group-hover:text-gray-100"
+                              size={36}
+                            />
                           </button>
                           <span className="text-center text-sm text-gray-800 dark:text-gray-100">
                             {type.name}
