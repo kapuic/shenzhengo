@@ -5,16 +5,20 @@ import { useId, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 
 import Alert from "~/components/Alert";
+import { mergeMeta } from "~/utilities/remix";
 
 import { useAppLoaderData } from "../../_app";
 import ActivityCard from "../ActivityCard";
 
-export const meta: MetaFunction = ({ params, data }) => {
-  console.log(data);
-  // const activity = activities.find(({ id }) => id === params.activity);
-  // return [{ title: `${activity ? activity.name : "Guides"} | MeishaGo` }];
-  return [{ title: `Guides | MeishaGo` }];
-};
+export const meta: MetaFunction<
+  null,
+  { "routes/_app/index": typeof useAppLoaderData }
+> = mergeMeta(({ matches, params }) => {
+  const activity = matches
+    .find(({ id }) => id === "routes/_app/index")
+    ?.data.activities.find(({ id }) => id === params.activity);
+  return [{ title: `${activity ? activity.name : "Guides"} | MeishaGo` }];
+});
 
 export default function Guide() {
   const { activities } = useAppLoaderData();

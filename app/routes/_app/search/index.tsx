@@ -1,5 +1,5 @@
 import { useFeatureIsOn } from "@growthbook/growthbook-react";
-import { Link, useSearchParams } from "@remix-run/react";
+import { Link, type MetaFunction, useSearchParams } from "@remix-run/react";
 import { IconMapPin, IconSearch } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useId, useMemo, useState } from "react";
@@ -12,10 +12,15 @@ import {
   useHydratedEffect,
   useUpdateQueryStringValueWithoutNavigation,
 } from "~/utilities/hooks";
+import { mergeMeta } from "~/utilities/remix";
 import { getFuseClient } from "~/utilities/search";
 
 import { useAppLoaderData } from "..";
 import PlaceCard from "../PlaceCard";
+
+export const meta: MetaFunction = mergeMeta(() => [
+  { title: "Search | MeishaGo" },
+]);
 
 export default function Search() {
   const { ranges, categories, places } = useAppLoaderData();

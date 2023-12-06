@@ -22,6 +22,7 @@ import {
   useHydratedEffect,
   useUpdateQueryStringValueWithoutNavigation,
 } from "~/utilities/hooks";
+import { mergeMeta } from "~/utilities/remix";
 import { getFuseClient } from "~/utilities/search";
 
 import { useAppLoaderData } from "..";
@@ -31,9 +32,9 @@ import MapWelcomeMessage from "./MapWelcomeMessage";
 
 const Map = lazy(() => import("./Map/Map"));
 
-export const meta: MetaFunction = () => {
-  return [{ title: "Map | MeishaGo" }];
-};
+export const meta: MetaFunction = mergeMeta(() => [
+  // { title: "Map | MeishaGo" },
+]);
 
 export default function Index() {
   const { ranges, categories, places } = useAppLoaderData();

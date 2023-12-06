@@ -28,21 +28,19 @@ import categories from "~/data/categories";
 import places from "~/data/places";
 import ranges from "~/data/ranges";
 import { type Place } from "~/data/schema";
+import { mergeMeta } from "~/utilities/remix";
 
 import AppMapContext from "./AppMapContext";
 import Logo from "./Logo";
 import NavButton from "./NavButton";
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "MeishaGo" },
-    {
-      name: "description",
-      content:
-        "MeishaGo offers comprehensive information & lists of guides of local places/points of interest in Dameisha, located in Shenzhen, China, helping foreign residents and tourists.",
-    },
-  ];
-};
+export const meta: MetaFunction<typeof loader> = mergeMeta(({ data }) => [
+  { title: "MeishaGo - Map of Dameisha for Foreigners" },
+  {
+    name: "description",
+    content: `Explore ${data?.places.length}+ different places and attractions across Dameisha (Shenzhen, China) in English. Detailed information and guides, whether you're a visitor or a future resident.`,
+  },
+]);
 
 export async function loader({ context }: LoaderFunctionArgs) {
   const featureCtlData = (await getGrowthBookSSRData({

@@ -21,11 +21,13 @@ import { useEffect, useMemo } from "react";
 
 import tailwind from "~/tailwind.css";
 
-export const meta: MetaFunction = () => [
+import { mergeMeta } from "./utilities/remix";
+
+export const meta: MetaFunction<typeof loader> = mergeMeta(() => [
   { name: "theme-color", content: "#1659be" },
   { name: "msapplication-TileColor", content: "#1659be" },
   { name: "msapplication-config", content: "/icons/browserconfig.xml" },
-];
+]);
 
 export const links: LinksFunction = () => [
   ...["16", "32"].map((size) => ({
