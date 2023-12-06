@@ -11,7 +11,6 @@ const places: Place[] = [
 
     description:
       "Vanke East Coast Exercising Park is a park where you can walk, run, and relax. There are lots of lotus and trees; the park is usually quiet and the air feels fresh.",
-    keywords: ["hiking"],
 
     author: "Oliver",
   },
@@ -25,7 +24,6 @@ const places: Place[] = [
 
     description:
       "There is a beautiful uphill trail surrounded by trees in this park where you can walk to the top of a hill. On the top, there is a nice lookout spot where you can look down at all the Dameisha.",
-    keywords: ["hiking"],
 
     author: "Oliver",
   },
@@ -39,7 +37,6 @@ const places: Place[] = [
 
     description:
       "This is a well-established walkway across Dameisha and Xiaomeisha with beautiful views of the sea. This walkway usually don’t have many people, so you can enjoy many beautiful sight seeing spots along the walk way with little disturbance!",
-    keywords: ["hiking", "cycling"],
 
     author: "Oliver",
   },
@@ -53,7 +50,6 @@ const places: Place[] = [
 
     description:
       "This is another long walkway in Dameisha where you can hike while enjoying beautiful sea views.",
-    keywords: ["hiking"],
 
     author: "Oliver",
   },
@@ -67,7 +63,6 @@ const places: Place[] = [
 
     description:
       "This is a park at the Dameisha beach enjoy the sea view and relax on the beach. Here, you can access a long walkway connected to the Xiaomeisha Seashore Walkway and other parts of the Dantean District.",
-    keywords: ["hiking", "cycling"],
 
     author: "Oliver",
   },
@@ -82,7 +77,6 @@ const places: Place[] = [
 
     description:
       "Dameisha park is the biggest tourist attraction in the area. You can enjoy the beach and participate in numerous kinds of activities in the park, including water sports.",
-    keywords: ["park"],
 
     author: "Oliver",
   },
@@ -96,7 +90,6 @@ const places: Place[] = [
 
     description:
       "This is a park built on the Dameisha beach for children to play on water. There are small waterslides.",
-    keywords: ["park"],
 
     author: "Oliver",
   },
@@ -110,7 +103,6 @@ const places: Place[] = [
 
     description:
       "This is the park beside the VMA campus, going across the Dameisha Outlets. You can enjoy the beautiful scenery of the late and relax under the sunlight. You can see black swans if you are lucky!",
-    keywords: ["park"],
 
     author: "Oliver",
   },
@@ -126,7 +118,6 @@ const places: Place[] = [
     description:
       "This is the closest public hospital to the Dameisha community. It has complete services and equipments for a variety of treatments.",
     coverImage: "/images/meisha-hospital/cover.png",
-    keywords: ["healthcare"],
 
     author: "Oliver",
   },
@@ -138,8 +129,6 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "pharmacy",
 
-    keywords: ["healthcare"],
-
     author: "Oliver",
   },
   {
@@ -150,8 +139,6 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "pharmacy",
 
-    keywords: ["healthcare"],
-
     author: "Oliver",
   },
   {
@@ -161,8 +148,6 @@ const places: Place[] = [
     originalName: "万春堂",
     rangeId: "nearby",
     categoryId: "pharmacy",
-
-    keywords: ["healthcare"],
 
     author: "Oliver",
   },
@@ -178,7 +163,6 @@ const places: Place[] = [
     description:
       "This is a place where you can eat hotpot with coconut and chicken.",
     coverImage: "/images/coconut-chicken/cover.jpeg",
-    keywords: ["food"],
 
     signatureDishes: [
       {
@@ -213,7 +197,6 @@ const places: Place[] = [
 
     description: "This is a place where you can eat halal food.",
     coverImage: "/images/lanzhou-noodles/cover.jpeg",
-    keywords: ["food"],
 
     signatureDishes: [
       {
@@ -247,7 +230,6 @@ const places: Place[] = [
     categoryId: "fast-food",
 
     coverImage: "/images/mcdonalds/cover.jpeg",
-    keywords: ["food"],
 
     author: "Rachel",
   },
@@ -260,7 +242,6 @@ const places: Place[] = [
     categoryId: "fast-food",
 
     coverImage: "/images/pizza-hut/cover.jpeg",
-    keywords: ["food"],
 
     author: "Rachel",
   },
@@ -273,7 +254,6 @@ const places: Place[] = [
     categoryId: "fast-food",
 
     coverImage: "/images/burger-king/cover.jpeg",
-    keywords: ["food"],
 
     author: "Rachel",
   },
@@ -288,7 +268,6 @@ const places: Place[] = [
     description:
       "This is a place where you can eat Guangdong traditional foods.",
     coverImage: "/images/wugufang-roast-pigeon/cover.jpeg",
-    keywords: ["food"],
 
     signatureDishes: [
       {
@@ -322,7 +301,6 @@ const places: Place[] = [
     categoryId: "restaurant",
 
     coverImage: "/images/seaside-sushi/cover.jpeg",
-    keywords: ["food"],
 
     signatureDishes: [
       {
@@ -358,7 +336,6 @@ const places: Place[] = [
     description:
       "This is a place where you can drink milk teas and eat breads.",
     coverImage: "/images/nayuki/cover.jpeg",
-    keywords: ["food"],
 
     signatureDishes: [
       {

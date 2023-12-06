@@ -20,7 +20,6 @@ export interface Place {
 
   description?: string;
   coverImage?: string;
-  keywords?: string[];
 
   signatureDishes?: {
     name: string;
