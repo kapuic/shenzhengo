@@ -33,7 +33,10 @@ export default function MapWelcomeMessage() {
           </li>
         </ul>
       </div>
-      <Button onClick={() => setWelcomeMessageDismissed(true)}>
+      <Button
+        className="focus:ring-offset-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-offset-gray-800"
+        onClick={() => setWelcomeMessageDismissed(true)}
+      >
         Do Not Show Again
       </Button>
     </Alert>
