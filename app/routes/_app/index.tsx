@@ -16,6 +16,7 @@ import {
 import {
   IconBook,
   IconCloudRain,
+  IconInfoCircle,
   IconMap2,
   IconSearch,
   IconShare,
@@ -30,6 +31,7 @@ import ranges from "~/data/ranges";
 import { type Place } from "~/data/schema";
 import { mergeMeta } from "~/utilities/remix";
 
+import AboutDialog from "./AboutDialog";
 import AppMapContext from "./AppMapContext";
 import Logo from "./Logo";
 import NavButton from "./NavButton";
@@ -110,7 +112,7 @@ export default function App() {
           </div>
         </header>
         <div className="flex h-[calc(100dvh-4rem-4.5rem)] flex-grow flex-row md:h-[calc(100dvh-4rem)]">
-          <aside className="z-10 hidden flex-shrink-0 flex-col items-center border-r bg-white px-4 py-6 dark:border-gray-700 dark:bg-gray-900 md:flex">
+          <aside className="z-10 hidden flex-shrink-0 flex-col items-center justify-between border-r bg-white px-4 py-6 dark:border-gray-700 dark:bg-gray-900 md:flex">
             <nav className="flex flex-col items-center gap-3">
               <NavButton to="/">
                 <IconMap2 />
@@ -120,9 +122,11 @@ export default function App() {
               </NavButton>
             </nav>
             <div className="flex flex-col items-center gap-3">
-              {/* <NavButton to="/improve">
-                <IconPlus />
-              </NavButton> */}
+              <AboutDialog>
+                <button className="focus-ring inline-block rounded-lg p-2 text-gray-500 transition-all hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800">
+                  <IconInfoCircle />
+                </button>
+              </AboutDialog>
             </div>
           </aside>
           <div className="relative h-full w-full overflow-x-hidden overflow-y-scroll bg-white dark:bg-gray-900">
