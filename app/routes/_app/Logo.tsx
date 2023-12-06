@@ -1,8 +1,19 @@
+import { twMerge } from "tailwind-merge";
+
 import logo from "~/../public/logos/logo.png";
 
-export default function Logo() {
+export interface LogoProps
+  extends React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > {}
+
+export default function Logo({ className, ...props }: LogoProps) {
   return (
-    <div className="flex h-full flex-row items-center">
+    <div
+      className={twMerge("flex h-full flex-row items-center", className)}
+      {...props}
+    >
       <img alt="MeishaGo Logo" className="mr-2 h-full" src={logo} />
       <span className="text-2xl font-bold text-gray-800 dark:text-gray-100">
         Meisha
