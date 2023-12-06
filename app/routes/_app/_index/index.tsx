@@ -341,7 +341,7 @@ export default function Index() {
                         withButtonStyle
                         as="button"
                         className="group w-full"
-                        hideCategory={!!filterCategory}
+                        hideCategory={filterCategory === place.categoryId}
                         place={place}
                         onClick={() => setFocus(place)}
                       />

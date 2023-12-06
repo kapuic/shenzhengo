@@ -273,7 +273,7 @@ export default function Search() {
                       withButtonStyle
                       as={Link}
                       className="group w-full"
-                      hideCategory={!!filterCategory}
+                      hideCategory={filterCategory === place.categoryId}
                       place={place}
                       to={`/?lng=${place.location[0]}&lat=${place.location[1]}`}
                     />
