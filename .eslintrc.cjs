@@ -42,6 +42,28 @@ module.exports = {
             require("@growthbook/growthbook-react").useGrowthBook, // Scope: Meta, ↩️ Returns Complex, Complexity: 3
           ],
 
+          /** Data Loading and Fetching */
+          ...[
+            { name: "useAppLoaderData" }, // Scope: Context, ↩️ Readonly Value, Complexity: Simple
+            { name: "useAppMapContext" }, // Scope: Context, ↩️ Readonly Value, Complexity: Simple
+
+            require("@remix-run/react").useRouteLoaderData, // Scope: Context, ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useMatches, // Scope: Context, ↩️ Readonly Value, Complexity: Complex
+            require("@remix-run/react").useLoaderData, // Scope: Route, ↩️ Readonly Value
+            require("@remix-run/react").useActionData, // Scope: Route, ↩️ Readonly Value
+            require("@remix-run/react").useRouteError, // Scope: Route, Special Case, ↩️ Readonly Value
+            require("@remix-run/react").useAsyncValue, // Scope: `<Await />`, ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useAsyncError, // Scope: `<Await />`, ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useOutletContext, // Scope: Children, ↩️ Readonly Value, Complexity: Simple
+            require("@remix-run/react").useOutlet, // Scope: Children, ↩️ Readonly Value, Complexity: Complex
+
+            require("@remix-run/react").useFetcher, // ↩️ Returns Complex
+            require("@remix-run/react").useFetchers, // ↩️ Readonly Value
+            // ^ Summary of `useFetcher`.
+            require("@remix-run/react").useRevalidator, // ▶️ Executes Function
+            // ^ Revalidation is typically used after fetching.
+          ],
+
           /** Location and Navigation */
           ...[
             require("@remix-run/react").useParams, // ↩️ Readonly Value, Complexity: Simple
@@ -58,25 +80,6 @@ module.exports = {
 
             require("@remix-run/react").useHref, // ↩️ Readonly Value, Return Complexity: Simple
             require("@remix-run/react").useResolvedPath, // ↩️ Readonly Value, Return Complexity: Complex
-          ],
-
-          /** Data Loading and Fetching */
-          ...[
-            require("@remix-run/react").useRouteLoaderData, // Scope: Context, ↩️ Readonly Value, Complexity: Simple
-            require("@remix-run/react").useMatches, // Scope: Context, ↩️ Readonly Value, Complexity: Complex
-            require("@remix-run/react").useLoaderData, // Scope: Route, ↩️ Readonly Value
-            require("@remix-run/react").useActionData, // Scope: Route, ↩️ Readonly Value
-            require("@remix-run/react").useRouteError, // Scope: Route, Special Case, ↩️ Readonly Value
-            require("@remix-run/react").useAsyncValue, // Scope: `<Await />`, ↩️ Readonly Value, Complexity: Simple
-            require("@remix-run/react").useAsyncError, // Scope: `<Await />`, ↩️ Readonly Value, Complexity: Simple
-            require("@remix-run/react").useOutletContext, // Scope: Children, ↩️ Readonly Value, Complexity: Simple
-            require("@remix-run/react").useOutlet, // Scope: Children, ↩️ Readonly Value, Complexity: Complex
-
-            require("@remix-run/react").useFetcher, // ↩️ Returns Complex
-            require("@remix-run/react").useFetchers, // ↩️ Readonly Value
-            // ^ Summary of `useFetcher`.
-            require("@remix-run/react").useRevalidator, // ▶️ Executes Function
-            // ^ Revalidation is typically used after fetching.
           ],
 
           /** Integration (requires loading environmental data) */

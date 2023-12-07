@@ -63,8 +63,8 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({ formMethod }) =>
   !!formMethod;
 
 export default function App() {
-  const location = useLocation();
   const { featureCtl } = useLoaderData<typeof loader>();
+  const location = useLocation();
 
   const growthBook = useMemo(
     () =>
