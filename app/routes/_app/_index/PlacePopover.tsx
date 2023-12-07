@@ -75,11 +75,13 @@ export default function PlacePopover() {
                 // "snap-y"
               )}
             >
-              <img
-                alt="Cover"
-                className="-mx-4 h-32 snap-start rounded-t-xl object-cover"
-                src={focus.coverImage}
-              />
+              {focus.coverImage && (
+                <img
+                  alt="Cover"
+                  className="-mx-4 h-32 snap-start rounded-t-xl object-cover"
+                  src={focus.coverImage}
+                />
+              )}
               <PlaceInfoCommon
                 className="snap-start pb-4 pt-4"
                 place={focus}
