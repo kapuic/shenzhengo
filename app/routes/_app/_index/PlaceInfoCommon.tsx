@@ -53,7 +53,7 @@ export default function PlaceInfoCommon({
 
   const elements: Record<PlaceInfoCommonElement, ReactNode> = {
     header: (
-      <div className="flex flex-col gap-1">
+      <div key="header" className="flex flex-col gap-1">
         <h3 className="text-xl font-extrabold leading-tight text-gray-800 dark:text-gray-100">
           {place.name}
         </h3>
@@ -74,6 +74,7 @@ export default function PlaceInfoCommon({
     ),
     "directions-button": (
       <Link
+        key="directions-button"
         className="focus-ring inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 dark:hover:bg-blue-400 dark:focus:ring-offset-gray-800"
         hrefLang="zh_CN"
         target="_blank"
@@ -84,7 +85,7 @@ export default function PlaceInfoCommon({
       </Link>
     ),
     description: place.description && (
-      <div className="flex flex-col gap-1">
+      <div key="description" className="flex flex-col gap-1">
         <span className="font-semibold text-gray-800 dark:text-gray-100">
           Description
         </span>
@@ -95,7 +96,7 @@ export default function PlaceInfoCommon({
       </div>
     ),
     "signature-dishes": place.signatureDishes && (
-      <div className="flex flex-col gap-2">
+      <div key="signature-dishes" className="flex flex-col gap-2">
         <span className="font-semibold text-gray-800 dark:text-gray-100">
           Signature Dishes
         </span>
@@ -129,7 +130,7 @@ export default function PlaceInfoCommon({
       </div>
     ),
     "related-guides": relevantGuides.length > 0 && (
-      <div className="flex flex-col gap-2">
+      <div key="related-guides" className="flex flex-col gap-2">
         <span className="font-semibold text-gray-800 dark:text-gray-100">
           Related Guides
         </span>
@@ -147,7 +148,10 @@ export default function PlaceInfoCommon({
       </div>
     ),
     author: place.author && (
-      <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+      <div
+        key="author"
+        className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400"
+      >
         <IconUser size={18} />
         <span>Provided by {place.author}</span>
       </div>

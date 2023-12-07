@@ -84,10 +84,10 @@ export default function SearchView({
 
   const elements: Record<SearchViewElement, ReactNode> = {
     "welcome-message": hydrated && !welcomeMessageDismissed && (
-      <MapWelcomeMessage />
+      <MapWelcomeMessage key="welcome-message" />
     ),
     "search-bar": (
-      <div className="relative">
+      <div key="search-bar" className="relative">
         <Input
           className="ps-11"
           placeholder="Search places..."
@@ -100,7 +100,7 @@ export default function SearchView({
       </div>
     ),
     "range-tabs": (
-      <div className="flex justify-center">
+      <div key="range-tabs" className="flex justify-center">
         <TabSelect
           active={filterRange ?? "nearby"}
           setActive={setFilterRange}
@@ -113,6 +113,7 @@ export default function SearchView({
     ),
     "filter-message": (filterCategory || filterSearch) && (
       <div
+        key="filter-message"
         className="flex flex-col gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
         role="alert"
       >
@@ -161,7 +162,7 @@ export default function SearchView({
       </div>
     ),
     "category-buttons": recommendedCategories.length >= 3 && (
-      <div className="flex flex-col gap-3">
+      <div key="category-buttons" className="flex flex-col gap-3">
         <span
           className="sr-only px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
           id={categoriesLabelId}
@@ -199,7 +200,7 @@ export default function SearchView({
       </div>
     ),
     places: (
-      <div className="flex flex-col gap-3">
+      <div key="places" className="flex flex-col gap-3">
         <span
           id={placesLabelId}
           className={twMerge(
