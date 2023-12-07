@@ -1,3 +1,4 @@
+import { useFeatureValue } from "@growthbook/growthbook-react";
 import { useOutletContext } from "@remix-run/react";
 import {
   IconLanguage,
@@ -10,13 +11,20 @@ import BaseCard from "~/components/BaseCard";
 import { type Guide, type Place } from "~/data/schema";
 import { type RouteHandle } from "~/utilities/remix";
 
-import PlaceInfoCommon from "../_index/PlaceInfoCommon";
+import PlaceInfoCommon, {
+  type PlaceInfoCommonShownElements,
+} from "../_index/PlaceInfoCommon";
 
 export const handle: RouteHandle = {
   backButtonLabel: "All Guides",
 };
 
 export default function GuidePage() {
+  const shownElements = useFeatureValue<PlaceInfoCommonShownElements>(
+    "place-guide-elements",
+    ["header", "description", "signature-dishes", "related-guides", "author"],
+  );
+
   const { guide, relevantPlaces } = useOutletContext<{
     guide: Guide | null;
     relevantPlaces: Place[] | null;
@@ -37,7 +45,10 @@ export default function GuidePage() {
             <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
               {relevantPlaces.map((place, i) => (
                 <BaseCard key={i}>
-                  <PlaceInfoCommon place={place} />
+                  <PlaceInfoCommon
+                    place={place}
+                    shownElements={shownElements}
+                  />
                 </BaseCard>
               ))}
             </div>

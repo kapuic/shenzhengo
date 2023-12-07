@@ -1,12 +1,27 @@
+import { useFeatureValue } from "@growthbook/growthbook-react";
 import { useEffect, useState } from "react";
 import Sheet from "react-modal-sheet";
 import { twMerge } from "tailwind-merge";
 import { useMediaQuery } from "usehooks-ts";
 
 import { useAppMapContext } from "../AppMapContext";
-import PlaceInfoCommon from "./PlaceInfoCommon";
+import PlaceInfoCommon, {
+  type PlaceInfoCommonShownElements,
+} from "./PlaceInfoCommon";
 
 export default function PlaceSheet() {
+  const shownElements = useFeatureValue<PlaceInfoCommonShownElements>(
+    "place-sheet-elements",
+    [
+      "header",
+      "directions-button",
+      "description",
+      "signature-dishes",
+      "related-guides",
+      "author",
+    ],
+  );
+
   const { focus, setFocus } = useAppMapContext();
   const [opened, setOpened] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -31,7 +46,9 @@ export default function PlaceSheet() {
         <Sheet.Header className="bg-white dark:bg-gray-800" />
         <Sheet.Content className="bg-white p-4 dark:bg-gray-800">
           <Sheet.Scroller className={!expanded ? "!overflow-hidden" : ""}>
-            {focus && <PlaceInfoCommon place={focus} />}
+            {focus && (
+              <PlaceInfoCommon place={focus} shownElements={shownElements} />
+            )}
           </Sheet.Scroller>
         </Sheet.Content>
       </Sheet.Container>

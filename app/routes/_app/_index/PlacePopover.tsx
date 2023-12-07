@@ -1,4 +1,4 @@
-import { useFeatureIsOn } from "@growthbook/growthbook-react";
+import { useFeatureValue } from "@growthbook/growthbook-react";
 import { InfoWindow, useMapContext } from "@uiw/react-amap";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -8,7 +8,9 @@ import { useMediaQuery } from "usehooks-ts";
 import { type Place } from "~/data/schema";
 
 import { useAppMapContext } from "../AppMapContext";
-import PlaceInfoCommon from "./PlaceInfoCommon";
+import PlaceInfoCommon, {
+  type PlaceInfoCommonShownElements,
+} from "./PlaceInfoCommon";
 
 // import PlacePopoverStyles from "./PlacePopover.css";
 
@@ -17,7 +19,17 @@ import PlaceInfoCommon from "./PlaceInfoCommon";
 // };
 
 export default function PlacePopover() {
-  const enableCoverImage = useFeatureIsOn("place-popover:cover-image");
+  const shownElements = useFeatureValue<PlaceInfoCommonShownElements>(
+    "place-popover-elements",
+    [
+      "header",
+      "directions-button",
+      "description",
+      "signature-dishes",
+      "related-guides",
+      "author",
+    ],
+  );
 
   const { focus, setFocus } = useAppMapContext();
 
@@ -63,14 +75,16 @@ export default function PlacePopover() {
                 // "snap-y"
               )}
             >
-              {enableCoverImage && focus.coverImage && (
-                <img
-                  alt="Cover"
-                  className="-mx-4 h-32 snap-start rounded-t-xl object-cover"
-                  src={focus.coverImage}
-                />
-              )}
-              <PlaceInfoCommon className="snap-start pb-4 pt-4" place={focus} />
+              <img
+                alt="Cover"
+                className="-mx-4 h-32 snap-start rounded-t-xl object-cover"
+                src={focus.coverImage}
+              />
+              <PlaceInfoCommon
+                className="snap-start pb-4 pt-4"
+                place={focus}
+                shownElements={shownElements}
+              />
               <div className="snap-start" />
             </div>
             <div
