@@ -1,6 +1,6 @@
-import { type Activity } from "./schema";
+import { type Guide } from "./schema";
 
-const activities: Activity[] = [
+const guides: Guide[] = [
   {
     id: "food",
     name: "Food",
@@ -515,4 +515,4 @@ const activities: Activity[] = [
   },
 ];
 
-export default activities;
+export default guides;

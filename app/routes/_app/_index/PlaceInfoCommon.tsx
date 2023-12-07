@@ -10,7 +10,7 @@ import { type Place } from "~/data/schema";
 import { getDirectionsUrl } from "~/utilities/amap";
 
 import { useAppLoaderData } from "..";
-import ActivityCard from "../ActivityCard";
+import GuideCard from "../GuideCard";
 
 export interface PlaceInfoCommonProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -22,7 +22,7 @@ export default function PlaceInfoCommon({
   className,
   ...props
 }: PlaceInfoCommonProps) {
-  const { categories, activities } = useAppLoaderData();
+  const { categories, guides } = useAppLoaderData();
 
   const enablePoiType = useFeatureIsOn("place-info:poi-type");
   const enableDirections = useFeatureIsOn("place-info:directions");
@@ -36,11 +36,11 @@ export default function PlaceInfoCommon({
   );
 
   const Icon = categoryIcons[place.categoryId] ?? IconMapPin;
-  const relevantActivities = activities.filter(
-    (activity) =>
-      activity.placeLocations?.some((location) =>
+  const relevantGuides = guides.filter(
+    (guide) =>
+      guide.placeLocations?.some((location) =>
         isEqual(location, place.location),
-      ) || activity.categoryIds?.includes(place.categoryId),
+      ) || guide.categoryIds?.includes(place.categoryId),
   );
 
   return (
@@ -123,20 +123,19 @@ export default function PlaceInfoCommon({
           </div>
         </div>
       )}
-      {enableGuides && relevantActivities.length > 0 && (
+      {enableGuides && relevantGuides.length > 0 && (
         <div className="flex flex-col gap-2">
           <span className="font-semibold text-gray-800 dark:text-gray-100">
-            Guides
+            Related Guides
           </span>
           <div className="flex flex-col gap-2">
-            {relevantActivities.map((activity, i) => (
-              <ActivityCard
+            {relevantGuides.map((guide, i) => (
+              <GuideCard
                 key={i}
                 withButtonStyle
-                activity={activity}
                 as={Link}
-                className="group"
-                to={`/guides/${activity.id}`}
+                guide={guide}
+                to={`/guides/${guide.id}`}
               />
             ))}
           </div>

@@ -31,7 +31,7 @@ export interface Place {
   author?: string;
 }
 
-export interface Activity {
+export interface Guide {
   id: string;
   name: string;
 

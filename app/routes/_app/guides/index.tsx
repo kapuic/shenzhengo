@@ -5,60 +5,88 @@ import { useId, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 
 import Alert from "~/components/Alert";
+import { type Place } from "~/data/schema";
+import { findLocation } from "~/utilities/data";
 import { mergeMeta } from "~/utilities/remix";
 
 import { useAppLoaderData } from "../../_app";
-import ActivityCard from "../ActivityCard";
+import GuideCard from "../GuideCard";
+import GuideWelcomeMessage from "./GuideWelcomeMessage";
 
 export const meta: MetaFunction<
   null,
   { "routes/_app/index": typeof useAppLoaderData }
 > = mergeMeta(({ matches, params }) => {
-  const activity = matches
+  const guide = matches
     .find(({ id }) => id === "routes/_app/index")
-    ?.data.activities.find(({ id }) => id === params.activity);
-  return [{ title: `${activity ? activity.name : "Guides"} | MeishaGo` }];
+    ?.data.guides.find(({ id }) => id === params.guideId);
+  return [{ title: `${guide ? guide.name : "Guides"} | MeishaGo` }];
 });
 
-export default function Guide() {
-  const { activities } = useAppLoaderData();
+export default function GuidesPage() {
+  const { places, guides } = useAppLoaderData();
+  const { guideId } = useParams<{ guideId: string }>();
 
-  const { activity: activityId } = useParams() as { activity: string };
-  const activity = useMemo(
-    () => activities.find(({ id }) => id === activityId),
-    [activities, activityId],
+  const guidePlacesMapping = useMemo(
+    () =>
+      new Map(
+        guides.map((guide) => [
+          guide.id,
+          [
+            ...((guide?.placeLocations
+              ?.map((location) => findLocation(places, location))
+              .filter(Boolean) as Place[]) ?? []),
+            ...(guide?.categoryIds?.flatMap((id) =>
+              places.filter(({ categoryId }) => categoryId === id),
+            ) ?? []),
+          ],
+        ]),
+      ),
+    [places, guides],
   );
 
-  const activitiesLabelId = useId();
+  const guide = useMemo(
+    () => (guideId ? guides.find(({ id }) => id === guideId) ?? null : null),
+    [guides, guideId],
+  );
+  const relevantPlaces = useMemo(
+    () => (guideId ? guidePlacesMapping.get(guideId) ?? null : null),
+    [guidePlacesMapping, guideId],
+  );
+
+  const guidesLabelId = useId();
 
   return (
     <div className="flex h-full w-full">
       <div
         className={twMerge(
           "flex w-full flex-shrink-0 flex-col overflow-y-scroll bg-white px-4 py-6 dark:bg-gray-900 md:w-72 md:border-r dark:md:border-gray-700",
-          activityId && "hidden md:block",
+          guideId && "hidden md:block",
         )}
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
+          <GuideWelcomeMessage hideClickMessage className="md:hidden" />
           <div className="flex flex-col gap-3">
             <span
               className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
-              id={activitiesLabelId}
+              id={guidesLabelId}
             >
-              Activities
+              Guides
             </span>
-            <ul
-              aria-labelledby={activitiesLabelId}
-              className="flex flex-col gap-3"
-            >
-              {activities.map((activity, i) => (
+            <ul aria-labelledby={guidesLabelId} className="flex flex-col gap-3">
+              {guides.map((guide, i) => (
                 <li key={i}>
-                  <ActivityCard
+                  <GuideCard
                     withButtonStyle
-                    activity={activity}
                     as={NavLink}
-                    className="group"
-                    to={activity.id}
+                    guide={guide}
+                    to={`/guides/${guide.id}`}
+                    className={({ isActive }) =>
+                      isActive ? "bg-blue-50 dark:bg-blue-950" : ""
+                    }
+                    relevantPlacesCount={
+                      guidePlacesMapping.get(guide.id)?.length
+                    }
                   />
                 </li>
               ))}
@@ -69,10 +97,10 @@ export default function Guide() {
       <div
         className={twMerge(
           "w-full bg-white dark:bg-gray-900",
-          !activityId && "hidden md:block",
+          !guideId && "hidden md:block",
         )}
       >
-        <Outlet context={activity} />
+        <Outlet context={{ guide, relevantPlaces }} />
       </div>
     </div>
   );

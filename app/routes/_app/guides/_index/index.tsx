@@ -1,11 +1,9 @@
-import Alert from "~/components/Alert";
+import GuideWelcomeMessage from "../GuideWelcomeMessage";
 
-export default function ActivityNull() {
+export default function GuideNullPage() {
   return (
-    <div className="grid h-full w-full place-items-center bg-white dark:bg-gray-900">
-      <Alert className="m-4 max-w-md" variant="dark">
-        Choose a guide on the left to open.
-      </Alert>
+    <div className="grid h-full place-items-center">
+      <GuideWelcomeMessage className="max-w-sm" />
     </div>
   );
 }
