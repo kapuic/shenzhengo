@@ -220,6 +220,7 @@ export default function SearchView({
               {setFocus ? (
                 <PlaceCard
                   withButtonStyle
+                  as="button"
                   className="w-full"
                   hideCategory={filterCategory === place.categoryId}
                   place={place}
