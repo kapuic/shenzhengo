@@ -1,5 +1,9 @@
 import { type LoaderFunction, type MetaFunction } from "@remix-run/cloudflare";
 
+export interface RouteHandle {
+  backButtonLabel?: string;
+}
+
 export function mergeMeta<
   Loader extends LoaderFunction | unknown = unknown,
   ParentsLoaders extends Record<string, LoaderFunction | unknown> = Record<

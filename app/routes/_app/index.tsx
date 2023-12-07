@@ -10,11 +10,14 @@ import {
 } from "@remix-run/cloudflare";
 import { Outlet } from "@remix-run/react";
 import {
+  Link,
   useLoaderData,
+  useMatches,
   useRouteLoaderData,
 } from "@remix-run/react/dist/components";
 import {
   IconBook,
+  IconChevronLeft,
   IconCloudRain,
   IconInfoCircle,
   IconMap2,
@@ -23,13 +26,15 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { ClientOnly } from "remix-utils/client-only";
+import { twMerge } from "tailwind-merge";
 
-import activities from "~/data/activities";
+import Button from "~/components/Button";
 import categories from "~/data/categories";
+import guides from "~/data/guides";
 import places from "~/data/places";
 import ranges from "~/data/ranges";
 import { type Place } from "~/data/schema";
-import { mergeMeta } from "~/utilities/remix";
+import { mergeMeta, type RouteHandle } from "~/utilities/remix";
 
 import AboutDialog from "./AboutDialog";
 import AppMapContext from "./AppMapContext";
@@ -56,7 +61,7 @@ export async function loader({ context }: LoaderFunctionArgs) {
     ranges,
     categories,
     places,
-    activities,
+    guides,
   });
 }
 
@@ -67,15 +72,22 @@ export function useAppLoaderData() {
 
 export default function App() {
   const { featureCtlData, places } = useLoaderData<typeof loader>();
-  useGrowthBookSSR(featureCtlData as unknown as GrowthBookSSRData);
+  useGrowthBookSSR(featureCtlData as GrowthBookSSRData);
 
   const [focus, setFocus] = useState<Place | null>(null);
+
+  const handle = useMatches().slice(-1)[0].handle as RouteHandle | undefined;
 
   return (
     <AppMapContext.Provider value={{ focus, setFocus }}>
       <div className="flex flex-col">
         <header className="flex h-16 flex-row justify-between border-b px-4 py-2 dark:border-gray-700 dark:bg-gray-900">
-          <div className="flex flex-row items-center gap-4">
+          <div
+            className={twMerge(
+              "flex flex-row items-center gap-4",
+              handle?.backButtonLabel && "hidden md:flex",
+            )}
+          >
             <Logo />
             <span className="hidden items-center rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-500 dark:bg-gray-800 dark:text-gray-400 sm:inline-flex">
               <span className="md:hidden">
@@ -86,6 +98,19 @@ export default function App() {
                 Dameisha
               </span>
             </span>
+          </div>
+          <div className="flex flex-row items-center gap-3">
+            {handle?.backButtonLabel && (
+              <Button
+                as={Link}
+                className="inline-flex md:hidden"
+                size="sm"
+                to="/guides"
+              >
+                <IconChevronLeft className="h-4 w-4" />
+                {handle.backButtonLabel}
+              </Button>
+            )}
           </div>
           <div className="flex flex-row items-center gap-3">
             <ClientOnly>
