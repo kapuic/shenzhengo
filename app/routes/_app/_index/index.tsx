@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { lazy, Suspense, useId, useMemo, useState } from "react";
 import { ClientOnly } from "remix-utils/client-only";
 import { useHydrated } from "remix-utils/use-hydrated";
+import { twMerge } from "tailwind-merge";
 import { useEffectOnce, useLocalStorage } from "usehooks-ts";
 
 import Alert from "~/components/Alert";
@@ -36,7 +37,7 @@ export const meta: MetaFunction = mergeMeta(() => [
   // { title: "Map | MeishaGo" },
 ]);
 
-export default function Index() {
+export default function MapPage() {
   const { ranges, categories, places } = useAppLoaderData();
 
   const enableWelcomeMessage = useFeatureIsOn("map-welcome-message");
@@ -188,6 +189,7 @@ export default function Index() {
   );
 
   const hydrated = useHydrated();
+  const categoriesLabelId = useId();
   const placesLabelId = useId();
 
   return (
@@ -287,13 +289,16 @@ export default function Index() {
               )}
               {recommendedCategories.length >= 3 && (
                 <div className="flex flex-col gap-3">
-                  {/* <span
-                    className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
-                    id={placesLabelId}
+                  <span
+                    className="sr-only px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
+                    id={categoriesLabelId}
                   >
                     Categories
-                  </span> */}
-                  <div className="grid grid-cols-3 gap-4 px-4 py-2">
+                  </span>
+                  <div
+                    aria-labelledby={categoriesLabelId}
+                    className="grid grid-cols-3 gap-4 px-4 py-2"
+                  >
                     {recommendedCategories.slice(0, 6).map((type, i) => {
                       const Icon = categoryIcons[type.id] ?? IconMapPin;
                       return (
@@ -302,7 +307,7 @@ export default function Index() {
                           className="flex flex-col items-center gap-2"
                         >
                           <button
-                            className="focus-ring group rounded-full border bg-white p-4 shadow-sm transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                            className="focus-ring rounded-full border bg-white p-4 shadow-sm transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
                             onClick={() =>
                               type.id === filterCategory
                                 ? setFilterCategory(null)
@@ -310,7 +315,7 @@ export default function Index() {
                             }
                           >
                             <Icon
-                              className="text-gray-500 transition-none group-hover:text-gray-800 dark:text-gray-400 dark:group-hover:text-gray-100"
+                              className="text-gray-500 dark:text-gray-400"
                               size={36}
                             />
                           </button>
@@ -324,16 +329,19 @@ export default function Index() {
                 </div>
               )}
               <div className="flex flex-col gap-3">
-                {!(filterCategory || filterSearch) && (
-                  <span
-                    className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
-                    id={placesLabelId}
-                  >
-                    {filterRange === "citywide"
+                <span
+                  id={placesLabelId}
+                  className={twMerge(
+                    "px-3 text-xs uppercase text-gray-500 dark:text-gray-400",
+                    (filterCategory || filterSearch) && "sr-only",
+                  )}
+                >
+                  {!(filterCategory || filterSearch)
+                    ? filterRange === "citywide"
                       ? "Citywide Places"
-                      : "Nearby Places"}
-                  </span>
-                )}
+                      : "Nearby Places"
+                    : "Search Results"}
+                </span>
                 <ul
                   aria-labelledby={placesLabelId}
                   className="flex flex-col gap-3"
@@ -342,8 +350,7 @@ export default function Index() {
                     <li key={i}>
                       <PlaceCard
                         withButtonStyle
-                        as="button"
-                        className="group w-full"
+                        className="w-full"
                         hideCategory={filterCategory === place.categoryId}
                         place={place}
                         onClick={() => setFocus(place)}

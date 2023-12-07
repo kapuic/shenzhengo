@@ -3,6 +3,7 @@ import { Link, type MetaFunction, useSearchParams } from "@remix-run/react";
 import { IconMapPin, IconSearch } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useId, useMemo, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 import Input from "~/components/Input";
 import TabSelect from "~/components/TabSelect";
@@ -22,7 +23,7 @@ export const meta: MetaFunction = mergeMeta(() => [
   { title: "Search | MeishaGo" },
 ]);
 
-export default function Search() {
+export default function SearchPage() {
   const { ranges, categories, places } = useAppLoaderData();
 
   const enableZoomSwitch = useFeatureIsOn("zoom-switch");
@@ -124,6 +125,7 @@ export default function Search() {
     [filterCategory],
   );
 
+  const categoriesLabelId = useId();
   const placesLabelId = useId();
 
   return (
@@ -219,13 +221,16 @@ export default function Search() {
             )}
             {recommendedCategories.length >= 3 && (
               <div className="flex flex-col gap-3">
-                {/* <span
-                    className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
-                    id={placesLabelId}
-                  >
-                    Categories
-                  </span> */}
-                <div className="grid grid-cols-3 gap-4 px-4 py-2">
+                <span
+                  className="sr-only px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
+                  id={categoriesLabelId}
+                >
+                  Categories
+                </span>
+                <div
+                  aria-labelledby={categoriesLabelId}
+                  className="grid grid-cols-3 gap-4 px-4 py-2"
+                >
                   {recommendedCategories.slice(0, 6).map((type, i) => {
                     const Icon = categoryIcons[type.id] ?? IconMapPin;
                     return (
@@ -253,16 +258,19 @@ export default function Search() {
               </div>
             )}
             <div className="flex flex-col gap-3">
-              {!(filterCategory || filterSearch) && (
-                <span
-                  className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
-                  id={placesLabelId}
-                >
-                  {filterRange === "citywide"
+              <span
+                id={placesLabelId}
+                className={twMerge(
+                  "px-3 text-xs uppercase text-gray-500 dark:text-gray-400",
+                  (filterCategory || filterSearch) && "sr-only",
+                )}
+              >
+                {!(filterCategory || filterSearch)
+                  ? filterRange === "citywide"
                     ? "Citywide Places"
-                    : "Nearby Places"}
-                </span>
-              )}
+                    : "Nearby Places"
+                  : "Search Results"}
+              </span>
               <ul
                 aria-labelledby={placesLabelId}
                 className="flex flex-col gap-3"
@@ -272,7 +280,7 @@ export default function Search() {
                     <PlaceCard
                       withButtonStyle
                       as={Link}
-                      className="group w-full"
+                      className="w-full"
                       hideCategory={filterCategory === place.categoryId}
                       place={place}
                       to={`/?lng=${place.location[0]}&lat=${place.location[1]}`}
