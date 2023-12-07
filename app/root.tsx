@@ -75,7 +75,7 @@ export default function App() {
         enableDevMode: process.env.NODE_ENV === "development",
         subscribeToChanges: true,
       }),
-    [featureCtl.apiHost, featureCtl.clientKey],
+    [featureCtl],
   );
   useEffect(() => {
     growthBook.loadFeatures();
