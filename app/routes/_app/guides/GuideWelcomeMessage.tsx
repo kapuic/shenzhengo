@@ -27,20 +27,22 @@ export default function GuideWelcomeMessage({
         <IconBook2 className="h-8 w-8" />
         <h1 className="text-xl font-bold">Guides</h1>
       </div>
-      <div className="flex flex-col gap-2">
-        {!hideClickMessage && <p>Click a guide on the left to...</p>}
-        <div className="flex gap-2">
-          <IconMapPin className="flex-shrink-0" />
-          <p className="!text-left text-sm">
-            See our recommended places where you may enjoy yourself.
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <IconLanguage className="flex-shrink-0" />
-          <p className="!text-left text-sm">
-            Learn commonly used Chinese words to better communicate.
-          </p>
-        </div>
+      <div className="flex flex-col items-center gap-2">
+        {!hideClickMessage && <p>Click a guide from the list to...</p>}
+        <ul className="flex flex-col gap-2 text-sm">
+          <li className="flex gap-2">
+            <IconMapPin className="flex-shrink-0" />
+            <p className="!text-left">
+              See our recommended places where you may enjoy yourself.
+            </p>
+          </li>
+          <li className="flex gap-2">
+            <IconLanguage className="flex-shrink-0" />
+            <p className="!text-left">
+              Learn commonly used Chinese words to better communicate.
+            </p>
+          </li>
+        </ul>
       </div>
     </div>
   );

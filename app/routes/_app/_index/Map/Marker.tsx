@@ -21,7 +21,7 @@ export default function Marker({ place, visible }: MarkerProps) {
       icon={categories.find(({ id }) => id === place.categoryId)?.markerUrl}
       offset={new AMap.Pixel(-16, -37)}
       position={place.location}
-      title={place.originalName}
+      title={place.name}
       visiable={visible}
       onClick={() => setFocus(focus ? null : place)}
     />

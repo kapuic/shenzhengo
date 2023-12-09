@@ -13,23 +13,25 @@ export default function MapWelcomeMessage() {
   return (
     <Alert className="flex-col gap-2" variant="dark">
       <div className="flex flex-col gap-2 text-sm">
-        <span>
-          Welcome to MeishaGo, a website that provides information for
-          foreigners who travel around Dameisha. On the right is a map of
-          Dameisha.
-        </span>
-        <ul className="flex flex-col gap-1 text-sm">
+        <p>
+          Welcome to MeishaGo, a website that helps foreigners who want to
+          explore or travel around Dameisha.
+        </p>
+        <ul className="flex flex-col gap-2 text-sm">
           <li className="flex gap-2">
             <IconMouse className="flex-shrink-0" />
-            Drag and scroll or use keyboard to navigate the map.
+            <p>Drag and scroll or use your keyboard to navigate the map.</p>
           </li>
           <li className="flex gap-2">
             <IconMapPin className="flex-shrink-0" />
-            Click a marker to see more information about that place.
+            <p>Click a pin to learn more about that place.</p>
           </li>
           <li className="flex gap-2">
             <IconClick className="flex-shrink-0" />
-            Click a card below to focus on that place on the map.
+            <p>
+              Click a card from the list below to focus on that place on the
+              map.
+            </p>
           </li>
         </ul>
       </div>
