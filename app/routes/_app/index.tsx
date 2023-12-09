@@ -19,6 +19,7 @@ import {
   IconBook,
   IconChevronLeft,
   IconCloudRain,
+  IconExternalLink,
   IconInfoCircle,
   IconMap2,
   IconSearch,
@@ -29,6 +30,7 @@ import { ClientOnly } from "remix-utils/client-only";
 import { twMerge } from "tailwind-merge";
 
 import Button from "~/components/Button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/components/Tooltip";
 import categories from "~/data/categories";
 import guides from "~/data/guides";
 import places from "~/data/places";
@@ -116,35 +118,60 @@ export default function App() {
             <ClientOnly>
               {() =>
                 navigator.canShare?.() && (
-                  <NavButton
-                    to="/"
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      await navigator.share();
-                    }}
-                  >
-                    <IconShare />
-                  </NavButton>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <NavButton
+                        to="/"
+                        onClick={async (e) => {
+                          e.preventDefault();
+                          await navigator.share();
+                        }}
+                      >
+                        <IconShare />
+                      </NavButton>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom">Share</TooltipContent>
+                  </Tooltip>
                 )
               }
             </ClientOnly>
-            <NavButton
-              target="_blank"
-              to="https://www.qweather.com/en/weather/yantian-101280607.html"
-            >
-              <IconCloudRain />
-            </NavButton>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <NavButton
+                  target="_blank"
+                  to="https://www.qweather.com/en/weather/yantian-101280607.html"
+                >
+                  <IconCloudRain />
+                </NavButton>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                <div className="flex gap-1">
+                  Weather
+                  <IconExternalLink className="h-4 w-4" />
+                </div>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </header>
         <div className="flex h-[calc(100dvh-4rem-4.5rem)] flex-grow flex-row md:h-[calc(100dvh-4rem)]">
           <aside className="z-10 hidden flex-shrink-0 flex-col items-center justify-between border-r bg-white px-4 py-6 dark:border-gray-700 dark:bg-gray-900 md:flex">
             <nav className="flex flex-col items-center gap-3">
-              <NavButton to="/">
-                <IconMap2 />
-              </NavButton>
-              <NavButton to="/guides">
-                <IconBook />
-              </NavButton>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <NavButton to="/">
+                    <IconMap2 />
+                  </NavButton>
+                </TooltipTrigger>
+                <TooltipContent side="right">Map</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <NavButton to="/guides">
+                    <IconBook />
+                  </NavButton>
+                </TooltipTrigger>
+                <TooltipContent side="right">Guides</TooltipContent>
+              </Tooltip>
             </nav>
             <div className="flex flex-col items-center gap-3">
               <AboutDialog>
