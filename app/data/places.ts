@@ -54,7 +54,7 @@ const places: Place[] = [
     author: "Oliver",
   },
   {
-    location: [114.30482, 22.601422],
+    location: [114.307954, 22.592429],
 
     name: "Dameisha Seashore Park",
     originalName: "大梅沙海滨公园",
@@ -67,21 +67,21 @@ const places: Place[] = [
     author: "Oliver",
   },
 
+  // {
+  //   location: [114.307954, 22.592429],
+
+  //   name: "Dameisha Park",
+  //   originalName: "大梅沙",
+  //   rangeId: "nearby",
+  //   categoryId: "park",
+
+  //   description:
+  //     "Dameisha park is the biggest tourist attraction in the area. You can enjoy the beach and participate in numerous kinds of activities in the park, including water sports.",
+
+  //   author: "Oliver",
+  // },
   {
-    location: [114.307954, 22.592429],
-
-    name: "Dameisha Park",
-    originalName: "大梅沙",
-    rangeId: "nearby",
-    categoryId: "park",
-
-    description:
-      "Dameisha park is the biggest tourist attraction in the area. You can enjoy the beach and participate in numerous kinds of activities in the park, including water sports.",
-
-    author: "Oliver",
-  },
-  {
-    location: [114.304365, 22.587607],
+    location: [114.311617, 22.595082],
 
     name: "Dameisha Beach Waterpark",
     originalName: "大梅沙海滨公园海滩水乐园",
