@@ -1,23 +1,31 @@
-import { useFeatureValue } from "@growthbook/growthbook-react";
+import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
 import { type MetaFunction } from "@remix-run/cloudflare";
 import { useSearchParams } from "@remix-run/react";
 import { IconExclamationCircle } from "@tabler/icons-react";
-import { lazy, Suspense, useMemo, useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { ClientOnly } from "remix-utils/client-only";
 import { useEffectOnce } from "usehooks-ts";
 
 import Alert from "~/components/Alert";
 import Spinner from "~/components/Spinner";
-import { findLocation, isPlaceUnderCategory } from "~/utilities/data";
+import { findLocation } from "~/utilities/data";
 import {
   useHydratedEffect,
   useUpdateQueryStringValueWithoutNavigation,
 } from "~/utilities/hooks";
 import { mergeMeta } from "~/utilities/remix";
-import { getFuseClient } from "~/utilities/search";
 
 import { useAppLoaderData } from "..";
 import { useAppMapContext } from "../AppMapContext";
+import {
+  useFilterCategory,
+  useFilteredPlaces,
+  useFilterRange,
+  useFilterSearch,
+  usePlacesInRange,
+  usePlacesWithCoverImages,
+  useRecommendedCategories,
+} from "../search/hooks";
 import SearchView, { type SearchViewShownElements } from "../search/SearchView";
 
 const Map = lazy(() => import("./Map/Map"));
@@ -27,6 +35,7 @@ export const meta: MetaFunction = mergeMeta(() => [
 ]);
 
 export default function MapPage() {
+  const prioritizeImageCards = useFeatureIsOn("prioritize-image-cards");
   const shownElements = useFeatureValue<SearchViewShownElements>(
     "search-panel-elements",
     [
@@ -35,7 +44,7 @@ export default function MapPage() {
     ],
   );
 
-  const { ranges, categories, places } = useAppLoaderData();
+  const { places } = useAppLoaderData();
   const { focus, setFocus } = useAppMapContext();
   const [searchParams] = useSearchParams();
 
@@ -69,36 +78,12 @@ export default function MapPage() {
   // - Search, which appears as a text input.
   //
 
-  // Implement the range filter.
-  const rawQueryFilterRange = searchParams.get("filter.range");
-  const queryFilterRange = ranges.find(({ id }) => id === rawQueryFilterRange);
-  function getInitialFilterRange() {
-    let range = null;
-    range ??= queryPlace?.rangeId;
-    range ??= queryFilterRange?.id;
-    range ??= "nearby";
-    return range;
-  }
-  const [filterRange, setFilterRange] = useState(getInitialFilterRange());
-  useUpdateQueryStringValueWithoutNavigation(
-    "filter.range",
-    filterRange === "nearby" ? null : filterRange,
-  );
-
-  // Implement the category filter.
-  const rawQueryFilterCategory = searchParams.get("filter.category");
-  const queryFilterCategory = categories.find(
-    ({ id }) => id === rawQueryFilterCategory,
-  );
-  const [filterCategory, setFilterCategory] = useState(
-    queryFilterCategory?.id ?? null,
-  );
-  useUpdateQueryStringValueWithoutNavigation("filter.category", filterCategory);
-
-  // Implement the search filter.
-  const rawQuerySearch = searchParams.get("filter.search");
-  const [filterSearch, setFilterSearch] = useState(rawQuerySearch);
-  useUpdateQueryStringValueWithoutNavigation("filter.search", filterSearch);
+  const [filterCategory, setFilterCategory] = useFilterCategory();
+  const [filterSearch, setFilterSearch] = useFilterSearch();
+  const [filterRange, setFilterRange] = useFilterRange({
+    queryPlace,
+    resetWhenChanged: [setFilterCategory, setFilterSearch],
+  });
 
   // Refocus to the corresponding center of the map when the range filter changes.
   const [willRecenterWhenFocusClears, setWillRecenterWhenFocusClears] =
@@ -118,55 +103,19 @@ export default function MapPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterRange]);
 
-  // Reset all filters when the range filter changes.
-  useHydratedEffect(() => {
-    setFilterCategory(null);
-    setFilterSearch(null);
-  }, [filterRange]);
-
-  /** Places in active range. */
-  const placesInRange = useMemo(
-    () =>
-      filterRange
-        ? places.filter(({ rangeId }) => rangeId === filterRange)
-        : places,
-    [places, filterRange],
-  );
-
-  /** Places filtered by category and search in addition to range. */
-  const filteredPlaces = useMemo(() => {
-    let results = placesInRange;
-    if (filterCategory)
-      results = results.filter((place) =>
-        isPlaceUnderCategory(place, filterCategory, categories),
-      );
-    if (filterSearch)
-      results = getFuseClient(results)
-        .search(filterSearch)
-        .map(({ item }) => item);
-    return results;
-  }, [categories, placesInRange, filterCategory, filterSearch]);
-
-  /** Filtered places that have cover images. */
-  const filteredPlacesWithCoverImages = useMemo(
-    () => filteredPlaces.filter(({ coverImage }) => coverImage),
-    [filteredPlaces],
-  );
-
-  /** Categories that include filtered places. */
-  const recommendedCategories = useMemo(
-    () =>
-      filterCategory
-        ? []
-        : categories.filter(
-            ({ parentId, id }) =>
-              !parentId &&
-              filteredPlaces.some((place) =>
-                isPlaceUnderCategory(place, id, categories),
-              ),
-          ),
-    [categories, filterCategory, filteredPlaces],
-  );
+  const placesInRange = usePlacesInRange(filterRange);
+  const filteredPlaces = useFilteredPlaces({
+    placesInRange,
+    filterCategory,
+    filterSearch,
+    prioritizeImageCards,
+  });
+  const filteredPlacesWithCoverImages =
+    usePlacesWithCoverImages(filteredPlaces);
+  const recommendedCategories = useRecommendedCategories({
+    filterCategory,
+    filteredPlaces,
+  });
 
   return (
     <div className="flex h-full flex-grow flex-row">

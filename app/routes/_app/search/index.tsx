@@ -1,16 +1,17 @@
-import { useFeatureValue } from "@growthbook/growthbook-react";
-import { type MetaFunction, useSearchParams } from "@remix-run/react";
-import { useMemo, useState } from "react";
+import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
+import { type MetaFunction } from "@remix-run/react";
 
-import { isPlaceUnderCategory } from "~/utilities/data";
-import {
-  useHydratedEffect,
-  useUpdateQueryStringValueWithoutNavigation,
-} from "~/utilities/hooks";
 import { mergeMeta } from "~/utilities/remix";
-import { getFuseClient } from "~/utilities/search";
 
-import { useAppLoaderData } from "..";
+import {
+  useFilterCategory,
+  useFilteredPlaces,
+  useFilterRange,
+  useFilterSearch,
+  usePlacesInRange,
+  usePlacesWithCoverImages,
+  useRecommendedCategories,
+} from "./hooks";
 import SearchView, { type SearchViewShownElements } from "./SearchView";
 
 export const meta: MetaFunction = mergeMeta(() => [
@@ -18,6 +19,7 @@ export const meta: MetaFunction = mergeMeta(() => [
 ]);
 
 export default function SearchPage() {
+  const prioritizeImageCards = useFeatureIsOn("prioritize-image-cards");
   const shownElements = useFeatureValue<SearchViewShownElements>(
     "search-page-elements",
     [
@@ -25,9 +27,6 @@ export default function SearchPage() {
       ["filter-message", "category-buttons", "places"],
     ],
   );
-
-  const { ranges, categories, places } = useAppLoaderData();
-  const [searchParams] = useSearchParams();
 
   //
   // This section of the code is responsible for implementing the filters.
@@ -38,85 +37,25 @@ export default function SearchPage() {
   // - Search, which appears as a text input.
   //
 
-  // Implement the range filter.
-  const rawQueryFilterRange = searchParams.get("filter.range");
-  const queryFilterRange = ranges.find(({ id }) => id === rawQueryFilterRange);
-  function getInitialFilterRange() {
-    let range = null;
-    range ??= queryFilterRange?.id;
-    range ??= "nearby";
-    return range;
-  }
-  const [filterRange, setFilterRange] = useState(getInitialFilterRange());
-  useUpdateQueryStringValueWithoutNavigation(
-    "filter.range",
-    filterRange === "nearby" ? null : filterRange,
-  );
+  const [filterCategory, setFilterCategory] = useFilterCategory();
+  const [filterSearch, setFilterSearch] = useFilterSearch();
+  const [filterRange, setFilterRange] = useFilterRange({
+    resetWhenChanged: [setFilterCategory, setFilterSearch],
+  });
 
-  // Implement the category filter.
-  const rawQueryFilterCategory = searchParams.get("filter.category");
-  const queryFilterCategory = categories.find(
-    ({ id }) => id === rawQueryFilterCategory,
-  );
-  const [filterCategory, setFilterCategory] = useState(
-    queryFilterCategory?.id ?? null,
-  );
-  useUpdateQueryStringValueWithoutNavigation("filter.category", filterCategory);
-
-  // Implement the search filter.
-  const rawQuerySearch = searchParams.get("filter.search");
-  const [filterSearch, setFilterSearch] = useState(rawQuerySearch);
-  useUpdateQueryStringValueWithoutNavigation("filter.search", filterSearch);
-
-  // Reset all filters when the range filter changes.
-  useHydratedEffect(() => {
-    setFilterCategory(null);
-    setFilterSearch(null);
-  }, [filterRange]);
-
-  /** Places in active range. */
-  const placesInRange = useMemo(
-    () =>
-      filterRange
-        ? places.filter(({ rangeId }) => rangeId === filterRange)
-        : places,
-    [places, filterRange],
-  );
-
-  /** Places filtered by category and search in addition to range. */
-  const filteredPlaces = useMemo(() => {
-    let results = placesInRange;
-    if (filterCategory)
-      results = results.filter((place) =>
-        isPlaceUnderCategory(place, filterCategory, categories),
-      );
-    if (filterSearch)
-      results = getFuseClient(results)
-        .search(filterSearch)
-        .map(({ item }) => item);
-    return results;
-  }, [categories, placesInRange, filterCategory, filterSearch]);
-
-  /** Filtered places that have cover images. */
-  const filteredPlacesWithCoverImages = useMemo(
-    () => filteredPlaces.filter(({ coverImage }) => coverImage),
-    [filteredPlaces],
-  );
-
-  /** Categories that include filtered places. */
-  const recommendedCategories = useMemo(
-    () =>
-      filterCategory
-        ? []
-        : categories.filter(
-            ({ parentId, id }) =>
-              !parentId &&
-              filteredPlaces.some((place) =>
-                isPlaceUnderCategory(place, id, categories),
-              ),
-          ),
-    [categories, filterCategory, filteredPlaces],
-  );
+  const placesInRange = usePlacesInRange(filterRange);
+  const filteredPlaces = useFilteredPlaces({
+    placesInRange,
+    filterCategory,
+    filterSearch,
+    prioritizeImageCards,
+  });
+  const filteredPlacesWithCoverImages =
+    usePlacesWithCoverImages(filteredPlaces);
+  const recommendedCategories = useRecommendedCategories({
+    filterCategory,
+    filteredPlaces,
+  });
 
   return (
     <div className="px-4 py-6">
