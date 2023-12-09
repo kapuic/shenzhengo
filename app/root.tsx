@@ -21,6 +21,7 @@ import { useEffect, useMemo } from "react";
 
 import tailwind from "~/tailwind.css";
 
+import { TooltipProvider } from "./components/Tooltip";
 import { mergeMeta } from "./utilities/remix";
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(() => [
@@ -87,25 +88,30 @@ export default function App() {
 
   return (
     <GrowthBookProvider growthbook={growthBook}>
-      <html lang="en">
-        <head>
-          <meta charSet="utf-8" />
-          <meta content="width=device-width,initial-scale=1" name="viewport" />
-          <Meta />
-          <Links />
-          <script
-            defer
-            data-domain="meishago.kapui.net"
-            src="https://analytics.kapui.net/js/script.js"
-          ></script>
-        </head>
-        <body>
-          <Outlet />
-          <ScrollRestoration />
-          <Scripts />
-          <LiveReload />
-        </body>
-      </html>
+      <TooltipProvider>
+        <html lang="en">
+          <head>
+            <meta charSet="utf-8" />
+            <meta
+              content="width=device-width,initial-scale=1"
+              name="viewport"
+            />
+            <Meta />
+            <Links />
+            <script
+              defer
+              data-domain="meishago.kapui.net"
+              src="https://analytics.kapui.net/js/script.js"
+            ></script>
+          </head>
+          <body>
+            <Outlet />
+            <ScrollRestoration />
+            <Scripts />
+            <LiveReload />
+          </body>
+        </html>
+      </TooltipProvider>
     </GrowthBookProvider>
   );
 }
