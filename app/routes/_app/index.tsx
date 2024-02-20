@@ -91,7 +91,7 @@ export default function App() {
             )}
           >
             <Logo />
-            <span className="hidden items-center rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-500 dark:bg-gray-800 dark:text-gray-400 sm:inline-flex">
+            <span className="hidden items-center rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-500 sm:inline-flex dark:bg-gray-800 dark:text-gray-400">
               <span className="md:hidden">
                 Explore {places.length}+ places across Dameisha
               </span>
@@ -154,7 +154,7 @@ export default function App() {
           </div>
         </header>
         <div className="flex h-[calc(100dvh-4rem-4.5rem)] flex-grow flex-row md:h-[calc(100dvh-4rem)]">
-          <aside className="z-10 hidden flex-shrink-0 flex-col items-center justify-between border-r bg-white px-4 py-6 dark:border-gray-700 dark:bg-gray-900 md:flex">
+          <aside className="z-10 hidden flex-shrink-0 flex-col items-center justify-between border-r bg-white px-4 py-6 md:flex dark:border-gray-700 dark:bg-gray-900">
             <nav className="flex flex-col items-center gap-3">
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -185,7 +185,7 @@ export default function App() {
             <Outlet />
           </div>
         </div>
-        <nav className="z-10 flex h-[4.5rem] flex-shrink-0 items-center justify-evenly border-t bg-white dark:border-t-gray-700 dark:bg-gray-900 md:hidden">
+        <nav className="z-10 flex h-[4.5rem] flex-shrink-0 items-center justify-evenly border-t bg-white md:hidden dark:border-t-gray-700 dark:bg-gray-900">
           <NavButton to="/">
             <IconMap2 />
           </NavButton>

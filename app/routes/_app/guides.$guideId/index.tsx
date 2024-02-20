@@ -64,7 +64,7 @@ export default function GuidePage() {
               {guide.vocab.map((word, i) => (
                 <div
                   key={i}
-                  className="flex flex-grow flex-col rounded-xl border bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:shadow-slate-700/[.7] md:p-5"
+                  className="flex flex-grow flex-col rounded-xl border bg-white p-4 shadow-sm md:p-5 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:shadow-slate-700/[.7]"
                 >
                   <div className="flex items-center gap-2">
                     <p className="text-lg font-semibold text-gray-800 dark:text-gray-100">

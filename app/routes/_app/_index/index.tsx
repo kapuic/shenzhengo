@@ -119,7 +119,7 @@ export default function MapPage() {
 
   return (
     <div className="flex h-full flex-grow flex-row">
-      <aside className="hidden h-[calc(100dvh-4rem)] w-80 flex-shrink-0 flex-col overflow-y-scroll border-r bg-white px-4 py-6 dark:border-gray-700 dark:bg-gray-900 md:flex">
+      <aside className="hidden h-[calc(100dvh-4rem)] w-80 flex-shrink-0 flex-col overflow-y-scroll border-r bg-white px-4 py-6 md:flex dark:border-gray-700 dark:bg-gray-900">
         <SearchView
           filterCategory={filterCategory}
           filterRange={filterRange}

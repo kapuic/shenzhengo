@@ -144,8 +144,9 @@ export default function SearchView({
                 Found {filteredPlaces.length} places
               </span>
               {filterCategory &&
-                ` in ${categories.find(({ id }) => id === filterCategory)
-                  ?.name}`}
+                ` in ${
+                  categories.find(({ id }) => id === filterCategory)?.name
+                }`}
               {filterSearch && ` matching "${filterSearch}"`}
             </span>
             {filterCategory && (
