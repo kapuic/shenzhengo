@@ -81,10 +81,9 @@ export default function App() {
   useEffect(() => {
     growthBook.loadFeatures();
   }, [growthBook]);
-  useEffect(
-    () => growthBook.setURL(location.pathname),
-    [growthBook, location.pathname],
-  );
+  useEffect(() => {
+    growthBook.setURL(location.pathname);
+  }, [growthBook, location.pathname]);
 
   return (
     <GrowthBookProvider growthbook={growthBook}>
