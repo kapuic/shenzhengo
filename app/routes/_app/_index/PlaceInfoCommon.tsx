@@ -1,5 +1,10 @@
 import { Link } from "@remix-run/react";
-import { IconMapPin, IconNavigation, IconUser } from "@tabler/icons-react";
+import {
+  IconMapPin,
+  IconNavigation,
+  IconUser,
+  IconUsers,
+} from "@tabler/icons-react";
 import { isEqual } from "lodash";
 import { type ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
@@ -8,6 +13,7 @@ import BaseCard from "~/components/BaseCard";
 import { categoryIcons } from "~/data/categories";
 import { type Place } from "~/data/schema";
 import { getDirectionsUrl } from "~/utilities/amap";
+import { arrayToSentence } from "~/utilities/i18n";
 
 import { useAppLoaderData } from "..";
 import GuideCard from "../GuideCard";
@@ -57,12 +63,14 @@ export default function PlaceInfoCommon({
         <h3 className="text-xl font-extrabold leading-tight text-gray-800 dark:text-gray-100">
           {place.name}
         </h3>
-        <p
-          className="text-xs font-medium text-gray-500 dark:text-gray-400"
-          lang="zh_CN"
-        >
-          {place.originalName}
-        </p>
+        {place.originalName && (
+          <p
+            className="text-xs font-medium text-gray-500 dark:text-gray-400"
+            lang="zh_CN"
+          >
+            {place.originalName}
+          </p>
+        )}
         <div className="flex items-center gap-1 text-gray-800 dark:text-gray-100">
           <Icon className="h-5 w-5" />
           <span>
@@ -111,18 +119,22 @@ export default function PlaceInfoCommon({
               <div className="flex h-full flex-col justify-between p-2">
                 <div className="flex flex-col gap-1">
                   <span className="line-clamp-2 text-sm font-semibold leading-tight text-gray-800 dark:text-gray-100">
-                    {dish.translation}
-                  </span>
-                  <span
-                    className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400"
-                    lang="zh_CN"
-                  >
                     {dish.name}
                   </span>
+                  {dish.originalName && (
+                    <span
+                      className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400"
+                      lang="zh_CN"
+                    >
+                      {dish.originalName}
+                    </span>
+                  )}
                 </div>
-                <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-100">
-                  CN¥ {dish.price}
-                </span>
+                {dish.price && (
+                  <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-100">
+                    CN¥ {dish.price}
+                  </span>
+                )}
               </div>
             </BaseCard>
           ))}
@@ -147,13 +159,17 @@ export default function PlaceInfoCommon({
         </div>
       </div>
     ),
-    author: place.author && (
+    author: place.authors && (
       <div
         key="author"
         className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400"
       >
-        <IconUser size={18} />
-        <span>Provided by {place.author}</span>
+        {typeof place.authors === "string" ? (
+          <IconUser className="flex-shrink-0" size={18} />
+        ) : (
+          <IconUsers className="flex-shrink-0" size={18} />
+        )}
+        <span>Provided by {arrayToSentence(place.authors)}</span>
       </div>
     ),
   };

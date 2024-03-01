@@ -14,7 +14,7 @@ export interface Place {
   location: [number, number];
 
   name: string;
-  originalName: string;
+  originalName?: string;
   rangeId: Range["id"];
   categoryId: Category["id"];
 
@@ -23,12 +23,12 @@ export interface Place {
 
   signatureDishes?: {
     name: string;
-    translation: string;
-    price: number;
+    originalName?: string;
+    price?: number;
     image: string;
   }[];
 
-  author?: string;
+  authors?: string | string[];
 }
 
 export interface Guide {

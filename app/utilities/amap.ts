@@ -3,7 +3,7 @@ import { type Place } from "~/data/schema";
 export function getDirectionsUrl(place: Place) {
   const url = new URL("https://www.amap.com/dir");
 
-  url.searchParams.append("to[name]", place.originalName);
+  url.searchParams.append("to[name]", place.originalName ?? place.name);
   url.searchParams.append("to[id]", "menuto");
   url.searchParams.append("to[poitype]", "");
   url.searchParams.append("to[lnglat]", place.location.join(","));
