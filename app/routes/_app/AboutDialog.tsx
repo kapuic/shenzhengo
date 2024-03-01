@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { IconX } from "@tabler/icons-react";
 
 import Button from "~/components/Button";
+import { arrayToSentence } from "~/utilities/i18n";
 
 import { useAppLoaderData } from ".";
 import Logo from "./Logo";
@@ -59,9 +60,11 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                         Data Contributors
                       </span>
                       <span>
-                        {[...new Set(places.map(({ author }) => author))]
-                          .filter(Boolean)
-                          .join(", ")}
+                        {arrayToSentence([
+                          ...new Set(
+                            places.flatMap(({ authors }) => authors ?? []),
+                          ),
+                        ])}
                       </span>
                     </div>
                   </div>
