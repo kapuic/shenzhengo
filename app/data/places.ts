@@ -61,10 +61,10 @@ const places: Place[] = [
     rangeId: "nearby",
     categoryId: "park",
 
-    description:
-      "This is a park at the Dameisha beach enjoy the sea view and relax on the beach. Here, you can access a long walkway connected to the Xiaomeisha Seashore Walkway and other parts of the Dantean District.",
+    description: `Oliver: This is a park at the Dameisha beach enjoy the sea view and relax on the beach. Here, you can access a long walkway connected to the Xiaomeisha Seashore Walkway and other parts of the Dantean District.
+Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen City, located in the embrace of mountains on three sides, the middle of the open and gentle, one side facing the sea. The park is divided into swimming area, sports area, leisure area, entertainment area, barbecue area and other areas. Here is the longest beach in Shenzhen, the water is clear, the beach is vast, the sand is soft, and there are water ski ropeway, motorboat, ATV, water parachute, beach volleyball, beach football and other recreational projects. The park also has shopping center, shower storage, catering supply, leisure tea, swimming equipment rental, security, life saving and other supporting services.`,
 
-    authors: "Oliver",
+    authors: ["Oliver", "Doris"],
   },
 
   // {
@@ -523,9 +523,10 @@ const places: Place[] = [
     rangeId: "citywide",
     categoryId: "shopping-mall",
 
-    description: "A Futian shopping mall.",
+    description:
+      "COCO Park is the most fashionable shopping center in Shenzhen, integrating dining, shopping, leisure and entertainment. It has more than 200 international and domestic well-known brands. The first floor is the Yoshinoshima supermarket, international chain catering, jewelry accessories, personal care, home life, video and music, gift shop. On the first floor, there are international boutique clothing stores, jewelry, watches, classic accessories stores, China Mobile Information Life Hall, COCO open-air International Bar Street. On the second floor are business casual clothing, fashion women's clothing, leisure sports city, international specialty dining, popular accessories, home life, audio-visual gift shop and Broadway Cinema. The third floor is a high-end food concept restaurant and beauty care SPA. Weifang Taihua City COCO PARK is located in the south side of Taihua City Holiday Plaza podium building, through the beautiful music fountain and landscape water curtain, next to an entertainment and food center that runs through and echoes the whole Taihua City. There is a large landscape hollow in front of the door, which looks like a spectacular dynamic glass box. It will become a new fashion party base for entertainment and leisure in Weifang. There is the first large-sized IMAX large-screen theater spanning three floors in Shandong Province, a super-sized disco, a bar nightclub, a pool room and a number of medium-sized luxury theme Chinese and Western restaurants.",
 
-    authors: "Rachel",
+    authors: ["Rachel", "Doris"],
   },
   {
     location: [113.935172, 22.517058],
@@ -535,9 +536,10 @@ const places: Place[] = [
     rangeId: "citywide",
     categoryId: "shopping-mall",
 
-    description: "A Nanshan shopping mall.",
+    description:
+      "Shenzhen Coastal City is located in the commercial and cultural center of Nanshan District, close to five main urban roads in Nanshan District, such as Binhai Avenue, Nanhai Avenue, Houhai Avenue, Houhaibin Road and Chuangye Road. Coast City consists of East office building, Coast City West office building, Coast City shopping center and coast style street, which is the largest comprehensive business and commercial project in the west of Shenzhen, and is also the largest indoor shopping, leisure and entertainment center in Shenzhen so far. The total investment of Coastal City is about 2 billion yuan, and the total construction area is about 300,000 square meters. Among them: shopping center about 120,000 square meters; About 140,000 square meters of office space; The commercial street is about 40,000 square meters. Coast City has about 2,000 underground parking Spaces. According to the China Shopping Center rating evaluation standard in 2019, it was rated as a national five-star shopping center.",
 
-    authors: "Rachel",
+    authors: ["Rachel", "Doris"],
   },
   {
     location: [114.314845, 22.597653],
