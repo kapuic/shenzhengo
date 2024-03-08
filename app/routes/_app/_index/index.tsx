@@ -4,12 +4,12 @@ import { useSearchParams } from "@remix-run/react";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { lazy, Suspense, useState } from "react";
 import { ClientOnly } from "remix-utils/client-only";
-import { useEffectOnce } from "usehooks-ts";
 
 import Alert from "~/components/Alert";
 import Spinner from "~/components/Spinner";
 import { findLocation } from "~/utilities/data";
 import {
+  useEffectOnce,
   useHydratedEffect,
   useUpdateQueryStringValueWithoutNavigation,
 } from "~/utilities/hooks";

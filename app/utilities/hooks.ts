@@ -6,6 +6,11 @@ import {
 } from "react";
 import { useHydrated } from "remix-utils/use-hydrated";
 
+export function useEffectOnce(effect: EffectCallback) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(effect, []);
+}
+
 export function useHydratedEffect(
   effect: EffectCallback,
   deps?: DependencyList,
