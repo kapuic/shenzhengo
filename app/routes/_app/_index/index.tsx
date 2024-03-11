@@ -2,7 +2,7 @@ import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
 import { type MetaFunction } from "@remix-run/cloudflare";
 import { useSearchParams } from "@remix-run/react";
 import { IconExclamationCircle } from "@tabler/icons-react";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useMemo, useState } from "react";
 import { ClientOnly } from "remix-utils/client-only";
 
 import Alert from "~/components/Alert";
@@ -44,7 +44,7 @@ export default function MapPage() {
     ],
   );
 
-  const { places } = useAppLoaderData();
+  const { ranges, places } = useAppLoaderData();
   const { focus, setFocus } = useAppMapContext();
   const [searchParams] = useSearchParams();
 
@@ -117,6 +117,14 @@ export default function MapPage() {
     filteredPlaces,
   });
 
+  const configuration = useMemo(() => {
+    const range = ranges.find(({ id }) => id === filterRange);
+    return {
+      zoom: range?.zoom ?? 15,
+      zooms: range?.zooms ?? [11, 18],
+    };
+  }, [ranges, filterRange]);
+
   return (
     <div className="flex h-full flex-grow flex-row">
       <aside className="hidden h-[calc(100dvh-4rem)] w-80 flex-shrink-0 flex-col overflow-y-scroll border-r bg-white px-4 py-6 md:flex dark:border-gray-700 dark:bg-gray-900">
@@ -180,8 +188,8 @@ export default function MapPage() {
                 setWillRecenterWhenFocusClears={setWillRecenterWhenFocusClears}
                 visiblePlaces={filteredPlaces}
                 willRecenterWhenFocusClears={willRecenterWhenFocusClears}
-                zoom={filterRange === "citywide" ? 11 : 15}
-                zooms={[10, 18]}
+                zoom={configuration.zoom}
+                zooms={configuration.zooms}
               />
             </div>
           </Suspense>
