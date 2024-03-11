@@ -49,6 +49,7 @@ export type CenteredTreeLevel<T> = { center: T; siblings: T[] };
 export function createPathWithSiblings<T extends ChildableItem>(
   items: T[],
   id: string,
+  includeDefaultChildLevels: number | boolean = false,
   includeCenterInSiblings = false,
 ): CenteredTreeLevel<T>[] {
   const item = items.find((item) => item.id === id);
@@ -57,8 +58,21 @@ export function createPathWithSiblings<T extends ChildableItem>(
     (i) =>
       i.parentId === item.parentId && (includeCenterInSiblings || i.id !== id),
   );
-  return [
+  const result = [
     ...(item.parentId ? createPathWithSiblings(items, item.parentId) : []),
     { center: item, siblings },
   ];
+  if (!includeDefaultChildLevels) return result;
+  let defaultChild = item;
+  while (
+    includeDefaultChildLevels === true ||
+    includeDefaultChildLevels-- > 0
+  ) {
+    // eslint-disable-next-line no-loop-func
+    const children = items.filter((i) => i.parentId === defaultChild.id);
+    if (children.length === 0) break;
+    defaultChild = children[0];
+    result.push({ center: defaultChild, siblings: children.slice(1) });
+  }
+  return result;
 }
