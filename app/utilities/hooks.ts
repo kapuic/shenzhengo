@@ -18,6 +18,20 @@ export function usePreviousValue<T>(value: T, deps?: DependencyList): T {
   return previousValue;
 }
 
+export function useDelayedBoolean(value: boolean, delay: number = 3000) {
+  const [delayedValue, setDelayedValue] = useState(false);
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (value) {
+      timer = setTimeout(() => {
+        setDelayedValue(true);
+      }, delay);
+    }
+    return () => clearTimeout(timer);
+  }, [delay, value]);
+  return delayedValue;
+}
+
 export function useEffectOnce(effect: EffectCallback) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(effect, []);
@@ -35,20 +49,6 @@ export function useHydratedEffect(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
   /* eslint-enable hooks/sort */
-}
-
-export function useDelayedBoolean(value: boolean, delay: number = 3000) {
-  const [delayedValue, setDelayedValue] = useState(false);
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (value) {
-      timer = setTimeout(() => {
-        setDelayedValue(true);
-      }, delay);
-    }
-    return () => clearTimeout(timer);
-  }, [delay, value]);
-  return delayedValue;
 }
 
 export function useUpdateQueryStringValueWithoutNavigation(
