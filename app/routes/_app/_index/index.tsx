@@ -91,10 +91,10 @@ export default function MapPage() {
   useHydratedEffect(() => {
     if (!focus)
       return console.log(
-        `Active tab changed to "${filterRange}". \`focus\` was null`,
+        `Active range changed to "${filterRange}". \`focus\` was null`,
       );
     console.log(
-      `Active tab changed to "${filterRange}". Setting \`willRecenterWhenFocusClears\` to true and clearing \`focus\` (was `,
+      `Active range changed to "${filterRange}". Setting \`willRecenterWhenFocusClears\` to true and clearing \`focus\` (was `,
       focus,
       ")",
     );
