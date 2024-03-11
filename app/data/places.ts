@@ -6,7 +6,7 @@ const places: Place[] = [
 
     name: "Vanke East Coast Exercising Park",
     originalName: "东海岸运动公园",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "park",
 
     description:
@@ -19,7 +19,7 @@ const places: Place[] = [
 
     name: "Uphill Community Park",
     originalName: "鹅公岌社区公园",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "park",
 
     description:
@@ -32,7 +32,7 @@ const places: Place[] = [
 
     name: "Xiaomeisha Seashore Walkway",
     originalName: "小梅沙海滨栈道",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "walkway",
 
     description:
@@ -45,7 +45,7 @@ const places: Place[] = [
 
     name: "Fjord Walkway",
     originalName: "峡湾栈道",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "walkway",
 
     description:
@@ -58,7 +58,7 @@ const places: Place[] = [
 
     name: "Dameisha Seashore Park",
     originalName: "大梅沙海滨公园",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "park",
 
     description: `Oliver: This is a park at the Dameisha beach enjoy the sea view and relax on the beach. Here, you can access a long walkway connected to the Xiaomeisha Seashore Walkway and other parts of the Dantean District.
@@ -72,7 +72,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
   //   name: "Dameisha Park",
   //   originalName: "大梅沙",
-  //   rangeId: "nearby",
+  //   rangeId: "meisha",
   //   categoryId: "park",
 
   //   description:
@@ -85,7 +85,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Dameisha Beach Waterpark",
     originalName: "大梅沙海滨公园海滩水乐园",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "amusement-park",
 
     description:
@@ -98,7 +98,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Mid-lake Park",
     originalName: "内湖公园",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "park",
 
     description:
@@ -112,7 +112,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Meisha Hospital",
     originalName: "梅沙医院",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "hospital",
 
     description:
@@ -126,7 +126,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Naber Pharmacy",
     originalName: "南北药行",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "pharmacy",
 
     authors: "Oliver",
@@ -136,7 +136,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "China Associate Pharmacy",
     originalName: "中联大药房",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "pharmacy",
 
     authors: "Oliver",
@@ -146,7 +146,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Wanchun Pharmacy",
     originalName: "万春堂",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "pharmacy",
 
     authors: "Oliver",
@@ -157,7 +157,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Coconut Chicken",
     originalName: "良禽择木",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "restaurant",
 
     description:
@@ -192,7 +192,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Lanzhou Noodles",
     originalName: "兰州拉面",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "restaurant",
 
     description: "This is a place where you can eat halal food.",
@@ -226,7 +226,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Mcdonald’s",
     originalName: "麦当劳",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "fast-food",
 
     coverImage: "/images/mcdonalds/cover.jpeg",
@@ -238,7 +238,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Pizza Hut",
     originalName: "必胜客",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "fast-food",
 
     coverImage: "/images/pizza-hut/cover.jpeg",
@@ -250,7 +250,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Burger King",
     originalName: "汉堡王",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "fast-food",
 
     coverImage: "/images/burger-king/cover.jpeg",
@@ -262,7 +262,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Wugufang Roast Pigeon",
     originalName: "五谷坊烤乳鸽",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "restaurant",
 
     description:
@@ -297,7 +297,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Seaside Sushi",
     originalName: "海边的寿司店",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "restaurant",
 
     coverImage: "/images/seaside-sushi/cover.jpeg",
@@ -330,7 +330,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Nayuki",
     originalName: "奈雪的茶",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "beverage",
 
     description:
@@ -365,7 +365,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Yarra Café",
     originalName: "雅拉画廊咖啡",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "beverage",
 
     description:
@@ -399,7 +399,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Starbucks",
     originalName: "星巴克",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "beverage",
 
     description: "There is also a Starbucks in Dameisha!",
@@ -411,7 +411,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Time",
     originalName: "研磨时光",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "beverage",
 
     description: "A shop that makes fresh fruit juice and coffee.",
@@ -446,7 +446,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Dameisha Skydiving Base",
     originalName: "深圳大梅沙跳伞基地",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "fitness",
 
     coverImage: "/images/dameisha-skydiving-base/cover.jpeg",
@@ -458,7 +458,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Dameisha Yacht Service Center",
     originalName: "大梅沙游艇旅游服务中心",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "fitness",
 
     coverImage: "/images/dameisha-yacht-service-center/cover.jpeg",
@@ -470,7 +470,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Dameisha Yacht & Sailing Rental Center",
     originalName: "大梅沙游艇帆船出租中心",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "fitness",
 
     coverImage: "/images/dameisha-yacht-sailing-rental-center/cover.jpeg",
@@ -482,7 +482,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Yijing Surfing",
     originalName: "逸景电动冲浪俱乐部",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "fitness",
 
     description:
@@ -496,7 +496,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "One City",
     originalName: "壹海城",
-    rangeId: "citywide",
+    rangeId: "shatoujiao",
     categoryId: "shopping-mall",
 
     description: "A Yantian shopping mall.",
@@ -508,7 +508,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "The MiXC",
     originalName: "罗湖万象城",
-    rangeId: "citywide",
+    rangeId: "shenzhen",
     categoryId: "shopping-mall",
 
     description: "A Luohu shopping mall.",
@@ -520,7 +520,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "COCO Park",
     originalName: "COCO Park",
-    rangeId: "citywide",
+    rangeId: "shenzhen",
     categoryId: "shopping-mall",
 
     description:
@@ -533,7 +533,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Coastal City",
     originalName: "海岸城",
-    rangeId: "citywide",
+    rangeId: "shenzhen",
     categoryId: "shopping-mall",
 
     description:
@@ -546,7 +546,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Intercontinental Shenzhen Dameisha Resort",
     originalName: "大梅沙洲际酒店",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "hotel",
 
     coverImage: "/images/intercontinental-shenzhen-dameisha-resort/cover.jpeg",
@@ -558,7 +558,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "The Interlaken OCT Hotel",
     originalName: "东部华侨城茵特拉根酒店",
-    rangeId: "nearby",
+    rangeId: "yantian",
     categoryId: "hotel",
 
     coverImage: "/images/interlaken-oct-hotel/cover.jpeg",
@@ -570,7 +570,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Shenzhen Dameisha Kingkey Palace Hotel",
     originalName: "深圳大梅沙京基海湾酒店",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "hotel",
 
     coverImage: "/images/kingkey-palace-hotel/cover.jpeg",
@@ -582,7 +582,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Hilton Hampton",
     originalName: "喜来登欢朋酒店",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "hotel",
 
     coverImage: "/images/hilton-hampton/cover.png",
@@ -594,7 +594,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Vienna International Hotel",
     originalName: "维也纳国际酒店",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "hotel",
 
     coverImage: "/images/vienna-international-hotel/cover.png",
@@ -606,7 +606,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
   //   name: "Green Tree Alliance Hotel",
   //   originalName: "格林联盟酒店",
-  //   rangeId: "nearby",
+  //   rangeId: "meisha",
   //   categoryId: "hotel",
 
   //   author: "Hao Du",
@@ -616,7 +616,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Pattaya Hotel",
     originalName: "芭提雅酒店",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "hotel",
 
     coverImage: "/images/pattaya-hotel/cover.png",
@@ -628,7 +628,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Vienna Hotel",
     originalName: "维也纳酒店",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "hotel",
 
     coverImage: "/images/vienna-hotel/cover.png",
@@ -640,7 +640,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Leyoujia.com",
     originalName: "乐有家",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "apartment-rental",
 
     coverImage: "/images/leyoujia/cover.png",
@@ -652,7 +652,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Zhongyuan Real Estate",
     originalName: "中原地产",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "apartment-rental",
 
     coverImage: "/images/zhongyuan-real-estate/cover.png",
@@ -664,7 +664,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "PinAn Bank",
     originalName: "平安银行",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "bank",
 
     coverImage: "/images/pinan-bank/cover.png",
@@ -676,7 +676,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "CCB ATM",
     originalName: "建行自助取款机",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "atm",
 
     coverImage: "/images/ccb-atm/cover.png",
@@ -688,7 +688,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "Meisha Police Station",
     originalName: "梅沙派出所",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "police",
 
     coverImage: "/images/meisha-police-station/cover.png",
@@ -700,7 +700,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     name: "XLCT Pharmacy Shop",
     originalName: "杏林大药房",
-    rangeId: "nearby",
+    rangeId: "meisha",
     categoryId: "pharmacy",
 
     coverImage: "/images/xlct-pharmacy-shop/cover.png",

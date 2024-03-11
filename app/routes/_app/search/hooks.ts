@@ -28,13 +28,13 @@ export function useFilterRange({
     let range = null;
     range ??= queryPlace?.rangeId;
     range ??= queryFilterRange?.id;
-    range ??= "nearby";
+    range ??= "meisha";
     return range;
   }
   const [filterRange, setFilterRange] = useState(getInitialFilterRange());
   useUpdateQueryStringValueWithoutNavigation(
     "filter.range",
-    filterRange === "nearby" ? null : filterRange,
+    filterRange === "meisha" ? null : filterRange,
   );
   useHydratedEffect(
     () => resetWhenChanged?.forEach((reset) => reset(null)),

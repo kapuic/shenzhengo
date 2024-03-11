@@ -2,12 +2,39 @@ import { type Range } from "./schema";
 
 const ranges: Range[] = [
   {
-    id: "nearby",
-    name: "Nearby",
+    id: "shenzhen",
+    name: "Shenzhen",
+
+    zoom: 11.5,
+
+    branding: {
+      appName: "ShenzhenGo",
+    },
   },
   {
-    id: "citywide",
-    name: "Citywide",
+    id: "yantian",
+    name: "Yantian",
+
+    zoom: 13,
+    showChildren: true,
+
+    parentId: "shenzhen",
+  },
+  {
+    id: "meisha",
+    name: "Meisha",
+
+    branding: {
+      appName: "MeishaGo",
+    },
+
+    parentId: "yantian",
+  },
+  {
+    id: "shatoujiao",
+    name: "Shatoujiao",
+
+    parentId: "yantian",
   },
 ];
 
