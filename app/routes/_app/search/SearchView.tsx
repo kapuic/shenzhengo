@@ -99,6 +99,7 @@ export default function SearchView({
       createPathWithSiblings(
         ranges.map(({ name, ...other }) => ({ label: name, ...other })),
         lastDeepestRange,
+        true,
       ),
     [ranges, lastDeepestRange],
   );
