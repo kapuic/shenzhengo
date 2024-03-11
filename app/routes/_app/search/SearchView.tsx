@@ -1,7 +1,13 @@
 import { Link } from "@remix-run/react";
 import { IconMapPin, IconSearch } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { type ReactNode, useId, useMemo } from "react";
+import {
+  type ReactNode,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useHydrated } from "remix-utils/use-hydrated";
 import { twMerge } from "tailwind-merge";
 import { useLocalStorage } from "usehooks-ts";
@@ -10,6 +16,7 @@ import Input from "~/components/Input";
 import TabSelect from "~/components/TabSelect";
 import { categoryIcons } from "~/data/categories";
 import { type Category, type Place } from "~/data/schema";
+import { createPathWithSiblings, getDistanceFromRoot } from "~/utilities/tree";
 
 import { useAppLoaderData } from "..";
 import MapWelcomeMessage from "../_index/MapWelcomeMessage";
@@ -64,10 +71,36 @@ export default function SearchView({
 
   const hydrated = useHydrated();
 
+  /* eslint-disable hooks/sort */
+
   // `welcome-message`
   const [welcomeMessageDismissed] = useLocalStorage(
     "map.welcomeMessageDismissed",
     false,
+  );
+
+  // `range-tabs`
+  const filterDistance = useMemo(
+    () => getDistanceFromRoot(ranges, filterRange),
+    [ranges, filterRange],
+  );
+
+  const [lastDeepestRange, setLastDeepestRange] = useState(filterRange);
+  const lastDeepestDistance = useMemo(
+    () => getDistanceFromRoot(ranges, lastDeepestRange),
+    [ranges, lastDeepestRange],
+  );
+  useLayoutEffect(() => {
+    if (filterDistance >= lastDeepestDistance) setLastDeepestRange(filterRange);
+  }, [filterDistance, lastDeepestDistance, filterRange]);
+
+  const rangesPath = useMemo(
+    () =>
+      createPathWithSiblings(
+        ranges.map(({ name, ...other }) => ({ label: name, ...other })),
+        lastDeepestRange,
+      ),
+    [ranges, lastDeepestRange],
   );
 
   // `filter-message`
@@ -104,10 +137,7 @@ export default function SearchView({
         <TabSelect
           active={filterRange ?? "nearby"}
           setActive={setFilterRange}
-          tabs={ranges.map(({ id, name }) => ({
-            id,
-            label: name,
-          }))}
+          tabs={rangesPath}
         />
       </div>
     ),
@@ -250,17 +280,10 @@ export default function SearchView({
       <AnimatePresence initial={false} mode="popLayout">
         <motion.div
           key={filterRange}
-          animate={{ x: 0, opacity: 1 }}
+          animate={{ opacity: 1 }}
           className="flex flex-col gap-4"
-          transition={{ ease: [0.6, -0.05, 0.01, 0.99], duration: 0.3 }}
-          exit={{
-            x: filterRange === "citywide" ? "120%" : "-120%",
-            opacity: 0.5,
-          }}
-          initial={{
-            x: filterRange === "citywide" ? "120%" : "-120%",
-            opacity: 0.5,
-          }}
+          exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
         >
           {shownElements[1].map((element) => elements[element])}
         </motion.div>
