@@ -1,4 +1,5 @@
 import {
+  type Icon,
   IconBarbell,
   IconBed,
   IconBuilding,
@@ -18,7 +19,6 @@ import {
   IconTrees,
   IconVaccineBottle,
   IconWalk,
-  type TablerIconsProps,
 } from "@tabler/icons-react";
 
 import { type Category } from "./schema";
@@ -134,10 +134,7 @@ const categories: Category[] = [
 
 export default categories;
 
-export const categoryIcons: Record<
-  string,
-  (props: TablerIconsProps) => JSX.Element
-> = {
+export const categoryIcons: Record<string, Icon> = {
   park: IconTrees,
   "amusement-park": IconBuildingCarousel,
   walkway: IconWalk,

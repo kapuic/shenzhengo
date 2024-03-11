@@ -12,14 +12,14 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@growthbook/growthbook-react": "^0.24.0",
+    "@growthbook/growthbook-react": "^0.25.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@remix-run/cloudflare": "^2.8.1",
     "@remix-run/cloudflare-pages": "^2.8.1",
     "@remix-run/css-bundle": "^2.8.1",
     "@remix-run/react": "^2.8.1",
-    "@tabler/icons-react": "^2.47.0",
+    "@tabler/icons-react": "^3.0.0",
     "@uiw/react-amap": "^6.0.2",
     "framer-motion": "^11.0.8",
     "fuse.js": "^7.0.0",
