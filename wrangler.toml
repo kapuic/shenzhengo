@@ -2,3 +2,6 @@
 GROWTHBOOK_API_HOST = "https://features-control.kapui.net"
 GROWTHBOOK_CLIENT_KEY = "sdk-***REMOVED***"
 GROWTHBOOK_DECRYPTION_KEY = "***REMOVED***"
+
+AMAP_API_KEY = "***REMOVED***"
+AMAP_API_VERSION = "2.0.5"

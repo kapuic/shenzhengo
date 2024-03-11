@@ -13,6 +13,7 @@ import { useMediaQuery } from "usehooks-ts";
 import Alert from "~/components/Alert";
 import Spinner from "~/components/Spinner";
 import { type Place } from "~/data/schema";
+import { useRootLoaderData } from "~/root";
 import { useDelayedBoolean } from "~/utilities/hooks";
 
 import { useAppMapContext } from "../../AppMapContext";
@@ -50,6 +51,8 @@ export default function Map({
   willRecenterWhenFocusClears,
   setWillRecenterWhenFocusClears,
 }: MapProps) {
+  const { aMap } = useRootLoaderData();
+
   const enableScaleControl = useFeatureIsOn("map:scale-control");
   const enableToolbarControl = useFeatureIsOn("map:toolbar-control");
   const enableCompassControl = useFeatureIsOn("map:compass-control");
@@ -97,7 +100,7 @@ export default function Map({
 
   return (
     <div className="relative z-10 h-full w-full">
-      <APILoader akey="***REMOVED***" version="2.0.5">
+      <APILoader akey={aMap.apiKey} version={aMap.apiVersion}>
         <AMapMap
           showIndoorMap
           center={center}

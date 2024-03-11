@@ -58,6 +58,10 @@ export async function loader({ context }: LoaderFunctionArgs) {
       clientKey: context.env.GROWTHBOOK_CLIENT_KEY,
       decryptionKey: context.env.GROWTHBOOK_DECRYPTION_KEY,
     },
+    aMap: {
+      apiKey: context.env.AMAP_API_KEY,
+      apiVersion: context.env.AMAP_API_VERSION ?? "2.0.5",
+    },
   });
 }
 
