@@ -5,6 +5,7 @@ import {
   IconBuildingBank,
   IconBuildingCarousel,
   IconBuildingHospital,
+  IconBuildingPavilion,
   IconChefHat,
   IconCurrencyYuan,
   IconGlassFull,
@@ -96,6 +97,11 @@ const categories: Category[] = [
     markerUrl: "/assets/markers/hotel.png",
   },
   {
+    id: "scenery",
+    name: "Scenery",
+    markerUrl: "/assets/markers/scenery.png",
+  },
+  {
     id: "other",
     name: "Other",
     markerUrl: "/assets/markers/other.png",
@@ -145,6 +151,7 @@ export const categoryIcons: Record<
   fitness: IconBarbell,
   "shopping-mall": IconShoppingBag,
   hotel: IconBed,
+  scenery: IconBuildingPavilion,
   other: IconBuilding,
   bank: IconBuildingBank,
   atm: IconCurrencyYuan,
