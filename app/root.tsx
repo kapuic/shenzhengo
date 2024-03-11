@@ -16,6 +16,7 @@ import {
   type ShouldRevalidateFunction,
   useLoaderData,
   useLocation,
+  useRouteLoaderData,
 } from "@remix-run/react";
 import { useEffect, useMemo } from "react";
 
@@ -58,6 +59,11 @@ export async function loader({ context }: LoaderFunctionArgs) {
       decryptionKey: context.env.GROWTHBOOK_DECRYPTION_KEY,
     },
   });
+}
+
+export function useRootLoaderData() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return useRouteLoaderData<typeof loader>("root")!;
 }
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({ formMethod }) =>
