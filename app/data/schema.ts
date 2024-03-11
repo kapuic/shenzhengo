@@ -1,3 +1,8 @@
+export interface BrandingOptions {
+  appName: string;
+  appIconsPath: string;
+}
+
 export interface Category {
   id: string;
   name: string;
@@ -8,6 +13,19 @@ export interface Category {
 export interface Range {
   id: string;
   name: string;
+
+  description?: string;
+
+  /** Defaults to `15`. */
+  zoom?: number;
+  /** Defaults to `[11, 18]`. */
+  zooms?: [number, number];
+
+  branding?: Partial<BrandingOptions>;
+
+  parentId?: string;
+  /** Defaults to `false`. */
+  showChildren?: boolean;
 }
 
 export interface Place {
