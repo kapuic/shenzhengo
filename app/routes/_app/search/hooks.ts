@@ -2,7 +2,7 @@ import { useSearchParams } from "@remix-run/react";
 import { useMemo, useState } from "react";
 
 import { type Place } from "~/data/schema";
-import { isPlaceUnderCategory } from "~/utilities/data";
+import { checkRange, isPlaceUnderCategory } from "~/utilities/data";
 import {
   useHydratedEffect,
   useUpdateQueryStringValueWithoutNavigation,
@@ -65,15 +65,14 @@ export function useFilterSearch() {
   return [filterSearch, setFilterSearch] as const;
 }
 
-export function usePlacesInRange(filterRange?: string | null) {
-  const { places } = useAppLoaderData();
-
+export function usePlacesInRange(range?: string | null) {
+  const { ranges, places } = useAppLoaderData();
   return useMemo(
     () =>
-      filterRange
-        ? places.filter(({ rangeId }) => rangeId === filterRange)
+      range
+        ? places.filter(({ rangeId }) => checkRange(ranges, rangeId, range))
         : places,
-    [places, filterRange],
+    [ranges, places, range],
   );
 }
 
