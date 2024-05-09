@@ -6,7 +6,7 @@ export interface BrandingOptions {
 export interface Category {
   id: string;
   name: string;
-  markerUrl: string;
+  markerUrl: `/assets/markers/${string}.png`;
   parentId?: string;
 }
 
@@ -37,16 +37,18 @@ export interface Place {
   categoryId: Category["id"];
 
   description?: string;
-  coverImage?: string;
+  coverImage?: `/images/${string}/cover.${string}`;
 
   signatureDishes?: {
     name: string;
     originalName?: string;
     price?: number;
-    image: string;
+    image: `/images/${string}/${number}.${string}`;
   }[];
 
-  streetViewUrl?: string;
+  streetViewUrl?:
+    | `https://map.baidu.com/#panoid=${string}&panotype=street&heading=${number}&pitch=${number}&l=${number}&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22${string}%22%7D%7D`
+    | `https://map.baidu.com/#panoid=${string}&panotype=street&heading=${number}&pitch=${number}&l=${number}`;
 
   authors?: string | string[];
 }
