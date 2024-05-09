@@ -455,19 +455,19 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
         name: "Orange juice",
         originalName: "现榨香橙汁",
         price: 29,
-        image: "/images/time/cover.jpeg",
+        image: "/images/time/1.jpeg",
       },
       {
         name: "Snow pear juice",
         originalName: "现榨雪梨汁",
         price: 29,
-        image: "/images/time/cover.jpeg",
+        image: "/images/time/2.jpeg",
       },
       {
         name: "Toffee & hazel latte",
         originalName: "太妃榛子拿铁",
         price: 35,
-        image: "/images/time/cover.jpeg",
+        image: "/images/time/3.jpeg",
       },
     ],
 
