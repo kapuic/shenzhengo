@@ -1,14 +1,18 @@
-import { GrowthBook, GrowthBookProvider } from "@growthbook/growthbook-react";
+import "~/tailwind.css";
+
+import {
+  type FeatureApiResponse,
+  GrowthBook,
+  GrowthBookProvider,
+} from "@growthbook/growthbook-react";
 import {
   json,
   type LinksFunction,
   type LoaderFunctionArgs,
   type MetaFunction,
 } from "@remix-run/cloudflare";
-import { cssBundleHref } from "@remix-run/css-bundle";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -19,8 +23,6 @@ import {
   useRouteLoaderData,
 } from "@remix-run/react";
 import { useEffect, useMemo } from "react";
-
-import tailwind from "~/tailwind.css";
 
 import { TooltipProvider } from "./components/Tooltip";
 import { mergeMeta } from "./utilities/remix";
@@ -46,21 +48,37 @@ export const links: LinksFunction = () => [
   })),
   { rel: "manifest", href: "/icons/site.webmanifest" },
   { rel: "shortcut icon", href: "/icons/favicon.ico" },
-
-  { rel: "stylesheet", href: tailwind },
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
 export async function loader({ context }: LoaderFunctionArgs) {
+  // Create and initialize a GrowthBook instance
+  const growthBook = new GrowthBook({
+    apiHost: context.cloudflare.env.GROWTHBOOK_API_HOST,
+    clientKey: context.cloudflare.env.GROWTHBOOK_CLIENT_KEY,
+    // decryptionKey: context.cloudflare.env.GROWTHBOOK_DECRYPTION_KEY,
+    remoteEval: true,
+    enableDevMode: context.cloudflare.env.ENVIRONMENT === "development",
+  });
+  await growthBook.init({ timeout: 1000 });
+
+  // Get the payload to hydrate the client-side GrowthBook instance
+  // We need the decrypted payload so the initial client-render can be synchronous
+  const payload = growthBook.getDecryptedPayload();
+
+  // Cleanup your GrowthBook instance
+  growthBook.destroy();
+
   return json({
+    environment: context.cloudflare.env.ENVIRONMENT,
     featureCtl: {
-      apiHost: context.env.GROWTHBOOK_API_HOST,
-      clientKey: context.env.GROWTHBOOK_CLIENT_KEY,
-      decryptionKey: context.env.GROWTHBOOK_DECRYPTION_KEY,
+      apiHost: context.cloudflare.env.GROWTHBOOK_API_HOST,
+      clientKey: context.cloudflare.env.GROWTHBOOK_CLIENT_KEY,
+      decryptionKey: context.cloudflare.env.GROWTHBOOK_DECRYPTION_KEY,
+      payload,
     },
     aMap: {
-      apiKey: context.env.AMAP_API_KEY,
-      apiVersion: context.env.AMAP_API_VERSION ?? "2.0.5",
+      apiKey: context.cloudflare.env.AMAP_API_KEY,
+      apiVersion: context.cloudflare.env.AMAP_API_VERSION ?? "2.0.5",
     },
   });
 }
@@ -73,24 +91,57 @@ export function useRootLoaderData() {
 export const shouldRevalidate: ShouldRevalidateFunction = ({ formMethod }) =>
   !!formMethod;
 
+export function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <Meta />
+        <Links />
+        <script
+          defer
+          data-domain="meishago.kapui.net"
+          src="https://analytics.kapui.net/js/script.js"
+        ></script>
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
 export default function App() {
-  const { featureCtl } = useLoaderData<typeof loader>();
+  const { environment, featureCtl } = useLoaderData<typeof loader>();
   const location = useLocation();
 
+  // Create a singleton GrowthBook instance for this page
   const growthBook = useMemo(
     () =>
       new GrowthBook({
         apiHost: featureCtl.apiHost,
         clientKey: featureCtl.clientKey,
+        // decryptionKey: featureCtl.decryptionKey,
         remoteEval: true,
-        enableDevMode: process.env.NODE_ENV === "development",
-        subscribeToChanges: true,
+        enableDevMode: environment === "development",
+        trackingCallback: (experiment, result) => {
+          console.log("Viewed Experiment", {
+            experimentId: experiment.key,
+            variationId: result.key,
+          });
+        },
+        // Targeting attributes
+        attributes: {},
+      }).initSync({
+        payload: featureCtl.payload as FeatureApiResponse,
+        // Optional, enable streaming updates
+        streaming: true,
       }),
-    [featureCtl],
+    [featureCtl, environment],
   );
-  useEffect(() => {
-    growthBook.loadFeatures();
-  }, [growthBook]);
   useEffect(() => {
     growthBook.setURL(location.pathname);
   }, [growthBook, location.pathname]);
@@ -98,28 +149,7 @@ export default function App() {
   return (
     <GrowthBookProvider growthbook={growthBook}>
       <TooltipProvider>
-        <html lang="en">
-          <head>
-            <meta charSet="utf-8" />
-            <meta
-              content="width=device-width,initial-scale=1"
-              name="viewport"
-            />
-            <Meta />
-            <Links />
-            <script
-              defer
-              data-domain="meishago.kapui.net"
-              src="https://analytics.kapui.net/js/script.js"
-            ></script>
-          </head>
-          <body>
-            <Outlet />
-            <ScrollRestoration />
-            <Scripts />
-            <LiveReload />
-          </body>
-        </html>
+        <Outlet />
       </TooltipProvider>
     </GrowthBookProvider>
   );

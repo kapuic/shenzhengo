@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import logo from "~/../public/logos/logo.png";
+import logo from "./logo.png";
 
 export interface LogoProps
   extends React.DetailedHTMLProps<

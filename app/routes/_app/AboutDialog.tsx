@@ -4,8 +4,8 @@ import { IconX } from "@tabler/icons-react";
 import Button from "~/components/Button";
 import { arrayToSentence } from "~/utilities/i18n";
 
+import Logo from "../../components/Logo";
 import { useAppLoaderData } from ".";
-import Logo from "./Logo";
 
 export interface AboutDialogProps {
   children: React.ReactNode;

@@ -1,13 +1,4 @@
-import {
-  getGrowthBookSSRData,
-  type GrowthBookSSRData,
-  useGrowthBookSSR,
-} from "@growthbook/growthbook-react";
-import {
-  json,
-  type LoaderFunctionArgs,
-  type MetaFunction,
-} from "@remix-run/cloudflare";
+import { json, type MetaFunction } from "@remix-run/cloudflare";
 import { Outlet } from "@remix-run/react";
 import {
   Link,
@@ -38,9 +29,9 @@ import ranges from "~/data/ranges";
 import { type Place } from "~/data/schema";
 import { mergeMeta, type RouteHandle } from "~/utilities/remix";
 
+import Logo from "../../components/Logo";
 import AboutDialog from "./AboutDialog";
 import AppMapContext from "./AppMapContext";
-import Logo from "./Logo";
 import NavButton from "./NavButton";
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({ data }) => [
@@ -51,15 +42,8 @@ export const meta: MetaFunction<typeof loader> = mergeMeta(({ data }) => [
   },
 ]);
 
-export async function loader({ context }: LoaderFunctionArgs) {
-  const featureCtlData = (await getGrowthBookSSRData({
-    apiHost: context.env.GROWTHBOOK_API_HOST,
-    clientKey: context.env.GROWTHBOOK_CLIENT_KEY,
-    enableDevMode: process.env.NODE_ENV === "development",
-  })) as unknown;
-
+export async function loader() {
   return json({
-    featureCtlData,
     ranges,
     categories,
     places,
@@ -73,8 +57,7 @@ export function useAppLoaderData() {
 }
 
 export default function App() {
-  const { featureCtlData, places } = useLoaderData<typeof loader>();
-  useGrowthBookSSR(featureCtlData as GrowthBookSSRData);
+  const { places } = useLoaderData<typeof loader>();
 
   const [focus, setFocus] = useState<Place | null>(null);
 

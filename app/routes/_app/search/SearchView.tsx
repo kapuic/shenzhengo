@@ -1,13 +1,7 @@
 import { Link } from "@remix-run/react";
 import { IconMapPin, IconSearch } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  type ReactNode,
-  useId,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from "react";
+import { type ReactNode, useId, useMemo, useState } from "react";
 import { useHydrated } from "remix-utils/use-hydrated";
 import { twMerge } from "tailwind-merge";
 import { useLocalStorage } from "usehooks-ts";
@@ -90,7 +84,7 @@ export default function SearchView({
     () => getDistanceFromRoot(ranges, lastDeepestRange),
     [ranges, lastDeepestRange],
   );
-  useLayoutEffect(() => {
+  useMemo(() => {
     if (filterDistance >= lastDeepestDistance) setLastDeepestRange(filterRange);
   }, [filterDistance, lastDeepestDistance, filterRange]);
 

@@ -176,32 +176,3 @@ declare global {
     };
   }
 }
-
-module "@remix-run/cloudflare" {
-  export interface AppLoadContext
-    extends EventContext<
-      {
-        /*
-         * Process
-         */
-
-        readonly NODE_ENV: "production" | "development";
-        readonly CF_PAGES?: 1;
-        readonly CF_PAGES_COMMIT_SHA?: string;
-        readonly CF_PAGES_BRANCH?: string;
-        readonly CF_PAGES_URL?: string;
-
-        /*
-         * Environment Variables
-         */
-
-        /* GrowthBook */
-
-        readonly GROWTHBOOK_API_HOST?: string;
-        readonly GROWTHBOOK_CLIENT_KEY?: string;
-        readonly GROWTHBOOK_DECRYPTION_KEY?: string;
-      },
-      unknown,
-      Record<string, unknown>
-    > {}
-}

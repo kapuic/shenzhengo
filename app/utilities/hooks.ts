@@ -2,7 +2,7 @@ import {
   type DependencyList,
   type EffectCallback,
   useEffect,
-  useLayoutEffect,
+  useMemo,
   useState,
 } from "react";
 import { useHydrated } from "remix-utils/use-hydrated";
@@ -10,7 +10,7 @@ import { useHydrated } from "remix-utils/use-hydrated";
 export function usePreviousValue<T>(value: T, deps?: DependencyList): T {
   const [previousValue, setPreviousValue] = useState(value);
   const [pendingValue, setPendingValue] = useState(value);
-  useLayoutEffect(() => {
+  useMemo(() => {
     setPreviousValue(pendingValue);
     setPendingValue(value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
