@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 import {
+  IconEyePin,
   IconMapPin,
   IconNavigation,
   IconUser,
@@ -21,6 +22,7 @@ import GuideCard from "../GuideCard";
 export type PlaceInfoCommonElement =
   | "header"
   | "directions-button"
+  | "street-view-button"
   | "description"
   | "signature-dishes"
   | "related-guides"
@@ -39,6 +41,7 @@ export default function PlaceInfoCommon({
   shownElements = [
     "header",
     "directions-button",
+    "street-view-button",
     "description",
     "signature-dishes",
     "related-guides",
@@ -90,6 +93,18 @@ export default function PlaceInfoCommon({
       >
         <IconNavigation className="h-3.5 w-3.5" size={16} />
         Directions (Chinese)
+      </Link>
+    ),
+    "street-view-button": place.streetViewUrl && (
+      <Link
+        key="street-view-button"
+        className="focus-ring inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-800 shadow-sm transition-all hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:hover:bg-neutral-800 dark:focus:ring-offset-gray-800"
+        hrefLang="zh_CN"
+        target="_blank"
+        to={place.streetViewUrl}
+      >
+        <IconEyePin className="h-3.5 w-3.5" size={16} />
+        Street View
       </Link>
     ),
     description: place.description && (
