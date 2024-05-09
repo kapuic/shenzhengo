@@ -1,3 +1,3 @@
 module.exports = {
-  reject: ["million"],
+  reject: ["eslint", "million"],
 };
