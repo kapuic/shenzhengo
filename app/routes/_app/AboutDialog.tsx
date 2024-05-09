@@ -42,9 +42,10 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                     <Logo />
                   </div>
                   <p>
-                    Explore 44+ different places and attractions across Dameisha
-                    (Shenzhen, China) in English. Detailed information and
-                    guides, whether you're a visitor or a future resident.
+                    Explore {places.length}+ different places and attractions
+                    across China in English. Detailed information and guides
+                    designed for foreigners, whether you're a visitor or plan to
+                    reside long-term.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2">
