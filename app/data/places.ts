@@ -285,7 +285,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     location: [114.305722, 22.593723],
 
     name: "Wugufang Roast Pigeon",
-    originalName: "五谷坊烤乳鸽",
+    originalName: "五谷芳烤乳鸽",
     rangeId: "meisha",
     categoryId: "restaurant",
 
@@ -629,7 +629,7 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     location: [114.30655, 22.593824],
 
     name: "Hilton Hampton",
-    originalName: "喜来登欢朋酒店",
+    originalName: "希尔顿欢朋酒店",
     rangeId: "meisha",
     categoryId: "hotel",
 
