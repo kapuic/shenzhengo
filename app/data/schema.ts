@@ -46,6 +46,8 @@ export interface Place {
     image: string;
   }[];
 
+  streetViewUrl?: string;
+
   authors?: string | string[];
 }
 
