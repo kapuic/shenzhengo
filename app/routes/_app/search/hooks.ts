@@ -1,6 +1,7 @@
 import { useSearchParams } from "@remix-run/react";
 import { useMemo, useState } from "react";
 
+import { DEFAULT_RANGE } from "~/consts";
 import { type Place } from "~/data/schema";
 import { checkRange, isPlaceUnderCategory } from "~/utilities/data";
 import {
@@ -28,13 +29,13 @@ export function useFilterRange({
     let range = null;
     range ??= queryPlace?.rangeId;
     range ??= queryFilterRange?.id;
-    range ??= "meisha";
+    range ??= DEFAULT_RANGE;
     return range;
   }
   const [filterRange, setFilterRange] = useState(getInitialFilterRange());
   useUpdateQueryStringValueWithoutNavigation(
     "filter.range",
-    filterRange === "meisha" ? null : filterRange,
+    filterRange === DEFAULT_RANGE ? null : filterRange,
   );
   useHydratedEffect(
     () => resetWhenChanged?.forEach((reset) => reset(null)),
