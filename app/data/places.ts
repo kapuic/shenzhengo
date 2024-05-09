@@ -64,6 +64,9 @@ const places: Place[] = [
     description: `Oliver: This is a park at the Dameisha beach enjoy the sea view and relax on the beach. Here, you can access a long walkway connected to the Xiaomeisha Seashore Walkway and other parts of the Dantean District.
 Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen City, located in the embrace of mountains on three sides, the middle of the open and gentle, one side facing the sea. The park is divided into swimming area, sports area, leisure area, entertainment area, barbecue area and other areas. Here is the longest beach in Shenzhen, the water is clear, the beach is vast, the sand is soft, and there are water ski ropeway, motorboat, ATV, water parachute, beach volleyball, beach football and other recreational projects. The park also has shopping center, shower storage, catering supply, leisure tea, swimming equipment rental, security, life saving and other supporting services.`,
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500810012230414113333206OI&panotype=street&heading=142.93&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%227aea43b7c03074f87c29bd28%22%7D%7D",
+
     authors: ["Oliver", "Doris"],
   },
 
@@ -104,6 +107,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     description:
       "This is the park beside the VMA campus, going across the Dameisha Outlets. You can enjoy the beautiful scenery of the late and relax under the sunlight. You can see black swans if you are lucky!",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012211231143603208HP&panotype=street&heading=252.31&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%220cbd0541ba1a4fa2b9df8fde%22%7D%7D",
+
     authors: "Oliver",
   },
 
@@ -119,6 +125,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
       "This is the closest public hospital to the Dameisha community. It has complete services and equipments for a variety of treatments.",
     coverImage: "/images/meisha-hospital/cover.png",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700011606271030045252F&panotype=street&heading=277.22&pitch=15.74&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22b0d056f2a82ec467cac3db00%22%7D%7D",
+
     authors: "Oliver",
   },
   {
@@ -128,6 +137,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     originalName: "南北药行",
     rangeId: "meisha",
     categoryId: "pharmacy",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700122003270956336405O&panotype=street&heading=153.33&pitch=6&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22844a750e84d0e7b96268582f%22%7D%7D",
 
     authors: "Oliver",
   },
@@ -139,6 +151,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     rangeId: "meisha",
     categoryId: "pharmacy",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012211229132823535HP&panotype=street&heading=322.05&pitch=7.21&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22b1c556e8cc0c980cb426552e%22%7D%7D",
+
     authors: "Oliver",
   },
   {
@@ -148,6 +163,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     originalName: "万春堂",
     rangeId: "meisha",
     categoryId: "pharmacy",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012211231101217636HP&panotype=street&heading=153.91&pitch=0.9&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22b0318b5a2e900a989d82ea75%22%7D%7D",
 
     authors: "Oliver",
   },
@@ -219,6 +237,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
       },
     ],
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012211231135522642HP&panotype=street&heading=161.97&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%228a218bd9bf25dc784c3a59a1%22%7D%7D",
+
     authors: "Rachel",
   },
   {
@@ -255,6 +276,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     coverImage: "/images/burger-king/cover.jpeg",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700122003271102513045O&panotype=street&heading=201.35&pitch=8.16&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22a0b849f3731bdbd8c72ba12c%22%7D%7D",
+
     authors: "Rachel",
   },
   {
@@ -289,6 +313,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
         image: "/images/wugufang-roast-pigeon/3.jpeg",
       },
     ],
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012190807125847482Q8&panotype=street&heading=309.64&pitch=1.45&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2285d4699cc4c66bc5f03cbac5%22%7D%7D",
 
     authors: "Rachel",
   },
@@ -358,6 +385,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
       },
     ],
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2300570012221204205405903OI&panotype=street&heading=335.04&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%221bd1f8675627201c081cc795%22%7D%7D",
+
     authors: "Rachel",
   },
   {
@@ -403,6 +433,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     categoryId: "beverage",
 
     description: "There is also a Starbucks in Dameisha!",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2300570012221204205405905OI&panotype=street&heading=148.22&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2297db902b83330d9082288afa%22%7D%7D",
 
     authors: "Oliver",
   },
@@ -501,6 +534,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     description: "A Yantian shopping mall.",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700121709191556031678Y&panotype=street&heading=82.88&pitch=9.01&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%224c1d4e42c257378038221ce2%22%7D%7D",
+
     authors: "Rachel",
   },
   {
@@ -526,6 +562,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     description:
       "COCO Park is the most fashionable shopping center in Shenzhen, integrating dining, shopping, leisure and entertainment. It has more than 200 international and domestic well-known brands. The first floor is the Yoshinoshima supermarket, international chain catering, jewelry accessories, personal care, home life, video and music, gift shop. On the first floor, there are international boutique clothing stores, jewelry, watches, classic accessories stores, China Mobile Information Life Hall, COCO open-air International Bar Street. On the second floor are business casual clothing, fashion women's clothing, leisure sports city, international specialty dining, popular accessories, home life, audio-visual gift shop and Broadway Cinema. The third floor is a high-end food concept restaurant and beauty care SPA. Weifang Taihua City COCO PARK is located in the south side of Taihua City Holiday Plaza podium building, through the beautiful music fountain and landscape water curtain, next to an entertainment and food center that runs through and echoes the whole Taihua City. There is a large landscape hollow in front of the door, which looks like a spectacular dynamic glass box. It will become a new fashion party base for entertainment and leisure in Weifang. There is the first large-sized IMAX large-screen theater spanning three floors in Shandong Province, a super-sized disco, a bar nightclub, a pool room and a number of medium-sized luxury theme Chinese and Western restaurants.",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500780012230623184316343OI&panotype=street&heading=175.42&pitch=0&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2294237e25c9161a749d82eaa9%22%7D%7D",
+
     authors: ["Rachel", "Doris"],
   },
   {
@@ -539,6 +578,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     description:
       "Shenzhen Coastal City is located in the commercial and cultural center of Nanshan District, close to five main urban roads in Nanshan District, such as Binhai Avenue, Nanhai Avenue, Houhai Avenue, Houhaibin Road and Chuangye Road. Coast City consists of East office building, Coast City West office building, Coast City shopping center and coast style street, which is the largest comprehensive business and commercial project in the west of Shenzhen, and is also the largest indoor shopping, leisure and entertainment center in Shenzhen so far. The total investment of Coastal City is about 2 billion yuan, and the total construction area is about 300,000 square meters. Among them: shopping center about 120,000 square meters; About 140,000 square meters of office space; The commercial street is about 40,000 square meters. Coast City has about 2,000 underground parking Spaces. According to the China Shopping Center rating evaluation standard in 2019, it was rated as a national five-star shopping center.",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700122202261204570986P&panotype=street&heading=75.18&pitch=8.45&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22fa46d9f9597239d629fc4888%22%7D%7D",
+
     authors: ["Rachel", "Doris"],
   },
   {
@@ -550,6 +592,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     categoryId: "hotel",
 
     coverImage: "/images/intercontinental-shenzhen-dameisha-resort/cover.jpeg",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500670012230701191448185OI&panotype=street&heading=307.85&pitch=-18.53&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2279cb56ac3534a534912ca345%22%7D%7D",
 
     authors: "Hao Du",
   },
@@ -575,6 +620,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     coverImage: "/images/kingkey-palace-hotel/cover.jpeg",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700122103021349094412S&panotype=street&heading=190.06&pitch=34.04&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22e6ee2fd2b7bd5d352a11d18a%22%7D%7D",
+
     authors: "Hao Du",
   },
   {
@@ -599,6 +647,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     coverImage: "/images/vienna-international-hotel/cover.png",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012190807123744589Q8&panotype=street&heading=305.39&pitch=26.67&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2210d1b357ec5ff2d521022009%22%7D%7D",
+
     authors: "Hao Du",
   },
   // {
@@ -621,6 +672,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     coverImage: "/images/pattaya-hotel/cover.png",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700122003271103002485O&panotype=street&heading=10.24&pitch=7.94&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22f5e3bcaef981cdd85e17c343%22%7D%7D",
+
     authors: "Hao Du",
   },
   {
@@ -632,6 +686,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
     categoryId: "hotel",
 
     coverImage: "/images/vienna-hotel/cover.png",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012221202131743458GG&panotype=street&heading=51.33&pitch=4.9&l=13",
 
     authors: "Hao Du",
   },
@@ -669,6 +726,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     coverImage: "/images/pinan-bank/cover.png",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700011606261504561792F&panotype=street&heading=338.63&pitch=5.94&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%226113ef77b4b968148e77272e%22%7D%7D",
+
     authors: "Hao Du",
   },
   {
@@ -705,6 +765,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
 
     coverImage: "/images/xlct-pharmacy-shop/cover.png",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=01005700001311291006214595D&panotype=street&heading=301.8&pitch=6.59&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2206d0dc97f93039a038e4a63b%22%7D%7D",
+
     authors: "Hao Du",
   },
 
@@ -734,6 +797,9 @@ Doris: Dameisha Seaside Park is a seaside park in Yantian District of Shenzhen C
       "It is a park located on a hill. Despite the fact that the hill is small and low, its scenery is worth seeing.",
     coverImage:
       "/images/yandun-mountain-international-friendship-park/cover.jpeg",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2300570012221204210007940OI&panotype=street&heading=248.2&pitch=6.59&l=13",
 
     authors: "Kelvin",
   },
@@ -960,6 +1026,9 @@ Doris: Shenzhen Yantian Central Park has an open area of 56,282 square meters an
       },
     ],
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700121709191346149168Y&panotype=street&heading=80.3&pitch=14.02&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22154c1da7b2e5b38ec7f50da9%22%7D%7D",
+
     authors: "Kelvin",
   },
   {
@@ -1086,6 +1155,9 @@ Doris: Shenzhen Yantian Central Park has an open area of 56,282 square meters an
       },
     ],
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500570012240211172927817OI&panotype=street&heading=149.86&pitch=12.74&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22a0736d9aaa5b881acb213d71%22%7D%7D",
+
     authors: "Kelvin",
   },
 
@@ -1106,6 +1178,9 @@ Doris: Shenzhen Yantian Central Park has an open area of 56,282 square meters an
     originalName: "深圳雅庭海灣國際大酒店",
     rangeId: "shatoujiao",
     categoryId: "hotel",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012211230165850953HP&panotype=street&heading=18.75&pitch=13.82&l=13&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2273b637e258875c2d2b3a9fbd%22%7D%7D",
 
     authors: "Kelvin",
   },
@@ -1177,6 +1252,9 @@ Doris: Shenzhen Yantian Central Park has an open area of 56,282 square meters an
     rangeId: "yantian",
     categoryId: "hotel",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700122003271030286285O&panotype=street&heading=17.18&pitch=6.64&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22d4ff848a8ba1c96426e0a0ee%22%7D%7D",
+
     authors: "Kelvin",
   },
   {
@@ -1186,6 +1264,9 @@ Doris: Shenzhen Yantian Central Park has an open area of 56,282 square meters an
     originalName: "藝龍酒店（深圳中英街沙頭角地鐵站店）",
     rangeId: "shatoujiao",
     categoryId: "hotel",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012211231103307389HP&panotype=street&heading=35.35&pitch=10.88&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2243b7e889643eb67358f6be42%22%7D%7D",
 
     authors: "Kelvin",
   },
@@ -1200,6 +1281,9 @@ Doris: Shenzhen Yantian Central Park has an open area of 56,282 square meters an
 
     description:
       "Wutong Mountain is a free tourist attraction in Luohu District of Shenzhen and is known as a good place to watch the sunrise in Shenzhen. It has beautiful natural scenery and a long history and culture. Mountaineers can enjoy the beautiful sunrise view and enjoy the peace and beauty of nature. At the same time, there are many farmhouses and small restaurants near Wutong Mountain, where you can taste authentic Cantonese food.",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500840012231122113859458OI&panotype=street&heading=46.68&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2207a6f57c941fa781246e9826%22%7D%7D",
 
     authors: "Doris",
   },
@@ -1227,6 +1311,9 @@ Doris: Shenzhen Yantian Central Park has an open area of 56,282 square meters an
     description:
       "Window of the World is one of the tourist attractions in Shenzhen, located in the OCT by the Shenzhen Bay, covering an area of 480,000 square meters. Almost all the famous scenic spots in the world are included in the scenic spot, most of which are restored in accordance with a certain proportion. There are also folk songs and dances, large-scale performances and high-tech participatory entertainment projects, as well as night performances, which are very rich in activities. Windows of the World is good at innovation and has pioneered the development of participatory entertainment projects packaged with cultural themes. And there is a long beach walk in the scenic area, you can enjoy the beautiful natural scenery",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500890012230803213100734OI&panotype=street&heading=191.95&pitch=-15.39&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22e41eb1fb40abb0b82fb96db2%22%7D%7D",
+
     authors: "Doris",
   },
   {
@@ -1251,6 +1338,9 @@ Doris: Shenzhen Yantian Central Park has an open area of 56,282 square meters an
     categoryId: "park",
 
     description: `Xiaomeisha is a beach near Dapeng Bay, Yantian District, Shenzhen, known as the "Oriental Hawaii". It has clear waters and fine sandy beaches in a secluded environment. Xiaomeisha Sea World is a place to watch rare animals and participate in water activities. In addition, Xiaomeisha has about 800 meters wide beach, you can participate in beach barbecue, jet ski, submarine diving and other recreational activities. Xiaomeisha also has beautiful natural scenery, such as surrounded by green mountains and blue sea water, which is very suitable for vacation and leisure.`,
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700122003271107582375O&panotype=street&heading=78.73&pitch=-15.39&l=21",
 
     authors: "Doris",
   },
@@ -1278,6 +1368,9 @@ Doris: Shenzhen Yantian Central Park has an open area of 56,282 square meters an
     description: `Lianhuashan Park is an old park in Shenzhen and one of the classic scenic spots of red tourism in China. It is located in the downtown area, covers an area of 194 hectares and was built in 92. Lianhuashan Park has a number of squares, mainly with a variety of tropical plants, and a large area of grass. The park was selected into the national Red Tourist Attractions list and was rated as a national 4A-level tourist attraction. Due to its beautiful natural environment and rich cultural connotation, Lianhuashan Park attracts a large number of tourists to enjoy and play.
 In the east and southeast of Lianhuashan Park, two lawn square scenic spots of 200,000 square meters with large areas of grass and micro-topography are formed. The south of Lianhuashan Park is a coconut wind forest lawn scenic spot of 80,000 square meters, composed mainly of lawns and palm plants with tropical and subtropical customs. The north side of the Coconut Wind Forest Lawn scenic area is an artificial lake scenic area of 50,000 square meters (of which the lake area is 30,000 square meters and the lakeside green area is 20,000 square meters). About 20,000 square meters of recreational green space have been built in the western part of Lianhuashan Park. The northeastern part of Lianhuashan Park is separated from Caitian Village by only one road, which is two sparse forest and grass fields with a total of about 140,000 square meters. The northwest of Lianhua Mountain Park is opposite to Lianhua North Village, with an area of about 60,000 square meters of grass.`,
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500820012240421154233592OI&panotype=street&heading=354.71&pitch=0&l=21",
+
     authors: "Doris",
   },
   {
@@ -1302,6 +1395,9 @@ In the east and southeast of Lianhuashan Park, two lawn square scenic spots of 2
 
     description: `Nantou Ancient City includes archway, South gate, Xin 'an County Government, Xin 'an Prison, coastal defense Office, Dongguan Guild Hall, Guandi Temple, Wen Tianxiang Temple, opium Hall, official hall, Juxiu Building, Yili pawn shop, Tao Mi Gong Bank and other more than 10 cultural and historical landscapes. Since the establishment of Dongguan County in the sixth year of Xianhe in the Eastern Jin Dynasty (331), it has a history of nearly 1,700 years. It is the seat of Bao 'an County Government before the establishment of the Shenzhen Special Zone, known as the "historical and cultural root of Shenzhen and Hong Kong", the "capital of East Guangdong, the source of Hong Kong and Macao", and the origin of Shenzhen city, and the ancient city of Nantou bears witness to the "migration and return" of Shenzhen center.`,
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700122003231520244865O&panotype=street&heading=47.18&pitch=10.99&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2242ee0c27f0e8d26b36b06cb1%22%7D%7D",
+
     authors: "Doris",
   },
   {
@@ -1314,6 +1410,9 @@ In the east and southeast of Lianhuashan Park, two lawn square scenic spots of 2
 
     description:
       "The brand planning of international fashion, specialty catering, children's world and humanistic life has brought nearly 300 stores and more than 1,000 brands, of which about 30% of the brands are entering Shenzhen for the first time. The project has also introduced unique formats and brands such as the first self-operated humanistic theater of China Resources Land and the first Eslite life in South China. Create a unique consumption and lifestyle experience for Shenzhen consumers.",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=09005700122003201341403105O&panotype=street&heading=308.52&pitch=21.91&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%226176ebf72b33066c7369d35a%22%7D%7D",
 
     authors: "Doris",
   },
@@ -1340,6 +1439,9 @@ In the east and southeast of Lianhuashan Park, two lawn square scenic spots of 2
     description:
       "Happy Coast gathers the wisdom of global masters, takes Marine culture as the theme, ecological environmental protection as the concept, innovative business as the main body, and creates a healthy urban coastal life as the dream, pioneering the integration of theme business with coastal tourism, leisure and entertainment and cultural creativity, integrating retail, catering, entertainment, office, apartment, hotel, wetland park and other diversified business forms. Form a unique new business model of business + entertainment + culture + tourism + ecology, truly realize the value combination of theme business, fashion entertainment, and healthy life, and promote the innovation and development of China's theme business with practical actions.",
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500660012230316102434051OI&panotype=street&heading=235.33&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%2223c63ca82ceb6c9607026fca%22%7D%7D",
+
     authors: "Doris",
   },
   {
@@ -1364,6 +1466,9 @@ In the east and southeast of Lianhuashan Park, two lawn square scenic spots of 2
 
     description: `Located in the southern coastal zone of Bao 'an Central District, Shenzhen, Happy Harbor is a new-generation cultural and tourism complex product created by OCT Group with 36 years of urban operation experience. With a total investment of more than 10 billion yuan and a total area of about 380,000 square meters, the project adheres to the four development concepts of international vision, original design, open sharing and green ecology. Build 270,000 ㎡ waterfront cultural park, 120,000 ㎡ waterfront experience commercial block, 128m high "Bay Area Light" Ferris wheel, Shenzhen Binhai Performing Arts Center with a total construction area of 38,000 ㎡, JW Marriott Hotel with a construction area of 10,000 ㎡, and other diversified business types. Is a collection of coastal leisure, cultural tourism, art experience, ecological office as one of the "heart of the international Bay Area coastal life creative"`,
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500690012230312174440100OI&panotype=street&heading=70.67&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%227f03229f49de6d16f90cad0a%22%7D%7D",
+
     authors: "Doris",
   },
   {
@@ -1376,6 +1481,9 @@ In the east and southeast of Lianhuashan Park, two lawn square scenic spots of 2
 
     description:
       "UpperHills is a large urban complex integrating industrial research and development, apartments, hotels and businesses. Upon completion, it will become a landmark building complex in the North district of Shenzhen CBD. The project is located in the central district of Futian, Shenzhen, overlooking Tanglang Mountain to the north, Sungang West Road and Central Park to the south, Huanggang Road and Bijiashan Park to the east, Caitian Road and Lianhuashan Park to the west. Two large ecological link greenways connect Lianhua Mountain, Bijia Mountain and the project, allowing the owner to walk to the park in 10 minutes",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500570012230517200402197OI&panotype=street&heading=250.95&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22ea431cf8ff3da6d0a30464ba%22%7D%7D",
 
     authors: "Doris",
   },
@@ -1390,6 +1498,9 @@ In the east and southeast of Lianhuashan Park, two lawn square scenic spots of 2
     description: `The building area of Longgang Wanda Plaza is 305,000 square meters. The whole building is divided into 8 floors, of which 6 floors are above ground and 2 floors are underground
 Longgang Wanda Plaza is the first fourth-generation Wanda Plaza in China, with the world's highest and longest indoor escalator 64 meters long and 30 meters high in the mall's atrium`,
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2300570012221209173407345OI&panotype=street&heading=229.38&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22b35d64d74673255981a12e93%22%7D%7D",
+
     authors: "Doris",
   },
   {
@@ -1401,6 +1512,9 @@ Longgang Wanda Plaza is the first fourth-generation Wanda Plaza in China, with t
     categoryId: "scenery",
 
     description: `Dongmen Old Street, the full name of Shenzhen Dongmen Commercial Pedestrian Street, the scope of north to Lixin Road, south to Shennan Road, east to Dongmen Middle Road, west to Xinyuan Road, a total area of 176,000 square meters. Dongmen Old Street has been a famous and important market since the Ming and Qing dynasties. Located between Hong Kong and Guangzhou, Dongmen Old Street has a unique geographical environment, a mixture of Chinese and foreign cultures, and a gathering of people from Guangdong's three major ethnic groups, Guangfu, Hakka and Chaoshan. The roots of ancient Shenzhen are in the old city of Nantou, while the roots of modern Shenzhen are in the "Shenzhen Ruins". Dongmen is also called Shenzhen Hui, Shenzhen is based on Dongmen Old Street development. Dongmen Old Street truly records a period of history of Shenzhen's urban development, is a historical stage witness of modern Shenzhen, is a component of Shenzhen's historical and cultural accumulation, and is the root of Shenzhen people. In the past, the whole Dongmen area of Shenzhen Hui was covered with Guangfu shophouses and Guang-style buildings, such as the Guangfu Lingnan architectural style of Siyue Academy and Style Street`,
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=0900570012220107115637063GG&panotype=street&heading=129.08&pitch=-1.67&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22dccadf553a2fd61817b54b67%22%7D%7D",
 
     authors: "Doris",
   },
@@ -1414,6 +1528,9 @@ Longgang Wanda Plaza is the first fourth-generation Wanda Plaza in China, with t
 
     description: `Sea world, an international coastal city with everything. As the flagship of China Merchants Group's 60 billion yuan reconstruction of new Shekou, Sea World has a total construction area of 1 million square meters, integrating "business office, leisure and entertainment, dining and shopping, hotels, vacations, residences, culture and art, etc.". New projects include: The landmark building with a height of 211 meters, China Merchants Square, Financial Center Phase II, Prince Plaza Phase II, 3 Grade A office projects, high-end serviced apartments and senior residential projects, the Cultural and art Center designed by architect 槇 Wenyan, Hilton Hotel, Sea World Plaza and Binhai Park, as well as the renovation of Minghua Wheel, Each project is scheduled to be completed by 2015. Supporting subway Line 2 and 12.`,
 
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2300570012230119195207893OI&panotype=street&heading=78.61&pitch=0.5&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22c587d21816ea3553c4f0255e%22%7D%7D",
+
     authors: "Doris",
   },
   {
@@ -1425,6 +1542,9 @@ Longgang Wanda Plaza is the first fourth-generation Wanda Plaza in China, with t
     categoryId: "park",
 
     description: `Talent is an important gene of Shenzhen's urban development, as the country's first talent-themed park, the park is Shenzhen in a unique way, to pay tribute to the past three decades for the development of Shenzhen's outstanding talents, but also in the context of today's cities to launch "grab the people war", representing Shenzhen's attention to talent and the determination to introduce talent. Highlight the theme broadcast editor Shenzhen Talent Park everywhere can be seen talent elements, fully highlighting the theme of talent. On the east side of the park is the Talent Star Bridge across the lake, above which stands the star light column of 30 Shenzhen outstanding figures, in order to commemorate this group of outstanding talents who have made great contributions to Shenzhen. The west side of the lake in the center of the park is the talent and historical landscape wall. The red iron plate is carved into characters, listing the evolution of the word, shape and meaning of "talent" in ancient and modern China and the relevant famous works, and there are dozens of characters written "talent" to annotate talents from multiple angles. The PI bridge on the south side of the park, the railings on both sides are inlaid with 2017 decimal places of PI, which means the construction and opening in 2017, representing the infinite beautiful vision for the future. Talent Merit Wall, talent Park record, talent sculpture Park, talent experience hall, talent story collection record and display the great course of Shenzhen's 37 years of reform and opening up, the struggle history and development history of Shenzhen talents, in order to commemorate the glorious past of Shenzhen talents, and inspire today's talents to continue to open up. In addition to the landscape, the park has also designed practical functional Spaces, respectively, Qiuxian Pavilion and Qunying Hui. Qiuxian Pavilion is positioned as the conference center of the park, with academician lecture hall, multi-function hall, talent coffee, talent book bar, etc. The main functions include holding academic reports and project roadshows. The function of Qunying Hui is positioned as a park activity center, with maker space, fitness center, talent experience hall, and "Deep Love Talent" experience hall. The combination of ornamental value and practical value of talent park further highlights the value of talent.`,
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500570012240114162507994OI&panotype=street&heading=145.01&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22db3f081166d4314596f08c51%22%7D%7D",
 
     authors: "Doris",
   },
@@ -1438,6 +1558,9 @@ Longgang Wanda Plaza is the first fourth-generation Wanda Plaza in China, with t
 
     description:
       "Shenzhen Bay Park, which took 8 years of planning, design and construction, not only provides citizens and tourists with multi-functional activities such as leisure and entertainment, fitness, sightseeing and experiencing nature, but also becomes a symbol of the charm and image of Shenzhen's modern coastal city. Shenzhen Bay Park is really good for walking and cycling, the coastal bike belt is 20 kilometers long, but motor vehicles are not allowed in the park.",
+
+    streetViewUrl:
+      "https://map.baidu.com/#panoid=2500990012240214111611515OI&panotype=street&heading=122.08&pitch=0&l=21&psp=%7B%22PanoModule%22%3A%7B%22markerUid%22%3A%22df2fbad8ddee98cfe9f85366%22%7D%7D",
 
     authors: "Doris",
   },
