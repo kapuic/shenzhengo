@@ -86,7 +86,7 @@ export default function PlaceInfoCommon({
     "directions-button": (
       <Link
         key="directions-button"
-        className="focus-ring inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 dark:hover:bg-blue-400 dark:focus:ring-offset-gray-800"
+        className="focus-ring inline-flex items-center justify-center gap-2 rounded-lg border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50 dark:hover:bg-blue-400 dark:focus:ring-offset-gray-800"
         hrefLang="zh_CN"
         target="_blank"
         to={getDirectionsUrl(place).href}
