@@ -13,6 +13,7 @@ import {
   IconHomeSearch,
   IconIceCream,
   IconMedicalCross,
+  type IconProps,
   IconShield,
   IconShoppingBag,
   IconToolsKitchen2,
@@ -20,6 +21,7 @@ import {
   IconVaccineBottle,
   IconWalk,
 } from "@tabler/icons-react";
+import { type ForwardRefExoticComponent, type RefAttributes } from "react";
 
 import { type Category } from "./schema";
 
@@ -134,7 +136,10 @@ const categories: Category[] = [
 
 export default categories;
 
-export const categoryIcons: Record<string, Icon> = {
+export const categoryIcons: Record<
+  string,
+  ForwardRefExoticComponent<Omit<IconProps, "ref"> & RefAttributes<Icon>>
+> = {
   park: IconTrees,
   "amusement-park": IconBuildingCarousel,
   walkway: IconWalk,
