@@ -11,30 +11,23 @@ export default function MapWelcomeMessage() {
   );
 
   return (
-    <Alert className="flex-col gap-2" variant="dark">
-      <div className="flex flex-col gap-2 text-sm">
-        <p>
-          Welcome to MeishaGo, a website that helps foreigners who want to
-          explore or travel around Dameisha.
-        </p>
-        <ul className="flex flex-col gap-2 text-sm">
-          <li className="flex gap-2">
-            <IconMouse className="flex-shrink-0" />
-            <p>Drag and scroll or use your keyboard to navigate the map.</p>
-          </li>
-          <li className="flex gap-2">
-            <IconMapPin className="flex-shrink-0" />
-            <p>Click a pin to learn more about that place.</p>
-          </li>
-          <li className="flex gap-2">
-            <IconClick className="flex-shrink-0" />
-            <p>
-              Click a card from the list below to focus on that place on the
-              map.
-            </p>
-          </li>
-        </ul>
-      </div>
+    <Alert className="flex-col gap-3" variant="dark">
+      <ul className="flex flex-col gap-2 text-sm">
+        <li className="flex gap-2">
+          <IconMouse className="flex-shrink-0" />
+          <p>Drag and scroll or use your keyboard to navigate the map.</p>
+        </li>
+        <li className="flex gap-2">
+          <IconMapPin className="flex-shrink-0" />
+          <p>Click a pin to learn more about that place.</p>
+        </li>
+        <li className="flex gap-2">
+          <IconClick className="flex-shrink-0" />
+          <p>
+            Click a card from the list below to focus on that place on the map.
+          </p>
+        </li>
+      </ul>
       <Button
         className="focus:ring-offset-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-offset-gray-800"
         onClick={() => setWelcomeMessageDismissed(true)}
