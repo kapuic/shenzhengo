@@ -101,7 +101,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
         <script
           defer
-          data-domain="meishago.kapui.net"
+          data-domain="shenzhengo.net"
           src="https://analytics.kapui.net/js/script.js"
         ></script>
       </head>

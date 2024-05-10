@@ -20,7 +20,7 @@ export const meta: MetaFunction<
   const guide = matches
     .find(({ id }) => id === "routes/_app/index")
     ?.data.guides.find(({ id }) => id === params.guideId);
-  return [{ title: `${guide ? guide.name : "Guides"} | MeishaGo` }];
+  return [{ title: `${guide ? guide.name : "Guides"} | ShenzhenGo` }];
 });
 
 export default function GuidesPage() {

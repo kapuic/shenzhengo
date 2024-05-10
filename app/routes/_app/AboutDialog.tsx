@@ -24,7 +24,7 @@ export default function AboutDialog({ children }: AboutDialogProps) {
             <div className="flex w-full flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]">
               <div className="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
                 <h3 className="font-bold text-gray-800 dark:text-gray-100">
-                  About MeishaGo
+                  About ShenzhenGo
                 </h3>
                 <Dialog.Close asChild>
                   <button
@@ -43,9 +43,9 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                   </div>
                   <p>
                     Explore {places.length}+ different places and attractions
-                    across China in English. Detailed information and guides
-                    designed for foreigners, whether you're a visitor or plan to
-                    reside long-term.
+                    across Shenzhen, China in English. Detailed information and
+                    guides designed for foreigners, whether you're a visitor or
+                    plan to reside long-term.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2">
@@ -74,7 +74,7 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                 <div className="flex flex-col gap-1">
                   <span className="text-sm text-gray-500 dark:text-gray-400">
                     Copyright &copy; {new Date().getFullYear()} Ka Pui Cheung
-                    and MeishaGo contributors. All rights reserved.
+                    and ShenzhenGo contributors. All rights reserved.
                   </span>
                 </div>
               </div>

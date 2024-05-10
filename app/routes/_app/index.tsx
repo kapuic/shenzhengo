@@ -35,10 +35,10 @@ import AppMapContext from "./AppMapContext";
 import NavButton from "./NavButton";
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({ data }) => [
-  { title: "MeishaGo - Map of Dameisha for Foreigners" },
+  { title: "ShenzhenGo - Map of Shenzhen for Foreigners" },
   {
     name: "description",
-    content: `Explore ${data?.places.length}+ different places and attractions across Dameisha (Shenzhen, China) in English. Detailed information and guides, whether you're a visitor or a future resident.`,
+    content: `Explore ${data?.places.length}+ different places and attractions across Shenzhen, China in English. Detailed information and guides designed for foreigners, whether you're a visitor or plan to reside long-term.`,
   },
 ]);
 
@@ -76,11 +76,11 @@ export default function App() {
             <Logo />
             <span className="hidden items-center rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-500 sm:inline-flex dark:bg-gray-800 dark:text-gray-400">
               <span className="md:hidden">
-                Explore {places.length}+ places across Dameisha
+                Explore {places.length}+ places across Shenzhen
               </span>
               <span className="hidden md:block">
                 Explore {places.length}+ different places and attractions across
-                Dameisha
+                Shenzhen
               </span>
             </span>
           </div>

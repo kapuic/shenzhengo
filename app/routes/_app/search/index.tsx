@@ -15,7 +15,7 @@ import {
 import SearchView, { type SearchViewShownElements } from "./SearchView";
 
 export const meta: MetaFunction = mergeMeta(() => [
-  { title: "Search | MeishaGo" },
+  { title: "Search | ShenzhenGo" },
 ]);
 
 export default function SearchPage() {

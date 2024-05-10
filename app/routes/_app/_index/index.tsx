@@ -31,7 +31,7 @@ import SearchView, { type SearchViewShownElements } from "../search/SearchView";
 const Map = lazy(() => import("./Map/Map"));
 
 export const meta: MetaFunction = mergeMeta(() => [
-  // { title: "Map | MeishaGo" },
+  // { title: "Map | ShenzhenGo" },
 ]);
 
 export default function MapPage() {
