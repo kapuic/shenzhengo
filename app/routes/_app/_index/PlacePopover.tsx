@@ -26,7 +26,7 @@ export default function PlacePopover() {
       "directions-button",
       "description",
       "signature-dishes",
-      "related-guides",
+      "related-activities",
       "author",
     ],
   );

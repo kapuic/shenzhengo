@@ -1,7 +1,7 @@
 import { IconBook2, IconLanguage, IconMapPin } from "@tabler/icons-react";
 import { twMerge } from "tailwind-merge";
 
-export interface GuideWelcomeMessageProps
+export interface ActivityWelcomeMessageProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
@@ -9,12 +9,12 @@ export interface GuideWelcomeMessageProps
   hideClickMessage?: boolean;
 }
 
-export default function GuideWelcomeMessage({
+export default function ActivityWelcomeMessage({
   hideClickMessage,
   className,
   children,
   ...props
-}: GuideWelcomeMessageProps) {
+}: ActivityWelcomeMessageProps) {
   return (
     <div
       className={twMerge(
@@ -25,10 +25,10 @@ export default function GuideWelcomeMessage({
     >
       <div className="flex flex-col items-center gap-2">
         <IconBook2 className="h-8 w-8" />
-        <h1 className="text-xl font-bold">Guides</h1>
+        <h1 className="text-xl font-bold">Activities</h1>
       </div>
       <div className="flex flex-col items-center gap-2">
-        {!hideClickMessage && <p>Click a guide from the list to...</p>}
+        {!hideClickMessage && <p>Click a activity from the list to...</p>}
         <ul className="flex flex-col gap-2 text-sm">
           <li className="flex gap-2">
             <IconMapPin className="flex-shrink-0" />

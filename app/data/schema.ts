@@ -53,7 +53,7 @@ export interface Place {
   authors?: string | string[];
 }
 
-export interface Guide {
+export interface Activity {
   id: string;
   name: string;
 

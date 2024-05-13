@@ -8,7 +8,7 @@ import {
 
 import Alert from "~/components/Alert";
 import BaseCard from "~/components/BaseCard";
-import { type Guide, type Place } from "~/data/schema";
+import { type Activity, type Place } from "~/data/schema";
 import { type RouteHandle } from "~/utilities/remix";
 
 import PlaceInfoCommon, {
@@ -16,24 +16,30 @@ import PlaceInfoCommon, {
 } from "../_index/PlaceInfoCommon";
 
 export const handle: RouteHandle = {
-  backButtonLabel: "All Guides",
+  backButtonLabel: "All Activities",
 };
 
-export default function GuidePage() {
+export default function ActivityPage() {
   const shownElements = useFeatureValue<PlaceInfoCommonShownElements>(
-    "place-guide-elements",
-    ["header", "description", "signature-dishes", "related-guides", "author"],
+    "place-activity-elements",
+    [
+      "header",
+      "description",
+      "signature-dishes",
+      "related-activities",
+      "author",
+    ],
   );
 
-  const { guide, relevantPlaces } = useOutletContext<{
-    guide: Guide | null;
+  const { activity, relevantPlaces } = useOutletContext<{
+    activity: Activity | null;
     relevantPlaces: Place[] | null;
   }>();
 
-  return guide ? (
+  return activity ? (
     <div className="flex h-full flex-col gap-6 overflow-y-scroll px-4 py-6 md:px-6">
       <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">
-        {guide.name}
+        {activity.name}
       </h1>
       <div className="flex flex-col gap-8">
         {relevantPlaces && relevantPlaces.length > 0 && (
@@ -54,14 +60,14 @@ export default function GuidePage() {
             </div>
           </div>
         )}
-        {guide.vocab && (
+        {activity.vocab && (
           <div className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-1 text-gray-800 dark:text-gray-100">
               <IconLanguage />
               <h2 className="text-xl font-bold">Commonly Used Vocabularies</h2>
             </div>
             <div className="flex flex-wrap justify-between gap-2">
-              {guide.vocab.map((word, i) => (
+              {activity.vocab.map((word, i) => (
                 <div
                   key={i}
                   className="flex flex-grow flex-col rounded-xl border bg-white p-4 shadow-sm md:p-5 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:shadow-slate-700/[.7]"

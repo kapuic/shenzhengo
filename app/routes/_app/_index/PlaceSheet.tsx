@@ -17,7 +17,7 @@ export default function PlaceSheet() {
       "directions-button",
       "description",
       "signature-dishes",
-      "related-guides",
+      "related-activities",
       "author",
     ],
   );

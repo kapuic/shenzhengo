@@ -22,8 +22,8 @@ import { twMerge } from "tailwind-merge";
 
 import Button from "~/components/Button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "~/components/Tooltip";
+import activities from "~/data/activities";
 import categories from "~/data/categories";
-import guides from "~/data/guides";
 import places from "~/data/places";
 import ranges from "~/data/ranges";
 import { type Place } from "~/data/schema";
@@ -47,7 +47,7 @@ export async function loader() {
     ranges,
     categories,
     places,
-    guides,
+    activities,
   });
 }
 
@@ -90,7 +90,7 @@ export default function App() {
                 as={Link}
                 className="inline-flex md:hidden"
                 size="sm"
-                to="/guides"
+                to="/activities"
               >
                 <IconChevronLeft className="h-4 w-4" />
                 {handle.backButtonLabel}
@@ -149,11 +149,11 @@ export default function App() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <NavButton to="/guides">
+                  <NavButton to="/activities">
                     <IconBook />
                   </NavButton>
                 </TooltipTrigger>
-                <TooltipContent side="right">Guides</TooltipContent>
+                <TooltipContent side="right">Activities</TooltipContent>
               </Tooltip>
             </nav>
             <div className="flex flex-col items-center gap-3">
@@ -175,7 +175,7 @@ export default function App() {
           <NavButton to="/search">
             <IconSearch />
           </NavButton>
-          <NavButton to="/guides">
+          <NavButton to="/activities">
             <IconBook />
           </NavButton>
         </nav>

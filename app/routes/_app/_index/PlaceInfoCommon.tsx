@@ -17,7 +17,7 @@ import { getDirectionsUrl } from "~/utilities/amap";
 import { arrayToSentence } from "~/utilities/i18n";
 
 import { useAppLoaderData } from "..";
-import GuideCard from "../GuideCard";
+import ActivityCard from "../ActivityCard";
 
 export type PlaceInfoCommonElement =
   | "header"
@@ -25,7 +25,7 @@ export type PlaceInfoCommonElement =
   | "street-view-button"
   | "description"
   | "signature-dishes"
-  | "related-guides"
+  | "related-activities"
   | "author";
 
 export type PlaceInfoCommonShownElements = PlaceInfoCommonElement[];
@@ -44,20 +44,20 @@ export default function PlaceInfoCommon({
     "street-view-button",
     "description",
     "signature-dishes",
-    "related-guides",
+    "related-activities",
     "author",
   ],
   className,
   ...props
 }: PlaceInfoCommonProps) {
-  const { categories, guides } = useAppLoaderData();
+  const { categories, activities } = useAppLoaderData();
 
   const Icon = categoryIcons[place.categoryId] ?? IconMapPin;
-  const relevantGuides = guides.filter(
-    (guide) =>
-      guide.placeLocations?.some((location) =>
+  const relevantActivities = activities.filter(
+    (activity) =>
+      activity.placeLocations?.some((location) =>
         isEqual(location, place.location),
-      ) || guide.categoryIds?.includes(place.categoryId),
+      ) || activity.categoryIds?.includes(place.categoryId),
   );
 
   const elements: Record<PlaceInfoCommonElement, ReactNode> = {
@@ -156,19 +156,19 @@ export default function PlaceInfoCommon({
         </div>
       </div>
     ),
-    "related-guides": relevantGuides.length > 0 && (
-      <div key="related-guides" className="flex flex-col gap-2">
+    "related-activities": relevantActivities.length > 0 && (
+      <div key="related-activities" className="flex flex-col gap-2">
         <span className="font-semibold text-gray-800 dark:text-gray-100">
-          Related Guides
+          Related Activities
         </span>
         <div className="flex flex-col gap-2">
-          {relevantGuides.map((guide, i) => (
-            <GuideCard
+          {relevantActivities.map((activity, i) => (
+            <ActivityCard
               key={i}
               withButtonStyle
+              activity={activity}
               as={Link}
-              guide={guide}
-              to={`/guides/${guide.id}`}
+              to={`/activities/${activity.id}`}
             />
           ))}
         </div>
