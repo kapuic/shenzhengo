@@ -1,7 +1,7 @@
 import { type PolymorphicPropsWithoutRef } from "node_modules/react-polymorphic-types";
 import { twMerge } from "tailwind-merge";
 
-export const ButtonDefaultElement = "div";
+export const ButtonDefaultElement = "button";
 
 export interface ButtonOwnProps {
   size?: "sm" | "md" | "lg";
