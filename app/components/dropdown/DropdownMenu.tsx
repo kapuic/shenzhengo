@@ -11,7 +11,7 @@ export default function DropdownMenu({
 
   return (
     <div
-      aria-labelledby={context.meunId}
+      aria-labelledby={context.menuId}
       role="menu"
       className={twMerge(
         "absolute right-0 z-50 mt-2 min-w-[15rem] rounded-lg border bg-white p-2 shadow-md dark:border-zinc-700 dark:bg-zinc-800",

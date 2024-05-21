@@ -7,11 +7,11 @@ import DropdownMenu from "./DropdownMenu";
 import DropdownTarget from "./DropdownTarget";
 
 export interface DropdownContextValue {
-  meunId: string;
+  menuId: string;
 }
 
 export const DropdownContext = createContext<DropdownContextValue>({
-  meunId: "",
+  menuId: "",
 });
 
 export function useDropdownContext() {
@@ -23,10 +23,10 @@ export default function Dropdown({
   className,
   ...props
 }: HTMLAttributes<HTMLElement>) {
-  const meunId = useId();
+  const menuId = useId();
 
   return (
-    <DropdownContext.Provider value={{ meunId }}>
+    <DropdownContext.Provider value={{ menuId }}>
       <details
         className={twMerge("group relative inline-flex", className?.toString())}
         {...props}

@@ -7,7 +7,7 @@ export default function DropdownButton({
   const context = useDropdownContext();
 
   return (
-    <div id={context.meunId} role="button" tabIndex={0} {...props}>
+    <div id={context.menuId} role="button" tabIndex={0} {...props}>
       {children}
     </div>
   );
