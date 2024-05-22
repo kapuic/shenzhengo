@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AlertProps extends React.ComponentPropsWithoutRef<"div"> {
   variant: "info" | "danger" | "success" | "warning" | "dark";
 }
 

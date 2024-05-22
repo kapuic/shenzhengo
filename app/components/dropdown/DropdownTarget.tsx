@@ -4,7 +4,7 @@ export default function DropdownTarget({
   children,
   className,
   ...props
-}: JSX.IntrinsicElements["summary"]) {
+}: React.ComponentPropsWithoutRef<"summary">) {
   return (
     <summary
       tabIndex={-1}

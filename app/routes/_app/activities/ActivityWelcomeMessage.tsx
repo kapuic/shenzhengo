@@ -2,10 +2,7 @@ import { IconBook2, IconLanguage, IconMapPin } from "@tabler/icons-react";
 import { twMerge } from "tailwind-merge";
 
 export interface ActivityWelcomeMessageProps
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  > {
+  extends React.ComponentPropsWithoutRef<"div"> {
   hideClickMessage?: boolean;
 }
 

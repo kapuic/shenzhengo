@@ -3,7 +3,7 @@ import { useDropdownContext } from ".";
 export default function DropdownButton({
   children,
   ...props
-}: JSX.IntrinsicElements["div"]) {
+}: React.ComponentPropsWithoutRef<"div">) {
   const context = useDropdownContext();
 
   return (

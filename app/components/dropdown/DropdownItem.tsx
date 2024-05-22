@@ -4,7 +4,7 @@ export default function DropdownItem({
   children,
   className,
   ...props
-}: JSX.IntrinsicElements["a"]) {
+}: React.ComponentPropsWithoutRef<"a">) {
   return (
     <a
       role="menuitem"

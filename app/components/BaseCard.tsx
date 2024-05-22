@@ -14,7 +14,7 @@ export type BaseCardProps<
 export default function BaseCard<
   T extends React.ElementType = typeof BaseCardDefaultElement,
 >({ as, withButtonStyle, className, ...props }: BaseCardProps<T>) {
-  const Element: React.ElementType = as || BaseCardDefaultElement;
+  const Element = as || BaseCardDefaultElement;
 
   return (
     <Element

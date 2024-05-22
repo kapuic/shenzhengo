@@ -6,7 +6,7 @@ export default function DropdownMenu({
   children,
   className,
   ...props
-}: JSX.IntrinsicElements["div"]) {
+}: React.ComponentPropsWithoutRef<"div">) {
   const context = useDropdownContext();
 
   return (

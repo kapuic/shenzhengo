@@ -1,4 +1,4 @@
-import { createContext, type HTMLAttributes, useContext, useId } from "react";
+import { createContext, useContext, useId } from "react";
 import { twMerge } from "tailwind-merge";
 
 import DropdownButton from "./DropdownButton";
@@ -22,7 +22,7 @@ export default function Dropdown({
   children,
   className,
   ...props
-}: HTMLAttributes<HTMLElement>) {
+}: React.ComponentPropsWithoutRef<"details">) {
   const menuId = useId();
 
   return (

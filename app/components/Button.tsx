@@ -14,7 +14,7 @@ export type ButtonProps<
 export default function Button<
   T extends React.ElementType = typeof ButtonDefaultElement,
 >({ as, size, className, ...props }: ButtonProps<T>) {
-  const Element: React.ElementType = as || ButtonDefaultElement;
+  const Element = as || ButtonDefaultElement;
 
   return (
     <Element
