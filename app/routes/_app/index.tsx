@@ -38,7 +38,7 @@ export const meta: MetaFunction<typeof loader> = mergeMeta(({ data }) => [
   { title: "ShenzhenGo - Map of Shenzhen for Foreigners" },
   {
     name: "description",
-    content: `Explore ${data?.places.length}+ different places and attractions across Shenzhen, China in English. Detailed information and guides designed for foreigners, whether you're a visitor or plan to reside long-term.`,
+    content: `ShenzhenGo offers detailed information & guides of ${data?.places.length}+ places and attractions in Shenzhen, China for foreign tourists and residents.`,
   },
 ]);
 
@@ -79,8 +79,8 @@ export default function App() {
                 Explore {places.length}+ places across Shenzhen
               </span>
               <span className="hidden md:block">
-                Explore {places.length}+ different places and attractions across
-                Shenzhen
+                Explore {places.length}+ places and attractions across Shenzhen,
+                China
               </span>
             </span>
           </div>

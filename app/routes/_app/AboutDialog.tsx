@@ -42,10 +42,9 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                     <Logo />
                   </div>
                   <p>
-                    Explore {places.length}+ different places and attractions
-                    across Shenzhen, China in English. Detailed information and
-                    guides designed for foreigners, whether you're a visitor or
-                    plan to reside long-term.
+                    ShenzhenGo offers detailed information & guides of{" "}
+                    {places.length}+ places and attractions in Shenzhen, China
+                    for foreign tourists and residents.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2">
