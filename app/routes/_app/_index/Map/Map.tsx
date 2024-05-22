@@ -148,13 +148,12 @@ export default function Map({
             variant="dark"
           >
             <Spinner className="mr-3 inline h-5 w-5 flex-shrink-0" size={20} />
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-1">
               Loading map assets...
               {showLoadingTip && (
                 <span className="text-xs text-gray-500 dark:text-gray-400">
-                  Try turning off your proxy or VPN if this is taking too long.
-                  If the map is instead already loaded, interacting with the map
-                  will automatically hide this message.
+                  Check your network connection if the map is taking too long to
+                  load. Tip: Try turning off your proxy or VPN.
                 </span>
               )}
             </div>

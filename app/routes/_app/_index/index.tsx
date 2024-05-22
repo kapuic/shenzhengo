@@ -145,18 +145,23 @@ export default function MapPage() {
       <ClientOnly
         fallback={
           <div className="grid h-full w-full place-items-center bg-white dark:bg-gray-900">
-            <Alert className="delay-visible m-4 max-w-md" variant="dark">
+            <Alert
+              className="delay-visible m-4 max-w-md border-none"
+              variant="dark"
+            >
               <Spinner
                 className="mr-3 inline h-5 w-5 flex-shrink-0"
                 size={20}
               />
-              <div>
+              <div className="flex flex-col gap-1.5">
                 <span className="font-medium">
                   Waiting for the page to finish loading...
-                </span>{" "}
-                Your network seems to be slow. If this is taking too long, check
-                your network connection and try refreshing the page. Check if
-                JavaScript is enabled.
+                </span>
+                <p>
+                  The page is taking too long to load. Please check your network
+                  connection and try refreshing the page. JavaScript must be
+                  enabled.
+                </p>
               </div>
             </Alert>
           </div>
@@ -166,17 +171,22 @@ export default function MapPage() {
           <Suspense
             fallback={
               <div className="grid h-full w-full place-items-center bg-white dark:bg-gray-900">
-                <Alert className="delay-visible m-4 max-w-md" variant="dark">
+                <Alert
+                  className="delay-visible m-4 max-w-md border-none"
+                  variant="dark"
+                >
                   <Spinner
                     className="mr-3 inline h-5 w-5 flex-shrink-0"
                     size={20}
                   />
-                  <div>
+                  <div className="flex flex-col gap-1.5">
                     <span className="font-medium">
                       Waiting for the map to load...
-                    </span>{" "}
-                    Your network seems to be slow. If this is taking too long,
-                    check your network connection and try refreshing the page.
+                    </span>
+                    <p>
+                      The map is taking too long to load. Please check your
+                      network connection and try refreshing the page.
+                    </p>
                   </div>
                 </Alert>
               </div>
