@@ -63,6 +63,12 @@ export default function App() {
 
   const handle = useMatches().slice(-1)[0].handle as RouteHandle | undefined;
 
+  const sharedData = {
+    url: "https://shenzhengo.net/",
+    title: "ShenzhenGo - Map of Shenzhen for Foreigners",
+    text: "ShenzhenGo offers detailed information & guides of places and attractions in Shenzhen, China for foreign tourists and residents.",
+  };
+
   return (
     <AppMapContext.Provider value={{ focus, setFocus }}>
       <div className="flex flex-col">
@@ -100,14 +106,14 @@ export default function App() {
           <div className="flex flex-row items-center gap-3">
             <ClientOnly>
               {() =>
-                navigator.canShare?.() && (
+                navigator.canShare?.(sharedData) && (
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <NavButton
-                        to="/"
+                        to="/share"
                         onClick={async (e) => {
                           e.preventDefault();
-                          await navigator.share();
+                          await navigator.share(sharedData);
                         }}
                       >
                         <IconShare />
