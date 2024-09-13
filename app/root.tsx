@@ -73,7 +73,7 @@ export async function loader({ context }: LoaderFunctionArgs) {
     featureCtl: {
       apiHost: context.cloudflare.env.GROWTHBOOK_API_HOST,
       clientKey: context.cloudflare.env.GROWTHBOOK_CLIENT_KEY,
-      decryptionKey: context.cloudflare.env.GROWTHBOOK_DECRYPTION_KEY,
+      // decryptionKey: context.cloudflare.env.GROWTHBOOK_DECRYPTION_KEY,
       payload,
     },
     aMap: {
