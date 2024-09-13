@@ -1,3 +1,3 @@
 module.exports = {
-  reject: ["eslint"],
+  reject: ["@uiw/react-amap", "eslint"],
 };

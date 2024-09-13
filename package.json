@@ -20,7 +20,7 @@
     "@remix-run/cloudflare-pages": "*",
     "@remix-run/react": "*",
     "@tabler/icons-react": "^3.16.0",
-    "@uiw/react-amap": "^7.1.1",
+    "@uiw/react-amap": "v6.0.4",
     "framer-motion": "^11.5.4",
     "fuse.js": "^7.0.0",
     "isbot": "^5.1.17",
