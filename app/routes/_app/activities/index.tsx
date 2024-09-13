@@ -63,7 +63,7 @@ export default function ActivitiesPage() {
     <div className="flex h-full w-full">
       <aside
         className={twMerge(
-          "flex w-full flex-shrink-0 flex-col overflow-y-scroll bg-white px-4 py-6 md:w-72 md:border-r dark:bg-gray-900 dark:md:border-gray-700",
+          "flex w-full flex-shrink-0 flex-col overflow-y-scroll bg-white px-4 py-6 md:w-80 md:border-r dark:bg-gray-900 dark:md:border-gray-700",
           activityId && "hidden md:block",
         )}
       >
