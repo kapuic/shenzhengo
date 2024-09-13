@@ -16,8 +16,8 @@ import {
   IconSearch,
   IconShare,
 } from "@tabler/icons-react";
-import { useState } from "react";
-import { ClientOnly } from "remix-utils/client-only";
+import { useMemo, useState } from "react";
+import { useHydrated } from "remix-utils/use-hydrated";
 import { twMerge } from "tailwind-merge";
 
 import Button from "~/components/Button";
@@ -63,11 +63,19 @@ export default function App() {
 
   const handle = useMatches().slice(-1)[0].handle as RouteHandle | undefined;
 
-  const sharedData = {
-    url: "https://shenzhengo.net/",
-    title: "ShenzhenGo - Map of Shenzhen for Foreigners",
-    text: "ShenzhenGo offers detailed information & guides of places and attractions in Shenzhen, China for foreign tourists and residents.",
-  };
+  const hydrated = useHydrated();
+  const sharedData = useMemo(
+    () => ({
+      url: "https://shenzhengo.net/",
+      title: "ShenzhenGo - Map of Shenzhen for Foreigners",
+      text: "ShenzhenGo offers detailed information & guides of places and attractions in Shenzhen, China for foreign tourists and residents.",
+    }),
+    [],
+  );
+  const canShare = useMemo(
+    () => hydrated && navigator.canShare?.(sharedData),
+    [hydrated, sharedData],
+  );
 
   return (
     <AppMapContext.Provider value={{ focus, setFocus }}>
@@ -104,26 +112,22 @@ export default function App() {
             )}
           </div>
           <div className="flex flex-row items-center gap-3">
-            <ClientOnly>
-              {() =>
-                navigator.canShare?.(sharedData) && (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <NavButton
-                        to="/share"
-                        onClick={async (e) => {
-                          e.preventDefault();
-                          await navigator.share(sharedData);
-                        }}
-                      >
-                        <IconShare />
-                      </NavButton>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom">Share</TooltipContent>
-                  </Tooltip>
-                )
-              }
-            </ClientOnly>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <NavButton
+                  aria-label="Share"
+                  className={twMerge(!canShare && "hidden")}
+                  to="/share"
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    await navigator.share(sharedData);
+                  }}
+                >
+                  <IconShare />
+                </NavButton>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">Share</TooltipContent>
+            </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
                 <NavButton
