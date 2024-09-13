@@ -4,7 +4,12 @@ export interface AlertProps extends React.ComponentPropsWithoutRef<"div"> {
   variant?: "info" | "danger" | "success" | "warning" | "dark";
 }
 
-export default function Alert({ className, children, variant }: AlertProps) {
+export default function Alert({
+  className,
+  children,
+  variant,
+  ...props
+}: AlertProps) {
   // From https://flowbite.com/docs/components/alerts/#bordered-alerts.
 
   return (
@@ -23,6 +28,7 @@ export default function Alert({ className, children, variant }: AlertProps) {
                 : "border-gray-300 bg-gray-50 text-gray-800 dark:border-gray-600 dark:text-gray-300",
         className,
       )}
+      {...props}
     >
       {children}
     </div>

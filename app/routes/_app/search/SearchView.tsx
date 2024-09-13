@@ -111,8 +111,11 @@ export default function SearchView({
   const placesLabelId = useId();
 
   const elements: Record<SearchViewElement, ReactNode> = {
-    "welcome-message": hydrated && !welcomeMessageDismissed && (
-      <MapWelcomeMessage key="welcome-message" />
+    "welcome-message": (
+      <MapWelcomeMessage
+        key="welcome-message"
+        className={twMerge((!hydrated || welcomeMessageDismissed) && "hidden")}
+      />
     ),
     "search-bar": (
       <div key="search-bar" className="relative">

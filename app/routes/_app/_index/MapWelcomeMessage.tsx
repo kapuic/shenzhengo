@@ -1,17 +1,22 @@
 import { IconClick, IconMapPin, IconMouse } from "@tabler/icons-react";
+import { twMerge } from "tailwind-merge";
 import { useLocalStorage } from "usehooks-ts";
 
-import Alert from "~/components/Alert";
+import Alert, { type AlertProps } from "~/components/Alert";
 import Button from "~/components/Button";
 
-export default function MapWelcomeMessage() {
+export default function MapWelcomeMessage({ className, ...props }: AlertProps) {
   const [, setWelcomeMessageDismissed] = useLocalStorage(
     "map.welcomeMessageDismissed",
     false,
   );
 
   return (
-    <Alert className="flex-col gap-3" variant="dark">
+    <Alert
+      className={twMerge("flex-col gap-3", className)}
+      variant="dark"
+      {...props}
+    >
       <ul className="flex flex-col gap-2 text-sm">
         <li className="flex gap-2">
           <IconMouse className="flex-shrink-0" />
