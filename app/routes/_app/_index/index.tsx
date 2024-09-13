@@ -55,7 +55,7 @@ export default function MapPage() {
   const queryLat = rawQueryLat ? parseFloat(rawQueryLat) : null;
   const queryPlace =
     queryLng && queryLat
-      ? findLocation(places, [queryLng, queryLat]) ?? null
+      ? (findLocation(places, [queryLng, queryLat]) ?? null)
       : null;
   useEffectOnce(() => setFocus(focus ?? queryPlace));
 

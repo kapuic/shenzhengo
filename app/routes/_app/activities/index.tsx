@@ -48,12 +48,12 @@ export default function ActivitiesPage() {
   const activity = useMemo(
     () =>
       activityId
-        ? activities.find(({ id }) => id === activityId) ?? null
+        ? (activities.find(({ id }) => id === activityId) ?? null)
         : null,
     [activities, activityId],
   );
   const relevantPlaces = useMemo(
-    () => (activityId ? activityPlacesMapping.get(activityId) ?? null : null),
+    () => (activityId ? (activityPlacesMapping.get(activityId) ?? null) : null),
     [activityPlacesMapping, activityId],
   );
 
