@@ -74,7 +74,7 @@ export default function PlaceInfoCommon({
         {place.originalName && (
           <p
             className="text-xs font-medium text-gray-500 dark:text-gray-400"
-            lang="zh_CN"
+            lang="zh-CN"
           >
             {place.originalName}
           </p>
@@ -92,7 +92,7 @@ export default function PlaceInfoCommon({
       <Link
         key="directions-button"
         className="focus-ring inline-flex items-center justify-center gap-2 rounded-lg border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-gray-100 transition-all hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50 dark:hover:bg-blue-400 dark:focus:ring-offset-gray-800"
-        hrefLang="zh_CN"
+        hrefLang="zh-CN"
         target="_blank"
         to={getDirectionsUrl(place).href}
       >
@@ -104,7 +104,7 @@ export default function PlaceInfoCommon({
       <Link
         key="street-view-button"
         className="focus-ring inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-800 shadow-sm transition-all hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:hover:bg-neutral-800 dark:focus:ring-offset-gray-800"
-        hrefLang="zh_CN"
+        hrefLang="zh-CN"
         target="_blank"
         to={place.streetViewUrl}
       >
@@ -148,7 +148,7 @@ export default function PlaceInfoCommon({
                   {dish.originalName && (
                     <span
                       className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400"
-                      lang="zh_CN"
+                      lang="zh-CN"
                     >
                       {dish.originalName}
                     </span>

@@ -79,7 +79,7 @@ export default function ActivityPage() {
                     </p>
                     <p
                       className="text-sm text-gray-500 dark:text-gray-400"
-                      lang="zh_CN"
+                      lang="zh-CN"
                     >
                       {word.chinese}
                     </p>
