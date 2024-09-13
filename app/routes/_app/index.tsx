@@ -131,6 +131,7 @@ export default function App() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <NavButton
+                  aria-label="Weather"
                   target="_blank"
                   to="https://www.qweather.com/en/weather/yantian-101280607.html"
                 >
@@ -147,11 +148,11 @@ export default function App() {
           </div>
         </header>
         <div className="flex h-[calc(100dvh-4rem-4.5rem)] flex-grow flex-row md:h-[calc(100dvh-4rem)]">
-          <aside className="z-10 hidden flex-shrink-0 flex-col items-center justify-between border-r bg-white px-4 py-6 md:flex dark:border-gray-700 dark:bg-gray-900">
-            <nav className="flex flex-col items-center gap-3">
+          <nav className="z-10 hidden flex-shrink-0 flex-col items-center justify-between border-r bg-white px-4 py-6 md:flex dark:border-gray-700 dark:bg-gray-900">
+            <div className="flex flex-col items-center gap-3">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <NavButton to="/">
+                  <NavButton aria-label="Map" to="/">
                     <IconMap2 />
                   </NavButton>
                 </TooltipTrigger>
@@ -159,18 +160,21 @@ export default function App() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <NavButton to="/activities">
+                  <NavButton aria-label="Activities" to="/activities">
                     <IconBook />
                   </NavButton>
                 </TooltipTrigger>
                 <TooltipContent side="right">Activities</TooltipContent>
               </Tooltip>
-            </nav>
+            </div>
             <div className="flex flex-col items-center gap-3">
               <AboutDialog>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="focus-ring inline-block rounded-lg p-2 text-gray-500 transition-all hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800">
+                    <button
+                      aria-label="About"
+                      className="focus-ring inline-block rounded-lg p-2 text-gray-500 transition-all hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+                    >
                       <IconInfoCircle />
                     </button>
                   </TooltipTrigger>
@@ -178,19 +182,19 @@ export default function App() {
                 </Tooltip>
               </AboutDialog>
             </div>
-          </aside>
+          </nav>
           <div className="relative h-full w-full overflow-x-hidden overflow-y-scroll bg-white dark:bg-gray-900">
             <Outlet />
           </div>
         </div>
         <nav className="z-10 flex h-[4.5rem] flex-shrink-0 items-center justify-evenly border-t bg-white md:hidden dark:border-t-gray-700 dark:bg-gray-900">
-          <NavButton to="/">
+          <NavButton aria-label="Map" to="/">
             <IconMap2 />
           </NavButton>
-          <NavButton to="/search">
+          <NavButton aria-label="Search" to="/search">
             <IconSearch />
           </NavButton>
-          <NavButton to="/activities">
+          <NavButton aria-label="Activities" to="/activities">
             <IconBook />
           </NavButton>
         </nav>

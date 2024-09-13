@@ -43,7 +43,7 @@ export default function ActivityPage() {
       </h1>
       <div className="flex flex-col gap-8">
         {relevantPlaces && relevantPlaces.length > 0 && (
-          <div className="flex flex-col gap-6">
+          <section className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-1 text-gray-800 dark:text-gray-100">
               <IconMapPin />
               <h2 className="text-xl font-bold">Recommended Places</h2>
@@ -58,19 +58,20 @@ export default function ActivityPage() {
                 </BaseCard>
               ))}
             </div>
-          </div>
+          </section>
         )}
         {activity.vocab && (
-          <div className="flex flex-col gap-6">
+          <section className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-1 text-gray-800 dark:text-gray-100">
               <IconLanguage />
               <h2 className="text-xl font-bold">Commonly Used Vocabularies</h2>
             </div>
-            <div className="flex flex-wrap justify-between gap-2">
+            <div className="flex flex-wrap justify-between gap-2" role="list">
               {activity.vocab.map((word, i) => (
                 <div
                   key={i}
                   className="flex flex-grow flex-col rounded-xl border bg-white p-4 shadow-sm md:p-5 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:shadow-slate-700/[.7]"
+                  role="listitem"
                 >
                   <div className="flex items-center gap-2">
                     <p className="text-lg font-semibold text-gray-800 dark:text-gray-100">
@@ -89,7 +90,7 @@ export default function ActivityPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         )}
       </div>
     </div>

@@ -61,7 +61,7 @@ export default function ActivitiesPage() {
 
   return (
     <div className="flex h-full w-full">
-      <div
+      <aside
         className={twMerge(
           "flex w-full flex-shrink-0 flex-col overflow-y-scroll bg-white px-4 py-6 md:w-72 md:border-r dark:bg-gray-900 dark:md:border-gray-700",
           activityId && "hidden md:block",
@@ -99,15 +99,15 @@ export default function ActivitiesPage() {
             </ul>
           </div>
         </div>
-      </div>
-      <div
+      </aside>
+      <main
         className={twMerge(
           "w-full bg-white dark:bg-gray-900",
           !activityId && "hidden md:block",
         )}
       >
         <Outlet context={{ activity, relevantPlaces }} />
-      </div>
+      </main>
     </div>
   );
 }

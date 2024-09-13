@@ -99,7 +99,7 @@ export default function Map({
   const darkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   return (
-    <div className="relative z-10 h-full w-full">
+    <div aria-hidden className="relative z-10 h-full w-full">
       <APILoader akey={aMap.apiKey} version={aMap.apiVersion}>
         <AMapMap
           showIndoorMap

@@ -192,7 +192,11 @@ export default function MapPage() {
               </div>
             }
           >
-            <div className="h-full w-full bg-white dark:bg-gray-900">
+            <main
+              aria-label="Interactive visual map. Visually impaired users may browse the list of places or listen to guides instead."
+              className="h-full w-full bg-white dark:bg-gray-900"
+              role="application"
+            >
               <Map
                 allPlaces={places}
                 setWillRecenterWhenFocusClears={setWillRecenterWhenFocusClears}
@@ -201,7 +205,7 @@ export default function MapPage() {
                 zoom={configuration.zoom}
                 zooms={configuration.zooms}
               />
-            </div>
+            </main>
           </Suspense>
         )}
       </ClientOnly>

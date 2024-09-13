@@ -58,7 +58,7 @@ export default function SearchPage() {
   });
 
   return (
-    <div className="px-4 py-6">
+    <main className="px-4 py-6">
       <SearchView
         filterCategory={filterCategory}
         filterRange={filterRange}
@@ -71,6 +71,6 @@ export default function SearchPage() {
         setFilterSearch={setFilterSearch}
         shownElements={shownElements}
       />
-    </div>
+    </main>
   );
 }

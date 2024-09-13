@@ -7,7 +7,7 @@ import {
   IconUsers,
 } from "@tabler/icons-react";
 import { isEqual } from "lodash";
-import { type ReactNode } from "react";
+import { type ReactNode, useId } from "react";
 import { twMerge } from "tailwind-merge";
 
 import BaseCard from "~/components/BaseCard";
@@ -60,10 +60,15 @@ export default function PlaceInfoCommon({
       ) || activity.categoryIds?.includes(place.categoryId),
   );
 
+  const headingId = useId();
+
   const elements: Record<PlaceInfoCommonElement, ReactNode> = {
     header: (
       <div key="header" className="flex flex-col gap-1">
-        <h3 className="text-xl font-extrabold leading-tight text-gray-800 dark:text-gray-100">
+        <h3
+          className="text-xl font-extrabold leading-tight text-gray-800 dark:text-gray-100"
+          id={headingId}
+        >
           {place.name}
         </h3>
         {place.originalName && (
@@ -123,9 +128,13 @@ export default function PlaceInfoCommon({
         <span className="font-semibold text-gray-800 dark:text-gray-100">
           Signature Dishes
         </span>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2" role="list">
           {place.signatureDishes.slice(0, 2).map((dish, i) => (
-            <BaseCard key={i} className="block h-24 columns-2 gap-0 p-0">
+            <BaseCard
+              key={i}
+              className="block h-24 columns-2 gap-0 p-0"
+              role="listitem"
+            >
               <img
                 alt="Signature Dish"
                 className="h-full w-full rounded-l-xl object-cover"
@@ -161,13 +170,14 @@ export default function PlaceInfoCommon({
         <span className="font-semibold text-gray-800 dark:text-gray-100">
           Related Activities
         </span>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2" role="list">
           {relevantActivities.map((activity, i) => (
             <ActivityCard
               key={i}
               withButtonStyle
               activity={activity}
               as={Link}
+              role="listitem"
               to={`/activities/${activity.id}`}
             />
           ))}
@@ -190,7 +200,12 @@ export default function PlaceInfoCommon({
   };
 
   return (
-    <div className={twMerge("flex flex-col gap-4", className)} {...props}>
+    <div
+      aria-labelledby={headingId}
+      className={twMerge("flex flex-col gap-4", className)}
+      role="region"
+      {...props}
+    >
       {shownElements.map((element) => elements[element])}
     </div>
   );
