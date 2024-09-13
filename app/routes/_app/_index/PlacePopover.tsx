@@ -71,7 +71,7 @@ export default function PlacePopover() {
           >
             <div
               className={twMerge(
-                "flex max-h-[30rem] w-80 snap-proximity flex-col overflow-x-hidden overflow-y-scroll rounded-xl border bg-white px-4 text-base shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7] dark:backdrop-blur-2xl supports-[backdrop-filter]:dark:bg-opacity-50",
+                "flex max-h-[30rem] w-80 snap-proximity flex-col overflow-y-auto overflow-x-hidden rounded-xl border bg-white px-4 text-base shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7] dark:backdrop-blur-2xl supports-[backdrop-filter]:dark:bg-opacity-50",
                 // "snap-y"
               )}
             >

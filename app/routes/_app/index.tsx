@@ -183,7 +183,7 @@ export default function App() {
               </AboutDialog>
             </div>
           </nav>
-          <div className="relative h-full w-full overflow-x-hidden overflow-y-scroll bg-white dark:bg-gray-900">
+          <div className="relative h-full w-full overflow-y-auto overflow-x-hidden bg-white dark:bg-gray-900">
             <Outlet />
           </div>
         </div>
