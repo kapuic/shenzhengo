@@ -1,6 +1,6 @@
 /.cache/
+/.dev.vars
 /.wrangler/
 /build/
-/.dev.vars
 
 node_modules/
