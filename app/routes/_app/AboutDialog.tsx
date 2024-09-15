@@ -1,5 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { IconX } from "@tabler/icons-react";
+import { Link } from "@remix-run/react";
+import { IconBrandLinkedin, IconX } from "@tabler/icons-react";
 
 import Button from "~/components/Button";
 import { arrayToSentence } from "~/utilities/i18n";
@@ -23,9 +24,9 @@ export default function AboutDialog({ children }: AboutDialogProps) {
           <div className="m-3 flex h-[calc(100dvh-0.75rem*2)] items-center sm:mx-auto sm:w-full sm:max-w-lg">
             <div className="flex w-full flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]">
               <div className="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
-                <h3 className="font-bold text-gray-800 dark:text-gray-100">
+                <Dialog.Title className="font-bold text-gray-800 dark:text-gray-100">
                   About ShenzhenGo
-                </h3>
+                </Dialog.Title>
                 <Dialog.Close asChild>
                   <button
                     className="focus-ring flex h-7 w-7 items-center justify-center rounded-full border border-transparent text-sm font-semibold text-gray-800 transition-all hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-offset-gray-800"
@@ -41,15 +42,25 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                   <div className="h-16">
                     <Logo />
                   </div>
-                  <p>
+                  <Dialog.Description>
                     ShenzhenGo offers detailed information & guides of{" "}
                     {places.length}+ places and attractions in Shenzhen, China
                     for foreign tourists and residents.
-                  </p>
+                  </Dialog.Description>
                 </div>
                 <div className="flex flex-col gap-2">
                   <h4 className="text-lg font-bold">Credits</h4>
-                  <p>Website designed and developed by Kapui Cheung.</p>
+                  <p>
+                    Website designed and developed by Kapui (August) Cheung{" "}
+                    <Link
+                      className="inline-block text-gray-500 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
+                      target="_blank"
+                      to="https://www.linkedin.com/in/kapui"
+                    >
+                      <IconBrandLinkedin className="-my-1 h-6 w-6" />
+                    </Link>
+                    .
+                  </p>
                   <div className="grid gap-2 sm:grid-cols-2">
                     <div className="flex flex-col gap-1">
                       <span className="text-sm font-semibold">Designers</span>
@@ -72,9 +83,23 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-sm text-gray-500 dark:text-gray-400">
-                    Copyright &copy; {new Date().getFullYear()} Ka Pui Cheung
-                    and ShenzhenGo contributors. All rights reserved.
+                    Copyright &copy; 2023&ndash;{new Date().getFullYear()} Ka
+                    Pui Cheung and ShenzhenGo contributors. All rights reserved.
+                    Map data provided by &copy; {new Date().getFullYear()}{" "}
+                    AutoNavi.
                   </span>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    All images and other assets used on this website are the
+                    property of their respective owners. We do not claim
+                    ownership over any third-party content. If you are the
+                    rightful owner of any content and believe its use on this
+                    website constitutes copyright infringement, please contact
+                    us at{" "}
+                    <Link to="mailto:contact@shenzhengo.net">
+                      contact@shenzhengo.net
+                    </Link>{" "}
+                    with the details, and we will promptly address the issue.
+                  </p>
                 </div>
               </div>
               <div className="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
