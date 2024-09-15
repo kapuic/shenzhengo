@@ -242,11 +242,7 @@ export default function SearchView({
             (filterCategory || filterSearch) && "sr-only",
           )}
         >
-          {!(filterCategory || filterSearch)
-            ? filterRange === "citywide"
-              ? "Citywide Places"
-              : "Nearby Places"
-            : "Search Results"}
+          {filterCategory || filterSearch ? "Search Results" : "Browse Places"}
         </span>
         <ul aria-labelledby={placesLabelId} className="flex flex-col gap-3">
           {filteredPlaces.map((place, i) => (
