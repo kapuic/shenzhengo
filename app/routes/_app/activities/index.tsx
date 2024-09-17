@@ -71,7 +71,7 @@ export default function ActivitiesPage() {
           <ActivityWelcomeMessage hideClickMessage className="md:hidden" />
           <div className="flex flex-col gap-3">
             <span
-              className="px-3 text-xs uppercase text-gray-500 dark:text-gray-400"
+              className="sr-only px-3 text-xs uppercase text-gray-500 md:not-sr-only dark:text-gray-400"
               id={activitiesLabelId}
             >
               Activities
