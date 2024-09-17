@@ -13,21 +13,22 @@ export interface LabeledItem {
   label: string;
 }
 
-export type TabSelectTab<T extends LabeledItem> = CenteredTreeLevel<T>;
+export type TabSelectTab<T extends LabeledItem = LabeledItem> =
+  CenteredTreeLevel<T>;
 
 export interface TabSelectProps<
-  T extends TabSelectTab<V>[],
-  V extends LabeledItem,
-> {
-  tabs: T;
+  T extends LabeledItem = LabeledItem,
+  V extends TabSelectTab<T>[] = TabSelectTab<T>[],
+> extends React.ComponentPropsWithoutRef<"div"> {
+  tabs: V;
   active: string;
   setActive: (tab: string) => void;
 }
 
 export default function TabSelect<
-  T extends TabSelectTab<V>[],
-  V extends LabeledItem,
->({ tabs, active, setActive }: TabSelectProps<T, V>) {
+  T extends LabeledItem,
+  V extends TabSelectTab<T>[],
+>({ tabs, active, setActive, className, ...props }: TabSelectProps<T, V>) {
   const [disabled, setDisabled] = useState(false);
   useHydratedEffect(() => {
     setDisabled(true);
@@ -37,7 +38,13 @@ export default function TabSelect<
 
   return (
     // This component uses many non-standard colors because of its complexity.
-    <div className="flex rounded-lg bg-gray-100 p-1 transition hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <div
+      className={twMerge(
+        "flex rounded-lg bg-gray-100 p-1 transition hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700",
+        className,
+      )}
+      {...props}
+    >
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role */}
       <nav aria-label="Tabs" className="flex space-x-2" role="tablist">
         {tabs.map(({ center, siblings }) => (
