@@ -19,7 +19,7 @@ export default function BaseCard<
   return (
     <Element
       className={twMerge(
-        "flex flex-col gap-1 rounded-xl border bg-white p-4 text-left shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]",
+        "flex flex-col gap-2 rounded-xl border bg-white p-4 text-left shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]",
         withButtonStyle &&
           "focus-ring transition-all hover:bg-gray-50 dark:hover:bg-gray-700",
         className,
