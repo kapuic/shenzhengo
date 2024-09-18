@@ -1,8 +1,12 @@
+import mdx from "@mdx-js/rollup";
 import {
   cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
   vitePlugin as remix,
 } from "@remix-run/dev";
 import { type ConfigRoute } from "@remix-run/dev/dist/config/routes";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkGfm from "remark-gfm";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { flatRoutes } from "remix-flat-routes";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -21,6 +25,9 @@ export default defineConfig({
   plugins: [
     // million.vite({ auto: true }),
     remixCloudflareDevProxy(),
+    mdx({
+      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkGfm],
+    }),
     remix({
       routes: async (defineRoutes) => {
         const rawEntries = Object.entries(flatRoutes("routes", defineRoutes));

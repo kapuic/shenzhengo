@@ -7,6 +7,7 @@ import {
   useRouteLoaderData,
 } from "@remix-run/react/dist/components";
 import {
+  IconBook,
   IconChevronLeft,
   IconCloudRain,
   IconExternalLink,
@@ -163,6 +164,14 @@ export default function App() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
+                  <NavButton aria-label="Guides" to="/guides">
+                    <IconBook />
+                  </NavButton>
+                </TooltipTrigger>
+                <TooltipContent side="right">Guides</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
                   <NavButton aria-label="Activities" to="/activities">
                     <IconRun />
                   </NavButton>
@@ -191,6 +200,9 @@ export default function App() {
           </NavButton>
           <NavButton aria-label="Search" to="/search">
             <IconSearch />
+          </NavButton>
+          <NavButton aria-label="Guides" to="/guides">
+            <IconBook />
           </NavButton>
           <NavButton aria-label="Activities" to="/activities">
             <IconRun />
