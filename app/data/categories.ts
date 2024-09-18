@@ -26,110 +26,28 @@ import { type ForwardRefExoticComponent, type RefAttributes } from "react";
 import { type Category } from "./schema";
 
 const categories: Category[] = [
-  {
-    id: "park",
-    name: "Park",
-    markerUrl: "/assets/markers/park.png",
-  },
-  {
-    id: "amusement-park",
-    name: "Amusement Park",
-    markerUrl: "/assets/markers/amusement-park.png",
-    parentId: "park",
-  },
-  {
-    id: "walkway",
-    name: "Walkway",
-    markerUrl: "/assets/markers/walkway.png",
-    parentId: "park",
-  },
-  {
-    id: "health",
-    name: "Health",
-    markerUrl: "/assets/markers/health.png",
-  },
-  {
-    id: "hospital",
-    name: "Hospital",
-    markerUrl: "/assets/markers/hospital.png",
-    parentId: "health",
-  },
-  {
-    id: "pharmacy",
-    name: "Pharmacy",
-    markerUrl: "/assets/markers/pharmacy.png",
-    parentId: "health",
-  },
-  {
-    id: "food",
-    name: "Food",
-    markerUrl: "/assets/markers/food.png",
-  },
-  {
-    id: "restaurant",
-    name: "Restaurant",
-    markerUrl: "/assets/markers/restaurant.png",
-    parentId: "food",
-  },
-  {
-    id: "fast-food",
-    name: "Fast Food",
-    markerUrl: "/assets/markers/fast.png",
-    parentId: "food",
-  },
-  {
-    id: "beverage",
-    name: "Beverage",
-    markerUrl: "/assets/markers/beverage.png",
-    parentId: "food",
-  },
-  {
-    id: "fitness",
-    name: "Fitness",
-    markerUrl: "/assets/markers/fitness.png",
-  },
-  {
-    id: "shopping-mall",
-    name: "Shopping Mall",
-    markerUrl: "/assets/markers/shopping-mall.png",
-  },
-  {
-    id: "hotel",
-    name: "Hotel",
-    markerUrl: "/assets/markers/hotel.png",
-  },
-  {
-    id: "scenery",
-    name: "Scenery",
-    markerUrl: "/assets/markers/scenery.png",
-  },
-  {
-    id: "other",
-    name: "Other",
-    markerUrl: "/assets/markers/other.png",
-  },
-  {
-    id: "bank",
-    name: "Bank",
-    markerUrl: "/assets/markers/bank.png",
-    parentId: "other",
-  },
-  {
-    id: "atm",
-    name: "ATM",
-    markerUrl: "/assets/markers/atm.png",
-    parentId: "other",
-  },
-  {
-    id: "police",
-    name: "Police",
-    markerUrl: "/assets/markers/police.png",
-    parentId: "other",
-  },
+  { id: "park", name: "Park" },
+  { id: "amusement-park", name: "Amusement Park", parentId: "park" },
+  { id: "walkway", name: "Walkway", parentId: "park" },
+  { id: "health", name: "Health" },
+  { id: "hospital", name: "Hospital", parentId: "health" },
+  { id: "pharmacy", name: "Pharmacy", parentId: "health" },
+  { id: "food", name: "Food" },
+  { id: "restaurant", name: "Restaurant", parentId: "food" },
+  { id: "fast-food", name: "Fast Food", parentId: "food" },
+  { id: "beverage", name: "Beverage", parentId: "food" },
+  { id: "fitness", name: "Fitness" },
+  { id: "shopping-mall", name: "Shopping Mall" },
+  { id: "hotel", name: "Hotel" },
+  { id: "scenery", name: "Scenery" },
+  { id: "other", name: "Other" },
+  { id: "bank", name: "Bank", parentId: "other" },
+  { id: "atm", name: "ATM", parentId: "other" },
+  { id: "police", name: "Police", parentId: "other" },
   {
     id: "apartment-rental",
     name: "Apartment Rental",
-    markerUrl: "/assets/markers/other.png",
+    markerIcon: "other",
     parentId: "other",
   },
 ];
@@ -160,3 +78,9 @@ export const categoryIcons: Record<
   police: IconShield,
   "apartment-rental": IconHomeSearch,
 };
+
+export function getCategoryMarkerIcon(categoryId: string) {
+  const category = categories.find(({ id }) => id === categoryId);
+  if (!category) throw new Error(`Category "${categoryId}" does not exist`);
+  return `/assets/markers/${category.markerIcon ?? category.id}.png`;
+}

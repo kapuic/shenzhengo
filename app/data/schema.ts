@@ -6,7 +6,8 @@ export interface BrandingOptions {
 export interface Category {
   id: string;
   name: string;
-  markerUrl: `/assets/markers/${string}.png`;
+  /** Defaults to `"other"`. */
+  markerIcon?: string;
   parentId?: string;
 }
 

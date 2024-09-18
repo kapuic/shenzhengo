@@ -1,5 +1,6 @@
 import { Marker as AMapMarker } from "@uiw/react-amap";
 
+import { getCategoryMarkerIcon } from "~/data/categories";
 import { type Place } from "~/data/schema";
 
 import { useAppLoaderData } from "../..";
@@ -14,11 +15,12 @@ export default function Marker({ place, visible }: MarkerProps) {
   const { categories } = useAppLoaderData();
 
   const { focus, setFocus } = useAppMapContext();
+  const markerIcon = getCategoryMarkerIcon(place.categoryId);
 
   return (
     <AMapMarker
       topWhenClick
-      icon={categories.find(({ id }) => id === place.categoryId)?.markerUrl}
+      icon={markerIcon}
       offset={new AMap.Pixel(-16, -37)}
       position={place.location}
       title={place.name}
