@@ -41,6 +41,7 @@ export const meta: MetaFunction<typeof loader> = mergeMeta(({ data }) => [
     name: "description",
     content: `ShenzhenGo offers detailed information & guides of ${data?.places.length}+ places and attractions in Shenzhen, China for foreign tourists and residents.`,
   },
+  { name: "color-scheme", content: "light dark" },
 ]);
 
 export async function loader() {
