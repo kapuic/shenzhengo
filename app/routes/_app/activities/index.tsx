@@ -1,10 +1,9 @@
 import { type MetaFunction } from "@remix-run/cloudflare";
 import { NavLink, Outlet, useParams } from "@remix-run/react";
-import { IconExclamationCircle } from "@tabler/icons-react";
 import { useId, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 
-import Alert from "~/components/Alert";
+import ErrorAlert from "~/components/ErrorAlert";
 import { type Place } from "~/data/schema";
 import { findLocation } from "~/utilities/data";
 import { mergeMeta } from "~/utilities/remix";
@@ -114,17 +113,16 @@ export default function ActivitiesPage() {
 
 export function ErrorBoundary() {
   return (
-    <div className="grid h-full w-full place-items-center bg-white dark:bg-gray-900">
-      <Alert className="m-4 max-w-md" variant="danger">
-        <IconExclamationCircle
-          className="mr-3 inline h-5 w-5 flex-shrink-0"
-          size={20}
-        />
-        <div>
-          <span className="font-medium">An error has occurred.</span> Please try
-          refreshing the page or contact us if the problem persists.
-        </div>
-      </Alert>
-    </div>
+    <ErrorAlert
+      clientErrorMessage={
+        <p>
+          <span className="font-medium">
+            Oops! Something went wrong while showing available activities.
+          </span>{" "}
+          Please try refreshing the page. If the issue continues, feel free to
+          contact our support team for assistance.
+        </p>
+      }
+    />
   );
 }

@@ -1,6 +1,7 @@
 import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
 import { type MetaFunction } from "@remix-run/react";
 
+import ErrorAlert from "~/components/ErrorAlert";
 import { mergeMeta } from "~/utilities/remix";
 
 import {
@@ -74,3 +75,5 @@ export default function SearchPage() {
     </main>
   );
 }
+
+export const ErrorBoundary = ErrorAlert;

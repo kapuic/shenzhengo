@@ -21,6 +21,7 @@ import { useHydrated } from "remix-utils/use-hydrated";
 import { twMerge } from "tailwind-merge";
 
 import Button from "~/components/Button";
+import ErrorAlert from "~/components/ErrorAlert";
 import { Tooltip, TooltipContent, TooltipTrigger } from "~/components/Tooltip";
 import activities from "~/data/activities";
 import categories from "~/data/categories";
@@ -195,5 +196,30 @@ export default function App() {
         </nav>
       </div>
     </AppMapContext.Provider>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <ErrorAlert
+      clientErrorMessage={
+        <p>
+          <span className="font-medium">
+            Sorry, ShenzhenGo is currently unavailable.
+          </span>{" "}
+          Please try refreshing the page or contact our support team for
+          assistance.
+        </p>
+      }
+      routeErrorMessage={
+        <p>
+          <span className="font-medium">
+            Sorry, ShenzhenGo is currently unavailable.
+          </span>{" "}
+          Please try refreshing the page or contact our support team for
+          assistance.
+        </p>
+      }
+    />
   );
 }

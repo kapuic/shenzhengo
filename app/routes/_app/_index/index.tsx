@@ -1,11 +1,11 @@
 import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
 import { type MetaFunction } from "@remix-run/cloudflare";
 import { useSearchParams } from "@remix-run/react";
-import { IconExclamationCircle } from "@tabler/icons-react";
 import { lazy, Suspense, useMemo, useState } from "react";
 import { ClientOnly } from "remix-utils/client-only";
 
 import Alert from "~/components/Alert";
+import ErrorAlert from "~/components/ErrorAlert";
 import Spinner from "~/components/Spinner";
 import { findLocation } from "~/utilities/data";
 import {
@@ -215,17 +215,17 @@ export default function MapPage() {
 
 export function ErrorBoundary() {
   return (
-    <div className="grid h-full w-full place-items-center bg-white dark:bg-gray-900">
-      <Alert className="m-4 max-w-md" variant="danger">
-        <IconExclamationCircle
-          className="mr-3 inline h-5 w-5 flex-shrink-0"
-          size={20}
-        />
-        <div>
-          <span className="font-medium">An error has occurred.</span> Please try
-          refreshing the page or contact us if the problem persists.
-        </div>
-      </Alert>
-    </div>
+    <ErrorAlert
+      clientErrorMessage={
+        <p>
+          <span className="font-medium">
+            Oops! Something went wrong with the map.
+          </span>{" "}
+          Please try refreshing the page and disabling any extensions or
+          blockers. If the issue continues, feel free to contact our support
+          team for assistance.
+        </p>
+      }
+    />
   );
 }

@@ -24,6 +24,7 @@ import {
 } from "@remix-run/react";
 import { useEffect, useMemo } from "react";
 
+import ErrorAlert from "./components/ErrorAlert";
 import { TooltipProvider } from "./components/Tooltip";
 import { mergeMeta } from "./utilities/remix";
 
@@ -152,5 +153,30 @@ export default function App() {
         <Outlet />
       </TooltipProvider>
     </GrowthBookProvider>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <ErrorAlert
+      clientErrorMessage={
+        <p>
+          <span className="font-medium">
+            Sorry, ShenzhenGo is currently unavailable.
+          </span>{" "}
+          Please try refreshing the page or contact our support team for
+          assistance.
+        </p>
+      }
+      routeErrorMessage={
+        <p>
+          <span className="font-medium">
+            Sorry, ShenzhenGo is currently unavailable.
+          </span>{" "}
+          Please try refreshing the page or contact our support team for
+          assistance.
+        </p>
+      }
+    />
   );
 }

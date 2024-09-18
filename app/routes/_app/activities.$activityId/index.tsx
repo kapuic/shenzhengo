@@ -8,6 +8,7 @@ import {
 
 import Alert from "~/components/Alert";
 import BaseCard from "~/components/BaseCard";
+import ErrorAlert from "~/components/ErrorAlert";
 import { type Activity, type Place } from "~/data/schema";
 import { type RouteHandle } from "~/utilities/remix";
 
@@ -107,5 +108,21 @@ export default function ActivityPage() {
         </div>
       </Alert>
     </div>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <ErrorAlert
+      clientErrorMessage={
+        <p>
+          <span className="font-medium">
+            Oops! Something went wrong while showing this activity.
+          </span>{" "}
+          Please try refreshing the page. If the issue continues, feel free to
+          contact our support team for assistance.
+        </p>
+      }
+    />
   );
 }
