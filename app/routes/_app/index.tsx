@@ -64,6 +64,7 @@ export default function App() {
   const [focus, setFocus] = useState<Place | null>(null);
 
   const handle = useMatches().slice(-1)[0].handle as RouteHandle | undefined;
+  const parentPathname = useMatches().slice(-2)[0].pathname;
 
   const hydrated = useHydrated();
   const sharedData = useMemo(
@@ -106,7 +107,7 @@ export default function App() {
                 as={Link}
                 className="inline-flex md:hidden"
                 size="sm"
-                to="/activities"
+                to={parentPathname}
               >
                 <IconChevronLeft className="h-4 w-4" />
                 {handle.backButtonLabel}
