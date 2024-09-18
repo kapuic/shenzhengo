@@ -2,9 +2,20 @@ import {
   cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
   vitePlugin as remix,
 } from "@remix-run/dev";
+import { type ConfigRoute } from "@remix-run/dev/dist/config/routes";
 import { flatRoutes } from "remix-flat-routes";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+
+function normalizeRouteId(routeId: string, isIndex?: boolean | undefined) {
+  const segments = routeId.split(/[/.]/);
+  for (let i = 0; i < segments.length; i++)
+    if (segments[i].endsWith("+")) segments[i] = segments[i].slice(0, -1);
+  if (segments.slice(-1)[0] === "index") {
+    if (!isIndex) segments.pop();
+  } else if (isIndex) segments.push("index");
+  return segments.join(".");
+}
 
 export default defineConfig({
   plugins: [
@@ -12,7 +23,31 @@ export default defineConfig({
     remixCloudflareDevProxy(),
     remix({
       routes: async (defineRoutes) => {
-        return flatRoutes("routes", defineRoutes);
+        const rawEntries = Object.entries(flatRoutes("routes", defineRoutes));
+        // Normalize route IDs.
+        const entries = rawEntries.map<[string, ConfigRoute]>(
+          ([rawId, route]) => {
+            const id = normalizeRouteId(rawId, route.index);
+            route.id = id;
+            if (route.parentId)
+              route.parentId = normalizeRouteId(route.parentId);
+            return [id, route];
+          },
+        );
+        // Fix pages in flat file folders (routes/.../folder+/page.index.ts) having incorrect `parentId`s of `root`.
+        for (const [id, route] of entries) {
+          // Notice that since `entries.id` has been normalized, we will check a nested page by the number of segments instead of `+` in its ID.
+          // - if (!id.includes("+")) continue;
+          const components = id.split(".");
+          if (route.parentId !== "root" || components.length <= 2) continue;
+          if (components.slice(-1)[0] === "index") components.pop();
+          route.path = components.slice(-1)[0];
+          const parentId = components.slice(0, -1).join(".");
+          if (!entries.some(([id]) => id === parentId))
+            throw new Error(`No parent route found for ${id}`);
+          route.parentId = parentId;
+        }
+        return Object.fromEntries(entries);
       },
       future: {
         v3_fetcherPersist: true,

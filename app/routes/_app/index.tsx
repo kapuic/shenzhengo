@@ -55,7 +55,7 @@ export async function loader() {
 
 export function useAppLoaderData() {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  return useRouteLoaderData<typeof loader>("routes/_app/index")!;
+  return useRouteLoaderData<typeof loader>("routes._app")!;
 }
 
 export default function App() {
