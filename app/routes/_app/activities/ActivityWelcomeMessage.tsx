@@ -24,8 +24,8 @@ export default function ActivityWelcomeMessage({
         <IconRun className="h-8 w-8" />
         <h1 className="text-xl font-bold">Activities</h1>
       </div>
-      <div className="flex flex-col items-center gap-2">
-        {!hideClickMessage && <p>Click a activity from the list to...</p>}
+      <div className="flex flex-col items-center gap-2 text-gray-500 dark:text-gray-400">
+        {!hideClickMessage && <p>Click an activity from the list to...</p>}
         <ul className="flex flex-col gap-2 text-sm">
           <li className="flex gap-2">
             <IconMapPin className="flex-shrink-0" />
