@@ -1,4 +1,4 @@
-import { IconBook2, IconLanguage, IconMapPin } from "@tabler/icons-react";
+import { IconLanguage, IconMapPin, IconRun } from "@tabler/icons-react";
 import { twMerge } from "tailwind-merge";
 
 export interface ActivityWelcomeMessageProps
@@ -21,7 +21,7 @@ export default function ActivityWelcomeMessage({
       {...props}
     >
       <div className="flex flex-col items-center gap-2">
-        <IconBook2 className="h-8 w-8" />
+        <IconRun className="h-8 w-8" />
         <h1 className="text-xl font-bold">Activities</h1>
       </div>
       <div className="flex flex-col items-center gap-2">

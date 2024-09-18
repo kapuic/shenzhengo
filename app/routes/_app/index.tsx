@@ -7,12 +7,12 @@ import {
   useRouteLoaderData,
 } from "@remix-run/react/dist/components";
 import {
-  IconBook,
   IconChevronLeft,
   IconCloudRain,
   IconExternalLink,
   IconInfoCircle,
   IconMap2,
+  IconRun,
   IconSearch,
   IconShare,
 } from "@tabler/icons-react";
@@ -162,7 +162,7 @@ export default function App() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <NavButton aria-label="Activities" to="/activities">
-                    <IconBook />
+                    <IconRun />
                   </NavButton>
                 </TooltipTrigger>
                 <TooltipContent side="right">Activities</TooltipContent>
@@ -191,7 +191,7 @@ export default function App() {
             <IconSearch />
           </NavButton>
           <NavButton aria-label="Activities" to="/activities">
-            <IconBook />
+            <IconRun />
           </NavButton>
         </nav>
       </div>
