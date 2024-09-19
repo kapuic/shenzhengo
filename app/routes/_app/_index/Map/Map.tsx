@@ -56,6 +56,7 @@ export default function Map({
   const enableScaleControl = useFeatureIsOn("map:scale-control");
   const enableToolbarControl = useFeatureIsOn("map:toolbar-control");
   const enableCompassControl = useFeatureIsOn("map:compass-control");
+  const enableShowAllMarkers = useFeatureIsOn("map:all-markers");
   const enableLoadingMessage = useFeatureIsOn("map:loading-message");
 
   const { focus, setFocus } = useAppMapContext();
@@ -131,9 +132,12 @@ export default function Map({
               <Marker
                 key={i}
                 place={place}
-                visible={visiblePlaces.some(({ location }) =>
-                  isEqual(location, place.location),
-                )}
+                visible={
+                  enableShowAllMarkers ||
+                  visiblePlaces.some(({ location }) =>
+                    isEqual(location, place.location),
+                  )
+                }
               />
             ))}
             <PlacePopover />
