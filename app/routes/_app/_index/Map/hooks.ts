@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { type Place } from "~/data/schema";
 
 interface CommonArgs {
-  setCenter: (value: [number, number]) => void;
+  setCenter: (value: [number, number], causedByFocusCleared?: boolean) => void;
   focus: Place | null;
-  defaultCenter: [number, number] | undefined;
+  defaultCenter?: [number, number];
 }
 
 /**
@@ -17,8 +17,10 @@ interface CommonArgs {
  *   `focus.location`.
  * - When `focus` is cleared to `null`, does nothing by default.
  *
- *   - However, if `willResetWhenFocusClears` is true, recenters to the default
- *       center (`defaultCenter` or `fitCenter`, in order) if present.
+ *   - However, if `willRecenterWhenFocusClears` is true, recenters to the default
+ *       center (`defaultCenter` or `fitCenter`, in order) if present. Then,
+ *       sets `willRecenterWhenFocusClears` to false if
+ *       `setWillRecenterWhenFocusClears` is passed.
  */
 export function useRecenterWhenFocusChanges({
   setCenter,
@@ -28,9 +30,9 @@ export function useRecenterWhenFocusChanges({
   willRecenterWhenFocusClears,
   setWillRecenterWhenFocusClears,
 }: CommonArgs & {
-  fitCenter: [number, number] | null;
-  willRecenterWhenFocusClears: boolean;
-  setWillRecenterWhenFocusClears: (value: boolean) => void;
+  fitCenter?: [number, number] | null;
+  willRecenterWhenFocusClears?: boolean;
+  setWillRecenterWhenFocusClears?: (value: boolean) => void;
 }) {
   useEffect(() => {
     if (focus) {
@@ -40,22 +42,22 @@ export function useRecenterWhenFocusChanges({
         ", setting center to",
         focus.location,
       );
-      setCenter(focus.location);
+      setCenter(focus.location, false);
     } else {
       if (!willRecenterWhenFocusClears)
         return console.log("[Map] `focus` was cleared");
       let fallbackCenter = defaultCenter ?? fitCenter;
       if (fallbackCenter) {
         console.log(
-          `[Map] \`focus\` was cleared, but \`willChangeCenterWhenFocusChanges\` is true. Setting center to \`${
+          `[Map] \`focus\` was cleared, but \`willRecenterWhenFocusClears\` is true. Setting center to \`${
             defaultCenter ? "defaultCenter" : "fitCenter"
           }\` (`,
           fallbackCenter,
           ")",
         );
-        setCenter(fallbackCenter);
+        setCenter(fallbackCenter, true);
       }
-      setWillRecenterWhenFocusClears(false);
+      setWillRecenterWhenFocusClears?.(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
