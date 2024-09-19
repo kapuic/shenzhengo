@@ -59,7 +59,7 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                     >
                       <IconBrandLinkedin className="-my-1 h-6 w-6" />
                     </Link>
-                    .
+                    . Original idea by Oliver Lu & Rachel Guo.
                   </p>
                   <div className="grid gap-2 sm:grid-cols-2">
                     <div className="flex flex-col gap-1">
@@ -78,6 +78,14 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                         ])}
                       </span>
                     </div>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm font-semibold">
+                      Special Thanks to
+                    </span>
+                    <span>
+                      Yan Yin, Hao Du, and others who made this possible.
+                    </span>
                   </div>
                   <p>Built on open source technologies.</p>
                 </div>
