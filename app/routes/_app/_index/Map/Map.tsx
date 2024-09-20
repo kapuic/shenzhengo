@@ -28,6 +28,7 @@ import Marker from "./Marker";
 
 interface MapPropsBase {
   allPlaces: Place[];
+  filteredPlaces: Place[];
   visiblePlaces: Place[];
   center?: [number, number];
   zoom: number;
@@ -35,8 +36,8 @@ interface MapPropsBase {
 }
 
 interface MapPropsWithWillResetCenterWhenFocusClears extends MapPropsBase {
-  willRecenterWhenFocusClears: boolean;
-  setWillRecenterWhenFocusClears: (value: boolean) => void;
+  willRecenterWhenFocusClears?: boolean;
+  setWillRecenterWhenFocusClears?: (value: boolean) => void;
 }
 
 export type MapProps = MapPropsBase &
@@ -44,6 +45,7 @@ export type MapProps = MapPropsBase &
 
 export default function Map({
   allPlaces,
+  filteredPlaces,
   visiblePlaces,
   center: defaultCenter,
   zoom,
@@ -56,7 +58,6 @@ export default function Map({
   const enableScaleControl = useFeatureIsOn("map:scale-control");
   const enableToolbarControl = useFeatureIsOn("map:toolbar-control");
   const enableCompassControl = useFeatureIsOn("map:compass-control");
-  const enableShowAllMarkers = useFeatureIsOn("map:all-markers");
   const enableLoadingMessage = useFeatureIsOn("map:loading-message");
 
   const { focus, setFocus } = useAppMapContext();
@@ -67,8 +68,8 @@ export default function Map({
 
   const fitCenter = useMemo(
     () =>
-      visiblePlaces.length !== 0
-        ? (visiblePlaces
+      filteredPlaces.length !== 0
+        ? (filteredPlaces
             .reduce(
               (acc, { location }) => [
                 acc[0] + location[0],
@@ -76,9 +77,9 @@ export default function Map({
               ],
               [0, 0],
             )
-            .map((coord) => coord / visiblePlaces.length) as [number, number])
+            .map((coord) => coord / filteredPlaces.length) as [number, number])
         : null,
-    [visiblePlaces],
+    [filteredPlaces],
   );
 
   useRecenterWhenFocusChanges({
@@ -132,12 +133,9 @@ export default function Map({
               <Marker
                 key={i}
                 place={place}
-                visible={
-                  enableShowAllMarkers ||
-                  visiblePlaces.some(({ location }) =>
-                    isEqual(location, place.location),
-                  )
-                }
+                visible={visiblePlaces.some(({ location }) =>
+                  isEqual(location, place.location),
+                )}
               />
             ))}
             <PlacePopover />

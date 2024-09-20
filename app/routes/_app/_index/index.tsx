@@ -36,6 +36,7 @@ export const meta: MetaFunction = mergeMeta(() => [
 
 export default function MapPage() {
   const prioritizeImageCards = useFeatureIsOn("prioritize-image-cards");
+  const enableShowAllMarkers = useFeatureIsOn("map:all-markers");
   const shownElements = useFeatureValue<SearchViewShownElements>(
     "search-panel-elements",
     [
@@ -91,10 +92,10 @@ export default function MapPage() {
   useHydratedEffect(() => {
     if (!focus)
       return console.log(
-        `Active range changed to "${filterRange}". \`focus\` was null`,
+        `[Map] Active range changed to "${filterRange}". \`focus\` was null`,
       );
     console.log(
-      `Active range changed to "${filterRange}". Setting \`willRecenterWhenFocusClears\` to true and clearing \`focus\` (was `,
+      `[Map] Active range changed to "${filterRange}". Setting \`willRecenterWhenFocusClears\` to true and clearing \`focus\` (was `,
       focus,
       ")",
     );
@@ -105,7 +106,16 @@ export default function MapPage() {
 
   const placesInRange = usePlacesInRange(filterRange);
   const filteredPlaces = useFilteredPlaces({
-    placesInRange,
+    places: placesInRange,
+    filterCategory,
+    filterSearch,
+    prioritizeImageCards,
+  });
+  const displayedPlaces = useFilteredPlaces({
+    places:
+      !enableShowAllMarkers || filterCategory || filterSearch
+        ? placesInRange
+        : places,
     filterCategory,
     filterSearch,
     prioritizeImageCards,
@@ -199,8 +209,9 @@ export default function MapPage() {
             >
               <Map
                 allPlaces={places}
+                filteredPlaces={filteredPlaces}
                 setWillRecenterWhenFocusClears={setWillRecenterWhenFocusClears}
-                visiblePlaces={filteredPlaces}
+                visiblePlaces={displayedPlaces}
                 willRecenterWhenFocusClears={willRecenterWhenFocusClears}
                 zoom={configuration.zoom}
                 zooms={configuration.zooms}
