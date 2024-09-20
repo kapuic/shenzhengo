@@ -1,4 +1,4 @@
-import { useFeatureIsOn } from "@growthbook/growthbook-react";
+import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
 import { LabelMarker, Marker as AMapMarker } from "@uiw/react-amap";
 import { isEqual } from "lodash";
 
@@ -14,10 +14,14 @@ export interface MarkerProps {
 
 export default function Marker({ place, visible }: MarkerProps) {
   const enableDynamicMarkers = useFeatureIsOn("map:dynamic-markers");
+  const markerIconQuality = useFeatureValue<number>(
+    "map:marker-icon-quality",
+    2,
+  );
 
   const { focus, setFocus } = useAppMapContext();
   const focused = isEqual(focus?.location, place.location);
-  const markerIcon = getCategoryMarkerIcon(place.categoryId);
+  const markerIcon = getCategoryMarkerIcon(place.categoryId, markerIconQuality);
 
   return enableDynamicMarkers ? (
     <>

@@ -79,8 +79,8 @@ export const categoryIcons: Record<
   "apartment-rental": IconHomeSearch,
 };
 
-export function getCategoryMarkerIcon(categoryId: string) {
+export function getCategoryMarkerIcon(categoryId: string, quality: number = 2) {
   const category = categories.find(({ id }) => id === categoryId);
   if (!category) throw new Error(`Category "${categoryId}" does not exist`);
-  return `/assets/markers/${category.markerIcon ?? category.id}.png`;
+  return `/assets/${quality === 1 ? "markers" : `markers-${quality}x`}/${category.markerIcon ?? category.id}.png`;
 }
