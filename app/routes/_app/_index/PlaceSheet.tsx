@@ -26,13 +26,11 @@ export default function PlaceSheet() {
   const [opened, setOpened] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
-  /* eslint-disable hooks/sort */
   const isDesktop = useMediaQuery("(min-width: 768px)");
   useEffect(() => {
     if (!isDesktop) setOpened(!!focus);
     else setOpened(false);
   }, [isDesktop, opened, focus, setFocus]);
-  /* eslint-enable hooks/sort */
 
   return !isDesktop ? (
     <Sheet

@@ -83,9 +83,7 @@ module.exports = {
           ],
 
           /** Integration (requires loading environmental data) */
-          ...[
-            require("@growthbook/growthbook-react").useGrowthBookSSR, // ▶️ Executes Function
-          ],
+          ...[],
 
           /** Form and Submission */
           ...[
@@ -129,7 +127,6 @@ module.exports = {
 
           /** Component: HTML */
           ...[
-            require("usehooks-ts").useMediaQuery, // ↩️ Readonly Value
             require("react").useId, // ↩️ Readonly Value
           ],
         ].map(({ name }) => name),

@@ -41,14 +41,14 @@ export function useHydratedEffect(
   effect: EffectCallback,
   deps?: DependencyList,
 ) {
-  /* eslint-disable hooks/sort */
+  // eslint-disable-next-line hooks/sort
   const hydrated = useHydrated();
+  // eslint-disable-next-line hooks/sort
   useEffect(() => {
     if (!hydrated) return;
     return effect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
-  /* eslint-enable hooks/sort */
 }
 
 export function useUpdateQueryStringValueWithoutNavigation(
