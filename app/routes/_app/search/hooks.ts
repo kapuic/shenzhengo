@@ -78,21 +78,21 @@ export function usePlacesInRange(range?: string | null) {
 }
 
 export interface UseFilteredPlacesArgs {
-  placesInRange: Place[];
+  places: Place[];
   filterCategory?: string | null;
   filterSearch?: string | null;
   prioritizeImageCards?: boolean;
 }
 
 export function useFilteredPlaces({
-  placesInRange,
+  places,
   filterCategory,
   filterSearch,
   prioritizeImageCards,
 }: UseFilteredPlacesArgs) {
   const { categories } = useAppLoaderData();
   return useMemo(() => {
-    let results = placesInRange;
+    let results = places;
     if (filterCategory)
       results = results.filter((place) =>
         isPlaceUnderCategory(place, filterCategory, categories),
@@ -110,13 +110,7 @@ export function useFilteredPlaces({
         return 0;
       });
     return results;
-  }, [
-    categories,
-    placesInRange,
-    filterCategory,
-    filterSearch,
-    prioritizeImageCards,
-  ]);
+  }, [categories, places, filterCategory, filterSearch, prioritizeImageCards]);
 }
 
 // export function useDeferredFilteredPlaces({

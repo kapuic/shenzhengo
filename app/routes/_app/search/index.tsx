@@ -46,7 +46,7 @@ export default function SearchPage() {
 
   const placesInRange = usePlacesInRange(filterRange);
   const filteredPlaces = useFilteredPlaces({
-    placesInRange,
+    places: placesInRange,
     filterCategory,
     filterSearch,
     prioritizeImageCards,
