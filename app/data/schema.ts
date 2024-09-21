@@ -6,6 +6,10 @@ export interface BrandingOptions {
 export interface Category {
   id: string;
   name: string;
+  colors: {
+    light: string;
+    dark: string;
+  };
   /** Defaults to `"other"`. */
   markerIcon?: string;
   parentId?: string;
