@@ -1,4 +1,4 @@
-import { useFeatureValue } from "@growthbook/growthbook-react";
+import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
 import { InfoWindow, useMapContext } from "@uiw/react-amap";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -19,6 +19,7 @@ import PlaceInfoCommon, {
 // };
 
 export default function PlacePopover() {
+  const enableCoverImage = useFeatureIsOn("place-popover:cover-image");
   const shownElements = useFeatureValue<PlaceInfoCommonShownElements>(
     "place-popover-elements",
     [
@@ -75,7 +76,7 @@ export default function PlacePopover() {
                 // "snap-y"
               )}
             >
-              {focus.coverImage && (
+              {enableCoverImage && focus.coverImage && (
                 <img
                   alt="Cover"
                   className="-mx-4 h-32 snap-start rounded-t-xl object-cover"
