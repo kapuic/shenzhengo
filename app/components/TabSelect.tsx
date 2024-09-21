@@ -1,6 +1,6 @@
 import { IconChevronDown } from "@tabler/icons-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { useHydratedEffect } from "~/utilities/hooks";
@@ -35,6 +35,8 @@ export default function TabSelect<
     const timeout = setTimeout(() => setDisabled(false), 350);
     return () => clearTimeout(timeout);
   }, [active]);
+
+  const backgroundId = useId();
 
   return (
     // This component uses many non-standard colors because of its complexity.
@@ -100,7 +102,7 @@ export default function TabSelect<
             {active === center.id && (
               <motion.div
                 className="absolute inset-0 rounded-md bg-white shadow-sm dark:bg-gray-900"
-                layoutId="background"
+                layoutId={backgroundId}
                 transition={{ ease: [0.6, -0.05, 0.01, 0.99], duration: 0.2 }}
               />
             )}
