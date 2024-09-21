@@ -21,6 +21,7 @@ export default function MapWelcomeMessage({ className, ...props }: AlertProps) {
 
   return (
     <Alert
+      aria-hidden
       className={twMerge("flex-col gap-3", className)}
       variant="dark"
       {...props}
@@ -66,6 +67,7 @@ export default function MapWelcomeMessage({ className, ...props }: AlertProps) {
       )}
       <Button
         className="focus:ring-offset-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-offset-gray-800"
+        tabIndex={-1}
         onClick={() => setWelcomeMessageDismissed(true)}
       >
         Do Not Show Again
