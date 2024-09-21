@@ -1,14 +1,17 @@
+import { useFeatureIsOn } from "@growthbook/growthbook-react";
 import { Link } from "@remix-run/react";
-import { IconMapPin, IconSearch } from "@tabler/icons-react";
+import { IconMapPin, IconSearch, IconX } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { type ReactNode, useId, useMemo } from "react";
+import { Fragment, type ReactNode, useId, useMemo } from "react";
+import { useInView } from "react-intersection-observer";
 import { useHydrated } from "remix-utils/use-hydrated";
 import { twMerge } from "tailwind-merge";
-import { useLocalStorage } from "usehooks-ts";
+import { useLocalStorage, useMediaQuery } from "usehooks-ts";
 
 import Input from "~/components/Input";
 import { categoryIcons } from "~/data/categories";
 import { type Category, type Place } from "~/data/schema";
+import { hexToRgba } from "~/utilities/ui";
 
 import { useAppLoaderData } from "..";
 import MapWelcomeMessage from "../_index/MapWelcomeMessage";
@@ -16,9 +19,9 @@ import PlaceCard from "../PlaceCard";
 import RangeTabs from "../RangeTabs";
 
 export type SearchViewElement =
+  | "range-tabs"
   | "welcome-message"
   | "search-bar"
-  | "range-tabs"
   | "filter-message"
   | "category-buttons"
   | "places";
@@ -41,6 +44,7 @@ export interface SearchViewProps {
   setFocus?: (place: Place | null) => void;
 
   shownElements?: SearchViewShownElements;
+  setShowSearch?: (show: false) => void;
 }
 
 export default function SearchView({
@@ -56,15 +60,21 @@ export default function SearchView({
   setFocus,
 
   shownElements = [
-    ["welcome-message", "search-bar", "range-tabs"],
+    ["range-tabs", "welcome-message", "search-bar"],
     ["filter-message", "category-buttons", "places"],
   ],
+  setShowSearch,
 }: SearchViewProps) {
+  const enableUIRedesign = useFeatureIsOn("search:ui-redesign");
+  const enableMapUIRedesign = useFeatureIsOn("map:ui-redesign");
   const { categories } = useAppLoaderData();
 
   const hydrated = useHydrated();
 
   /* eslint-disable hooks/sort */
+
+  // `range-tabs`
+  const [ref, hideShadow] = useInView();
 
   // `welcome-message`
   const [welcomeMessageDismissed] = useLocalStorage(
@@ -84,7 +94,41 @@ export default function SearchView({
   // `places`
   const placesLabelId = useId();
 
+  /* eslint-enable hooks/sort */
+
+  const darkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
   const elements: Record<SearchViewElement, ReactNode> = {
+    "range-tabs": (
+      <Fragment key="range-tabs">
+        <div
+          className={twMerge(
+            "sticky top-0 z-20 flex justify-center gap-2",
+            enableMapUIRedesign && "md:sr-only md:focus-within:not-sr-only",
+          )}
+        >
+          <RangeTabs
+            filterRange={filterRange}
+            setFilterRange={setFilterRange}
+            className={twMerge(
+              !hideShadow && "shadow-md dark:shadow-2xl dark:shadow-black",
+            )}
+          />
+          {setShowSearch && (
+            <button
+              className={twMerge(
+                "focus-ring inline-block rounded-lg bg-gray-100 p-2 text-gray-500 transition-all hover:bg-gray-200 md:hidden dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700",
+                !hideShadow && "shadow-md dark:shadow-2xl dark:shadow-black",
+              )}
+              onClick={() => setShowSearch(false)}
+            >
+              <IconX />
+            </button>
+          )}
+        </div>
+        <div ref={ref} className="-mb-4"></div>
+      </Fragment>
+    ),
     "welcome-message": (
       <MapWelcomeMessage
         key="welcome-message"
@@ -102,11 +146,6 @@ export default function SearchView({
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4">
           <IconSearch className="h-4 w-4 text-gray-800 dark:text-gray-100" />
         </div>
-      </div>
-    ),
-    "range-tabs": (
-      <div key="range-tabs" className="flex justify-center">
-        <RangeTabs filterRange={filterRange} setFilterRange={setFilterRange} />
       </div>
     ),
     "filter-message": (filterCategory || filterSearch) && (
@@ -175,11 +214,52 @@ export default function SearchView({
         >
           {recommendedCategories.slice(0, 6).map((category, i) => {
             const Icon = categoryIcons[category.id] ?? IconMapPin;
-            return (
+            return enableUIRedesign ? (
+              <div key={i} className="group flex flex-col items-center gap-2">
+                <div className="relative">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 rounded-full border bg-white p-4 shadow-sm transition-all dark:border-gray-700 dark:bg-gray-800"
+                  >
+                    <Icon
+                      size={36}
+                      style={{
+                        stroke: darkMode
+                          ? category.colors.dark
+                          : category.colors.light,
+                      }}
+                    />
+                  </div>
+                  <button
+                    className="rounded-full border bg-opacity-10 p-4 shadow-sm blur-md transition-all hocus:bg-opacity-30 hocus:blur-lg dark:border-gray-700"
+                    id={`category-button__${category.id}`}
+                    style={{
+                      backgroundColor: hexToRgba(
+                        category.colors.dark,
+                        "var(--tw-bg-opacity)",
+                      ),
+                    }}
+                    onClick={() =>
+                      category.id === filterCategory
+                        ? setFilterCategory(null)
+                        : setFilterCategory(category.id)
+                    }
+                  >
+                    <Icon size={36} style={{ stroke: category.colors.light }} />
+                  </button>
+                </div>
+                <label
+                  className="text-center text-sm font-medium text-gray-500 group-has-[button:focus]:text-gray-800 group-has-[button:hover]:text-gray-800 dark:text-gray-400 group-has-[button:focus]:dark:text-gray-100 group-has-[button:hover]:dark:text-gray-100"
+                  htmlFor={`category-button__${category.id}`}
+                >
+                  {category.name}
+                </label>
+              </div>
+            ) : (
               <div key={i} className="flex flex-col items-center gap-2">
                 <button
-                  aria-labelledby={`category-label__${category.id}`}
                   className="focus-ring rounded-full border bg-white p-4 shadow-sm transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                  id={`category-button__${category.id}`}
                   onClick={() =>
                     category.id === filterCategory
                       ? setFilterCategory(null)
@@ -191,12 +271,12 @@ export default function SearchView({
                     size={36}
                   />
                 </button>
-                <span
+                <label
                   className="text-center text-sm text-gray-800 dark:text-gray-100"
-                  id={`category-label__${category.id}`}
+                  htmlFor={`category-button__${category.id}`}
                 >
                   {category.name}
-                </span>
+                </label>
               </div>
             );
           })}
@@ -224,7 +304,10 @@ export default function SearchView({
                   className="w-full"
                   hideCategory={filterCategory === place.categoryId}
                   place={place}
-                  onClick={() => setFocus(place)}
+                  onClick={() => {
+                    setFocus(place);
+                    setShowSearch?.(false);
+                  }}
                 />
               ) : (
                 <PlaceCard

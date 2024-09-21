@@ -1,3 +1,4 @@
+import { useFeatureIsOn } from "@growthbook/growthbook-react";
 import { json, type MetaFunction } from "@remix-run/cloudflare";
 import { Outlet } from "@remix-run/react";
 import {
@@ -60,6 +61,8 @@ export function useAppLoaderData() {
 }
 
 export default function App() {
+  const enableMapUIRedesign = useFeatureIsOn("map:ui-redesign");
+
   const { places } = useLoaderData<typeof loader>();
 
   const [focus, setFocus] = useState<Place | null>(null);
@@ -198,9 +201,11 @@ export default function App() {
           <NavButton aria-label="Map" to="/">
             <IconMap2 />
           </NavButton>
-          <NavButton aria-label="Search" to="/search">
-            <IconSearch />
-          </NavButton>
+          {!enableMapUIRedesign && (
+            <NavButton aria-label="Search" to="/search">
+              <IconSearch />
+            </NavButton>
+          )}
           <NavButton aria-label="Guides" to="/guides">
             <IconBook />
           </NavButton>

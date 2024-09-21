@@ -1,8 +1,11 @@
 import { useFeatureIsOn, useFeatureValue } from "@growthbook/growthbook-react";
 import { type MetaFunction } from "@remix-run/cloudflare";
 import { useSearchParams } from "@remix-run/react";
-import { lazy, Suspense, useMemo, useState } from "react";
+import { IconSearch } from "@tabler/icons-react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { ClientOnly } from "remix-utils/client-only";
+import { twMerge } from "tailwind-merge";
+import { useMediaQuery } from "usehooks-ts";
 
 import Alert from "~/components/Alert";
 import ErrorAlert from "~/components/ErrorAlert";
@@ -17,6 +20,7 @@ import { mergeMeta } from "~/utilities/remix";
 
 import { useAppLoaderData } from "..";
 import { useAppMapContext } from "../AppMapContext";
+import RangeTabs from "../RangeTabs";
 import {
   useFilterCategory,
   useFilteredPlaces,
@@ -35,14 +39,20 @@ export const meta: MetaFunction = mergeMeta(() => [
 ]);
 
 export default function MapPage() {
-  const prioritizeImageCards = useFeatureIsOn("prioritize-image-cards");
+  const enableUIRedesign = useFeatureIsOn("map:ui-redesign");
   const enableShowAllMarkers = useFeatureIsOn("map:all-markers");
+  const prioritizeImageCards = useFeatureIsOn("prioritize-image-cards");
   const shownElements = useFeatureValue<SearchViewShownElements>(
     "search-panel-elements",
-    [
-      ["welcome-message", "search-bar", "range-tabs"],
-      ["filter-message", "category-buttons", "places"],
-    ],
+    enableUIRedesign
+      ? [
+          ["range-tabs", "welcome-message", "search-bar"],
+          ["filter-message", "category-buttons", "places"],
+        ]
+      : [
+          ["welcome-message", "search-bar", "range-tabs"],
+          ["filter-message", "category-buttons", "places"],
+        ],
   );
 
   const { ranges, places } = useAppLoaderData();
@@ -127,6 +137,7 @@ export default function MapPage() {
     filteredPlaces,
   });
 
+  // eslint-disable-next-line hooks/sort
   const configuration = useMemo(() => {
     const range = ranges.find(({ id }) => id === filterRange);
     return {
@@ -135,9 +146,21 @@ export default function MapPage() {
     };
   }, [ranges, filterRange]);
 
+  // eslint-disable-next-line hooks/sort
+  const [showSearch, setShowSearch] = useState(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+  useEffect(() => {
+    if (isDesktop) setShowSearch(false);
+  }, [isDesktop]);
+
   return (
-    <div className="flex h-full flex-grow flex-row">
-      <aside className="hidden h-[calc(100dvh-4rem)] w-80 flex-shrink-0 flex-col overflow-y-scroll border-r bg-white px-4 py-6 md:flex dark:border-gray-700 dark:bg-gray-900">
+    <div className="relative flex h-full flex-grow flex-row">
+      <aside
+        className={twMerge(
+          "hidden flex-shrink-0 overflow-y-scroll bg-white px-4 py-6 md:block md:w-80 md:border-r dark:border-gray-700 dark:bg-gray-900",
+          showSearch && "absolute inset-0 z-20 block md:static md:z-auto",
+        )}
+      >
         <SearchView
           filterCategory={filterCategory}
           filterRange={filterRange}
@@ -149,6 +172,7 @@ export default function MapPage() {
           setFilterRange={setFilterRange}
           setFilterSearch={setFilterSearch}
           setFocus={setFocus}
+          setShowSearch={setShowSearch}
           shownElements={shownElements}
         />
       </aside>
@@ -204,18 +228,37 @@ export default function MapPage() {
           >
             <main
               aria-label="Interactive visual map. Visually impaired users may browse the list of places or listen to guides instead."
-              className="h-full w-full bg-white dark:bg-gray-900"
+              className="relative h-full w-full bg-white dark:bg-gray-900"
               role="application"
             >
               <Map
                 allPlaces={places}
+                filterRange={filterRange}
                 filteredPlaces={filteredPlaces}
+                setFilterRange={setFilterRange}
                 setWillRecenterWhenFocusClears={setWillRecenterWhenFocusClears}
                 visiblePlaces={displayedPlaces}
                 willRecenterWhenFocusClears={willRecenterWhenFocusClears}
                 zoom={configuration.zoom}
                 zooms={configuration.zooms}
               />
+              {enableUIRedesign && (
+                <div className="absolute inset-x-0 top-0 flex flex-col items-center gap-2 py-6">
+                  <div className="flex gap-2">
+                    <RangeTabs
+                      className="z-10 shadow-md dark:shadow-2xl dark:shadow-black"
+                      filterRange={filterRange}
+                      setFilterRange={setFilterRange}
+                    />
+                    <button
+                      className="focus-ring z-10 inline-block rounded-lg bg-gray-100 p-2 text-gray-500 shadow-md transition-all hover:bg-gray-200 md:hidden dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+                      onClick={() => setShowSearch(true)}
+                    >
+                      <IconSearch />
+                    </button>
+                  </div>
+                </div>
+              )}
             </main>
           </Suspense>
         )}

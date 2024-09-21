@@ -24,13 +24,19 @@ export function isPlaceUnderCategory(
 
 export function checkRange(
   ranges: Range[],
-  actual: string,
-  expected: string,
+  child: string,
+  parent: string,
 ): boolean {
-  if (actual === expected) return true;
-  const range = ranges.find(({ id }) => id === actual);
+  if (child === parent) return true;
+  const range = ranges.find(({ id }) => id === child);
   if (!range?.parentId) return false;
   const parentRange = ranges.find(({ id }) => id === range.parentId);
   if (!parentRange?.showChildren) return false;
-  return checkRange(ranges, parentRange.id, expected);
+  return checkRange(ranges, parentRange.id, parent);
+}
+
+export function getParentRanges(ranges: Range[], rangeId: string) {
+  return ranges.filter(
+    (range) => range.id !== rangeId && checkRange(ranges, rangeId, range.id),
+  );
 }
