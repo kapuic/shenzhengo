@@ -17,7 +17,10 @@ export default function ErrorAlert({
   return (
     <div className="grid h-full w-full place-items-center bg-white dark:bg-gray-900">
       {isRouteErrorResponse(error) ? (
-        <Alert className="m-4 max-w-md flex-col gap-4" variant="danger">
+        <Alert
+          className="m-4 max-w-md flex-col gap-4 border-0"
+          variant="danger"
+        >
           <div className="flex gap-3">
             <IconExclamationCircle
               className="inline h-5 w-5 flex-shrink-0"
@@ -37,13 +40,19 @@ export default function ErrorAlert({
             <p>
               {error.status}: {error.statusText}
             </p>
-            <textarea className="block w-full rounded-lg border-transparent bg-gray-100 px-4 py-3 font-mono text-xs focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-transparent dark:bg-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-              {error.data}
-            </textarea>
+            <textarea
+              aria-hidden
+              readOnly
+              className="focus-ring block w-full rounded-lg border-transparent bg-gray-100 px-4 py-3 font-mono text-xs transition-all focus:ring-offset-red-50 disabled:pointer-events-none disabled:opacity-50 dark:border-transparent dark:bg-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-offset-gray-800"
+              value={error.data}
+            />
           </div>
         </Alert>
       ) : (
-        <Alert className="m-4 max-w-md flex-col gap-4" variant="danger">
+        <Alert
+          className="m-4 max-w-md flex-col gap-4 border-0"
+          variant="danger"
+        >
           <div className="flex gap-3">
             <IconExclamationCircle
               className="inline h-5 w-5 flex-shrink-0"
@@ -63,9 +72,12 @@ export default function ErrorAlert({
               <p>
                 {error.name}: {error.message}
               </p>
-              <textarea className="block w-full rounded-lg border-transparent bg-gray-100 px-4 py-3 font-mono text-xs focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-transparent dark:bg-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                {error.stack}
-              </textarea>
+              <textarea
+                aria-hidden
+                readOnly
+                className="focus-ring block w-full rounded-lg border-transparent bg-gray-100 px-4 py-3 font-mono text-xs transition-all focus:ring-offset-red-50 disabled:pointer-events-none disabled:opacity-50 dark:border-transparent dark:bg-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-offset-gray-800"
+                value={error.stack}
+              />
             </div>
           ) : (
             <p>Additional information about the issue is not available.</p>
