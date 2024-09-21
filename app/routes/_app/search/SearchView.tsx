@@ -1,20 +1,19 @@
 import { Link } from "@remix-run/react";
 import { IconMapPin, IconSearch } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { type ReactNode, useId, useMemo, useState } from "react";
+import { type ReactNode, useId, useMemo } from "react";
 import { useHydrated } from "remix-utils/use-hydrated";
 import { twMerge } from "tailwind-merge";
 import { useLocalStorage } from "usehooks-ts";
 
 import Input from "~/components/Input";
-import TabSelect from "~/components/TabSelect";
 import { categoryIcons } from "~/data/categories";
 import { type Category, type Place } from "~/data/schema";
-import { createPathWithSiblings, getDistanceFromRoot } from "~/utilities/tree";
 
 import { useAppLoaderData } from "..";
 import MapWelcomeMessage from "../_index/MapWelcomeMessage";
 import PlaceCard from "../PlaceCard";
+import RangeTabs from "../RangeTabs";
 
 export type SearchViewElement =
   | "welcome-message"
@@ -61,7 +60,7 @@ export default function SearchView({
     ["filter-message", "category-buttons", "places"],
   ],
 }: SearchViewProps) {
-  const { ranges, categories } = useAppLoaderData();
+  const { categories } = useAppLoaderData();
 
   const hydrated = useHydrated();
 
@@ -71,31 +70,6 @@ export default function SearchView({
   const [welcomeMessageDismissed] = useLocalStorage(
     "map.welcomeMessageDismissed",
     false,
-  );
-
-  // `range-tabs`
-  const filterDistance = useMemo(
-    () => getDistanceFromRoot(ranges, filterRange),
-    [ranges, filterRange],
-  );
-
-  const [lastDeepestRange, setLastDeepestRange] = useState(filterRange);
-  const lastDeepestDistance = useMemo(
-    () => getDistanceFromRoot(ranges, lastDeepestRange),
-    [ranges, lastDeepestRange],
-  );
-  useMemo(() => {
-    if (filterDistance >= lastDeepestDistance) setLastDeepestRange(filterRange);
-  }, [filterDistance, lastDeepestDistance, filterRange]);
-
-  const rangesPath = useMemo(
-    () =>
-      createPathWithSiblings(
-        ranges.map(({ name, ...other }) => ({ label: name, ...other })),
-        lastDeepestRange,
-        true,
-      ),
-    [ranges, lastDeepestRange],
   );
 
   // `filter-message`
@@ -132,11 +106,7 @@ export default function SearchView({
     ),
     "range-tabs": (
       <div key="range-tabs" className="flex justify-center">
-        <TabSelect
-          active={filterRange ?? "nearby"}
-          setActive={setFilterRange}
-          tabs={rangesPath}
-        />
+        <RangeTabs filterRange={filterRange} setFilterRange={setFilterRange} />
       </div>
     ),
     "filter-message": (filterCategory || filterSearch) && (
