@@ -59,7 +59,7 @@ export default function SearchPage() {
   });
 
   return (
-    <main className="px-4 py-6">
+    <main className="h-full overflow-y-scroll px-4 py-6">
       <SearchView
         filterCategory={filterCategory}
         filterRange={filterRange}
