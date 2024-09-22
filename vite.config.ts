@@ -9,6 +9,7 @@ import remarkGfm from "remark-gfm";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { flatRoutes } from "remix-flat-routes";
 import { defineConfig } from "vite";
+import babel from "vite-plugin-babel";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 function normalizeRouteId(routeId: string, isIndex?: boolean | undefined) {
@@ -23,7 +24,6 @@ function normalizeRouteId(routeId: string, isIndex?: boolean | undefined) {
 
 export default defineConfig({
   plugins: [
-    // million.vite({ auto: true }),
     remixCloudflareDevProxy(),
     mdx({
       remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkGfm],
@@ -63,9 +63,17 @@ export default defineConfig({
         unstable_singleFetch: true,
       },
     }),
+    babel({
+      filter: /\.[jt]sx?$/,
+      babelConfig: {
+        presets: ["@babel/preset-typescript"],
+        plugins: [["babel-plugin-react-compiler", {}]],
+      },
+    }),
     tsconfigPaths(),
   ],
   esbuild: { legalComments: "none" },
+  build: { cssMinify: "lightningcss" },
   ssr: {
     optimizeDeps: {
       include: ["lodash"],
