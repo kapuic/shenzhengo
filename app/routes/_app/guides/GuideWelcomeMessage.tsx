@@ -1,8 +1,7 @@
 import { IconBook, IconBulb, IconCar, IconMountain } from "@tabler/icons-react";
 import { twMerge } from "tailwind-merge";
 
-export interface GuideWelcomeMessageProps
-  extends React.ComponentPropsWithoutRef<"div"> {
+export interface GuideWelcomeMessageProps extends React.ComponentProps<"div"> {
   hideClickMessage?: boolean;
 }
 

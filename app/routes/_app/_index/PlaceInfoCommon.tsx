@@ -30,8 +30,7 @@ export type PlaceInfoCommonElement =
 
 export type PlaceInfoCommonShownElements = PlaceInfoCommonElement[];
 
-export interface PlaceInfoCommonProps
-  extends React.ComponentPropsWithoutRef<"div"> {
+export interface PlaceInfoCommonProps extends React.ComponentProps<"div"> {
   place: Place;
   shownElements?: PlaceInfoCommonShownElements;
 }

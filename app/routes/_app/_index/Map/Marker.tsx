@@ -29,7 +29,7 @@ export default function Marker({ place, visible }: MarkerProps) {
         name={place.name}
         position={place.location}
         text={{ title: place.name, topWhenClick: true }}
-        visiable={visible && !focused}
+        visible={visible && !focused}
         zooms={[2, 15]}
         icon={{
           image: markerIcon,
@@ -43,7 +43,7 @@ export default function Marker({ place, visible }: MarkerProps) {
         name={place.name}
         position={place.location}
         text={{ title: place.name, topWhenClick: true }}
-        visiable={visible && !focused}
+        visible={visible && !focused}
         zooms={[15, 20]}
         icon={{
           image: markerIcon,
@@ -56,7 +56,7 @@ export default function Marker({ place, visible }: MarkerProps) {
       <LabelMarker
         name={place.name}
         position={place.location}
-        visiable={visible && !focused}
+        visible={visible && !focused}
         zooms={[17, 20]}
         icon={{
           image: markerIcon,
@@ -85,7 +85,7 @@ export default function Marker({ place, visible }: MarkerProps) {
         name={place.name}
         position={place.location}
         rank={2}
-        visiable={visible && focused}
+        visible={visible && focused}
         icon={{
           image: markerIcon,
           imageOffset: [-16, -37],
@@ -117,7 +117,7 @@ export default function Marker({ place, visible }: MarkerProps) {
       offset={new AMap.Pixel(-16, -37)}
       position={place.location}
       title={place.name}
-      visiable={visible}
+      visible={visible}
       onClick={() => setFocus(focus ? null : place)}
     />
   );

@@ -17,7 +17,7 @@ export default function AboutDialog({ children }: AboutDialogProps) {
 
   return (
     <Dialog.Root>
-      <Dialog.Trigger children={children} asChild />
+      {children}
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-20 bg-black bg-opacity-50" />
         <Dialog.Content className="pointer-events-none fixed start-0 top-0 z-30 h-full w-full overflow-y-auto overflow-x-hidden">

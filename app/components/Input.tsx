@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-export interface InputProps extends React.ComponentPropsWithoutRef<"input"> {}
+export interface InputProps extends React.ComponentProps<"input"> {}
 
 export default function Input({ className, ...props }: InputProps) {
   // From https://preline.co/docs/input.html.

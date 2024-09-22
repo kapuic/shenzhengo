@@ -5,7 +5,7 @@ import { createPathWithSiblings, getDistanceFromRoot } from "~/utilities/tree";
 
 import { useAppLoaderData } from ".";
 
-export interface RangeTabsProps extends React.ComponentPropsWithoutRef<"div"> {
+export interface RangeTabsProps extends React.ComponentProps<"div"> {
   filterRange: string;
   setFilterRange: (range: string) => void;
 }

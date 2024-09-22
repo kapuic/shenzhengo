@@ -4,7 +4,7 @@ export default function DropdownTarget({
   children,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"summary">) {
+}: React.ComponentProps<"summary">) {
   return (
     <summary
       tabIndex={-1}

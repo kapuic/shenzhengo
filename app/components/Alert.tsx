@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-export interface AlertProps extends React.ComponentPropsWithoutRef<"div"> {
+export interface AlertProps extends React.ComponentProps<"div"> {
   variant?: "info" | "danger" | "success" | "warning" | "dark";
 }
 

@@ -1,26 +1,23 @@
 import { useFeatureValue } from "@growthbook/growthbook-react";
 import { IconMapPin } from "@tabler/icons-react";
-import { type PolymorphicPropsWithoutRef } from "node_modules/react-polymorphic-types";
 import { twMerge } from "tailwind-merge";
 import { useMediaQuery } from "usehooks-ts";
 
 import BaseCard, {
   type BaseCardDefaultElement,
-  type BaseCardOwnProps,
+  type BaseCardProps,
 } from "~/components/BaseCard";
 import { categoryIcons } from "~/data/categories";
 import { type Place } from "~/data/schema";
 
 import { useAppLoaderData } from ".";
 
-export interface PlaceCardOwnProps extends BaseCardOwnProps {
-  place: Place;
-  hideCategory?: boolean;
-}
-
 export type PlaceCardProps<
   T extends React.ElementType = typeof BaseCardDefaultElement,
-> = PolymorphicPropsWithoutRef<PlaceCardOwnProps, T>;
+> = BaseCardProps<T> & {
+  place: Place;
+  hideCategory?: boolean;
+};
 
 export default function PlaceCard<
   T extends React.ElementType = typeof BaseCardDefaultElement,
@@ -80,6 +77,7 @@ export default function PlaceCard<
 
   return (
     <div className="relative">
+      {/* @ts-expect-error */}
       <BaseCard
         style={{ backgroundColor: category?.colors.dark }}
         className={twMerge(
@@ -91,6 +89,7 @@ export default function PlaceCard<
       >
         {shared}
       </BaseCard>
+      {/* @ts-expect-error */}
       <BaseCard
         className={twMerge(
           "absolute inset-0 flex-row items-center justify-between opacity-95",

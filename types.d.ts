@@ -1,3 +1,5 @@
+import "@uiw/react-amap-types";
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import AppLoadContext from "@remix-run/cloudflare";
 

@@ -1,25 +1,23 @@
 import { IconLanguage, IconMapPin } from "@tabler/icons-react";
-import { type PolymorphicPropsWithoutRef } from "node_modules/react-polymorphic-types";
 
 import BaseCard, {
   type BaseCardDefaultElement,
-  type BaseCardOwnProps,
+  type BaseCardProps,
 } from "~/components/BaseCard";
 import { type Activity } from "~/data/schema";
 
-export interface ActivityCardOwnProps extends BaseCardOwnProps {
-  activity: Activity;
-  relevantPlacesCount?: number;
-}
-
 export type ActivityCardProps<
   T extends React.ElementType = typeof BaseCardDefaultElement,
-> = PolymorphicPropsWithoutRef<ActivityCardOwnProps, T>;
+> = BaseCardProps<T> & {
+  activity: Activity;
+  relevantPlacesCount?: number;
+};
 
 export default function ActivityCard<
   T extends React.ElementType = typeof BaseCardDefaultElement,
 >({ activity, relevantPlacesCount, ...props }: ActivityCardProps<T>) {
   return (
+    // @ts-expect-error
     <BaseCard {...props}>
       <h3 className="text-lg font-bold leading-tight text-gray-800 dark:text-gray-100">
         {activity.name}

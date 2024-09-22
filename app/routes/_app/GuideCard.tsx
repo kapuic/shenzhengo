@@ -1,25 +1,23 @@
 import { IconClock, IconUser } from "@tabler/icons-react";
-import { type PolymorphicPropsWithoutRef } from "node_modules/react-polymorphic-types";
 
 import BaseCard, {
   type BaseCardDefaultElement,
-  type BaseCardOwnProps,
+  type BaseCardProps,
 } from "~/components/BaseCard";
 
 import { type GuideMeta } from "./guides/data";
 
-export interface GuideCardOwnProps extends BaseCardOwnProps {
-  guide: GuideMeta;
-}
-
 export type GuideCardProps<
   T extends React.ElementType = typeof BaseCardDefaultElement,
-> = PolymorphicPropsWithoutRef<GuideCardOwnProps, T>;
+> = BaseCardProps<T> & {
+  guide: GuideMeta;
+};
 
 export default function GuideCard<
   T extends React.ElementType = typeof BaseCardDefaultElement,
 >({ guide, ...props }: GuideCardProps<T>) {
   return (
+    // @ts-expect-error
     <BaseCard {...props}>
       <div className="flex flex-col">
         <span className="text-sm font-extrabold leading-tight text-blue-500 dark:text-blue-400">

@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 
 import logo from "./logo.png";
 
-export interface LogoProps extends React.ComponentPropsWithoutRef<"div"> {}
+export interface LogoProps extends React.ComponentProps<"div"> {}
 
 export default function Logo({ className, ...props }: LogoProps) {
   return (

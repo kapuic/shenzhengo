@@ -86,6 +86,7 @@ export default function ActivitiesPage() {
                     activity={activity}
                     as={NavLink}
                     to={`/activities/${activity.id}`}
+                    // @ts-expect-error
                     className={({ isActive }) =>
                       isActive ? "bg-blue-50 dark:bg-blue-950" : ""
                     }

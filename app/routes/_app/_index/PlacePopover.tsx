@@ -55,7 +55,7 @@ export default function PlacePopover() {
   return isDesktop ? (
     <InfoWindow
       isCustom
-      visiable
+      visible
       anchor="middle-left"
       offset={[20, -20]}
       position={cachedPlace?.location}

@@ -1,4 +1,5 @@
 import { useFeatureIsOn } from "@growthbook/growthbook-react";
+import * as Dialog from "@radix-ui/react-dialog";
 import { json, type MetaFunction } from "@remix-run/cloudflare";
 import { Outlet } from "@remix-run/react";
 import {
@@ -184,12 +185,17 @@ export default function App() {
             </div>
             <div className="flex flex-col items-center gap-3">
               <AboutDialog>
-                <button
-                  aria-label="About"
-                  className="focus-ring inline-block rounded-lg p-2 text-gray-500 transition-all hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
-                >
-                  <IconInfoCircle />
-                </button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Dialog.Trigger
+                      aria-label="About"
+                      className="focus-ring inline-block rounded-lg p-2 text-gray-500 transition-all hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+                    >
+                      <IconInfoCircle />
+                    </Dialog.Trigger>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">About</TooltipContent>
+                </Tooltip>
               </AboutDialog>
             </div>
           </nav>

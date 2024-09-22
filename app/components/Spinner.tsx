@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-export interface SpinnerProps extends React.ComponentPropsWithoutRef<"span"> {
+export interface SpinnerProps extends React.ComponentProps<"span"> {
   size?: number;
 }
 

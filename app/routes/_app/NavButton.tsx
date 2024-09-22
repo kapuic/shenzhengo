@@ -1,13 +1,13 @@
 import { NavLink } from "@remix-run/react";
-import { type RemixNavLinkProps } from "@remix-run/react/dist/components";
-import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-const NavButton = forwardRef<HTMLAnchorElement, RemixNavLinkProps>(
-  ({ className, ...props }, ref) => (
+export default function NavButton({
+  className,
+  ...props
+}: React.ComponentProps<typeof NavLink>) {
+  return (
     // eslint-disable-next-line jsx-a11y/anchor-has-content
     <NavLink
-      ref={ref}
       className={({ isActive }) =>
         twMerge(
           "focus-ring inline-block rounded-lg p-2 transition-all",
@@ -19,7 +19,5 @@ const NavButton = forwardRef<HTMLAnchorElement, RemixNavLinkProps>(
       }
       {...props}
     />
-  ),
-);
-
-export default NavButton;
+  );
+}

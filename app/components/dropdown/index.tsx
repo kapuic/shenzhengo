@@ -22,7 +22,7 @@ export default function Dropdown({
   children,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"details">) {
+}: React.ComponentProps<"details">) {
   const menuId = useId();
 
   return (

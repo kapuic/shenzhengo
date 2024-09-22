@@ -19,7 +19,7 @@ export type TabSelectTab<T extends LabeledItem = LabeledItem> =
 export interface TabSelectProps<
   T extends LabeledItem = LabeledItem,
   V extends TabSelectTab<T>[] = TabSelectTab<T>[],
-> extends React.ComponentPropsWithoutRef<"div"> {
+> extends React.ComponentProps<"div"> {
   tabs: V;
   active: string;
   setActive: (tab: string) => void;
