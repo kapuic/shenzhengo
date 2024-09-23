@@ -183,5 +183,5 @@ export function useAutoSetRange({
     );
     setFilterRange?.(mostPossibleRange);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mostPossibleRange]);
+  }, [mostPossibleRange, focus]);
 }
