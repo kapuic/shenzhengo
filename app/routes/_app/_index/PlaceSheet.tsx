@@ -1,8 +1,12 @@
 import { useFeatureValue } from "@growthbook/growthbook-react";
+import { IconChevronUp } from "@tabler/icons-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Sheet } from "react-modal-sheet";
 import { twMerge } from "tailwind-merge";
 import { useMediaQuery } from "usehooks-ts";
+import { Drawer } from "vaul";
+
+import { useLastNonNullValue } from "~/utilities/hooks";
 
 import { useAppMapContext } from "../AppMapContext";
 import PlaceInfoCommon, {
@@ -23,39 +27,79 @@ export default function PlaceSheet() {
   );
 
   const { focus, setFocus } = useAppMapContext();
-  const [opened, setOpened] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [activeSnapPoint, setActiveSnapPoint] = useState<
+    string | number | null
+  >(0.2);
 
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const hasMdScreenSize = useMediaQuery("(min-width: 768px)");
+  const place = useLastNonNullValue(focus);
+
+  const [showSwipeUp, setShowSwipeUp] = useState(false);
   useEffect(() => {
-    if (!isDesktop) setOpened(!!focus);
-    else setOpened(false);
-  }, [isDesktop, opened, focus, setFocus]);
+    if (!showSwipeUp) return;
+    let timer: NodeJS.Timeout;
+    timer = setTimeout(() => setShowSwipeUp(false), 2000);
+    return () => clearTimeout(timer);
+  }, [showSwipeUp]);
+  useEffect(() => {
+    if (!focus || activeSnapPoint !== 0.2) return setShowSwipeUp(false);
+    let timer: NodeJS.Timeout;
+    timer = setTimeout(() => setShowSwipeUp(activeSnapPoint === 0.2), 2000);
+    return () => clearTimeout(timer);
+  }, [focus, activeSnapPoint]);
 
-  return !isDesktop ? (
-    <Sheet
-      initialSnap={1}
-      isOpen={opened}
-      snapPoints={[-50, 250, 0]}
+  return !hasMdScreenSize ? (
+    <Drawer.Root
+      activeSnapPoint={activeSnapPoint}
+      open={!!focus}
+      setActiveSnapPoint={setActiveSnapPoint}
+      snapPoints={[0.2, 0.5, 1]}
       onClose={() => setFocus(null)}
-      onSnap={(index) => setExpanded(index === 0)}
     >
-      <Sheet.Container>
-        <Sheet.Header className="bg-white dark:bg-gray-800" />
-        <Sheet.Content className="bg-white p-4 dark:bg-gray-800">
-          <Sheet.Scroller className={!expanded ? "!overflow-hidden" : ""}>
-            {focus && (
-              <PlaceInfoCommon place={focus} shownElements={shownElements} />
+      <Drawer.Portal>
+        <Drawer.Overlay className="fixed inset-0 z-50 bg-black/20" />
+        <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 -mx-[1px] flex h-full max-h-[95%] flex-col rounded-t-xl bg-white dark:bg-gray-800">
+          <AnimatePresence mode="popLayout">
+            {showSwipeUp && (
+              <motion.div
+                key="swipe-up"
+                animate={{ opacity: 1 }}
+                className="grid h-10 flex-shrink-0 place-items-center"
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+              >
+                <div className="flex items-center gap-2 text-[#e2e2e4]">
+                  <IconChevronUp stroke={4} />
+                  <span className="text-sm font-medium">
+                    Swipe Up to View Details
+                  </span>
+                </div>
+              </motion.div>
             )}
-          </Sheet.Scroller>
-        </Sheet.Content>
-      </Sheet.Container>
-      <Sheet.Backdrop
-        className={twMerge(
-          "transition-opacity",
-          expanded ? "!opacity-100" : "!opacity-0",
-        )}
-      />
-    </Sheet>
+            {!showSwipeUp && (
+              <motion.div
+                key="drawer-handle"
+                animate={{ opacity: 1 }}
+                className="grid h-10 flex-shrink-0 place-items-center"
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+              >
+                <Drawer.Handle />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div
+            className={twMerge(
+              "p-6 pt-0",
+              activeSnapPoint === 1 && "!overflow-y-auto",
+            )}
+          >
+            {place && (
+              <PlaceInfoCommon place={place} shownElements={shownElements} />
+            )}
+          </div>
+        </Drawer.Content>
+      </Drawer.Portal>
+    </Drawer.Root>
   ) : null;
 }

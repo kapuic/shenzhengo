@@ -135,6 +135,11 @@ export default function Map({
   });
 
   const darkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const hasMdScreenSize = useMediaQuery("(min-width: 768px)");
+  const sheetOpened = useMemo(
+    () => !hasMdScreenSize && !!focus,
+    [hasMdScreenSize, focus],
+  );
 
   return (
     <div aria-hidden className="relative z-10 h-full w-full">
@@ -160,19 +165,39 @@ export default function Map({
         >
           <>
             {enableScaleControl && (
-              <ScaleControl offset={[20, 30]} position="LB" />
+              <ScaleControl
+                offset={[20, 30]}
+                position="LB"
+                visible={!sheetOpened}
+              />
             )}
             {enableToolbarControl &&
               (enableUIRedesign ? (
-                <ToolBarControl offset={[120, 20]} position="RB" />
+                <ToolBarControl
+                  offset={[120, 20]}
+                  position="RB"
+                  visible={!sheetOpened}
+                />
               ) : (
-                <ToolBarControl offset={[20, 20]} position="RB" />
+                <ToolBarControl
+                  offset={[20, 20]}
+                  position="RB"
+                  visible={!sheetOpened}
+                />
               ))}
             {enableCompassControl &&
               (enableUIRedesign ? (
-                <ControlBarControl offset={[20, 10]} position="RB" />
+                <ControlBarControl
+                  offset={[20, 10]}
+                  position="RB"
+                  visible={!sheetOpened}
+                />
               ) : (
-                <ControlBarControl offset={[20, 20]} position="RT" />
+                <ControlBarControl
+                  offset={[20, 20]}
+                  position="RT"
+                  visible={!sheetOpened}
+                />
               ))}
             {allPlaces.map((place, i) => (
               <Marker

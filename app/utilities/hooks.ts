@@ -7,15 +7,28 @@ import {
 } from "react";
 import { useHydrated } from "remix-utils/use-hydrated";
 
-export function usePreviousValue<T>(value: T, deps?: DependencyList): T {
-  const [previousValue, setPreviousValue] = useState(value);
-  const [pendingValue, setPendingValue] = useState(value);
-  useMemo(() => {
-    setPreviousValue(pendingValue);
-    setPendingValue(value);
+// export function usePreviousValue<T>(value: T, deps?: DependencyList): T {
+//   const [previousValue, setPreviousValue] = useState(value);
+//   const [pendingValue, setPendingValue] = useState(value);
+//   useMemo(() => {
+//     setPreviousValue(pendingValue);
+//     setPendingValue(value);
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [pendingValue, ...(deps ?? [value])]);
+//   return previousValue;
+// }
+
+export function useLastNonNullValue<T>(value: T, deps?: DependencyList): T {
+  const [lastValue, setLastValue] = useState(value);
+  useMemo(
+    () => {
+      if (value === null || value === undefined) return;
+      setLastValue(value);
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pendingValue, ...(deps ?? [value])]);
-  return previousValue;
+    deps ?? [value],
+  );
+  return lastValue;
 }
 
 export function useDelayedBoolean(value: boolean, delay: number = 3000) {
