@@ -1,13 +1,10 @@
 import { useSearchParams } from "@remix-run/react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { DEFAULT_RANGE } from "~/consts";
 import { type Place } from "~/data/schema";
 import { checkRange, isPlaceUnderCategory } from "~/utilities/data";
-import {
-  useHydratedEffect,
-  useUpdateQueryStringValueWithoutNavigation,
-} from "~/utilities/hooks";
+import { useUpdateQueryStringValueWithoutNavigation } from "~/utilities/hooks";
 import { getFuseClient } from "~/utilities/search";
 
 import { useAppLoaderData } from "..";
@@ -37,8 +34,9 @@ export function useFilterRange({
     "filter.range",
     filterRange === DEFAULT_RANGE ? null : filterRange,
   );
-  useHydratedEffect(
+  useEffect(
     () => resetWhenChanged?.forEach((reset) => reset(null)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [filterRange],
   );
   return [filterRange, setFilterRange] as const;

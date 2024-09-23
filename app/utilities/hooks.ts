@@ -2,25 +2,13 @@ import {
   type DependencyList,
   type EffectCallback,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 import { useHydrated } from "remix-utils/use-hydrated";
 
-// export function usePreviousValue<T>(value: T, deps?: DependencyList): T {
-//   const [previousValue, setPreviousValue] = useState(value);
-//   const [pendingValue, setPendingValue] = useState(value);
-//   useMemo(() => {
-//     setPreviousValue(pendingValue);
-//     setPendingValue(value);
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [pendingValue, ...(deps ?? [value])]);
-//   return previousValue;
-// }
-
 export function useLastNonNullValue<T>(value: T, deps?: DependencyList): T {
   const [lastValue, setLastValue] = useState(value);
-  useMemo(
+  useEffect(
     () => {
       if (value === null || value === undefined) return;
       setLastValue(value);

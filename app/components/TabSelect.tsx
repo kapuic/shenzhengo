@@ -1,9 +1,8 @@
 import { IconChevronDown } from "@tabler/icons-react";
 import { motion } from "framer-motion";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { useHydratedEffect } from "~/utilities/hooks";
 import { type CenteredTreeLevel } from "~/utilities/tree";
 
 import Dropdown from "./dropdown";
@@ -30,7 +29,7 @@ export default function TabSelect<
   V extends TabSelectTab<T>[],
 >({ tabs, active, setActive, className, ...props }: TabSelectProps<T, V>) {
   const [disabled, setDisabled] = useState(false);
-  useHydratedEffect(() => {
+  useEffect(() => {
     setDisabled(true);
     const timeout = setTimeout(() => setDisabled(false), 350);
     return () => clearTimeout(timeout);

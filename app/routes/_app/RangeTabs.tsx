@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import TabSelect from "~/components/TabSelect";
 import { createPathWithSiblings, getDistanceFromRoot } from "~/utilities/tree";
@@ -29,7 +29,7 @@ export default function RangeTabs({
     () => getDistanceFromRoot(ranges, lastDeepestRange),
     [ranges, lastDeepestRange],
   );
-  useMemo(() => {
+  useEffect(() => {
     if (filterDistance >= lastDeepestDistance) setLastDeepestRange(filterRange);
   }, [filterDistance, lastDeepestDistance, filterRange]);
 

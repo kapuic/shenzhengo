@@ -13,7 +13,6 @@ import Spinner from "~/components/Spinner";
 import { findLocation } from "~/utilities/data";
 import {
   useEffectOnce,
-  useHydratedEffect,
   useUpdateQueryStringValueWithoutNavigation,
 } from "~/utilities/hooks";
 import { mergeMeta } from "~/utilities/remix";
@@ -99,7 +98,7 @@ export default function MapPage() {
   // Refocus to the corresponding center of the map when the range filter changes.
   const [willRecenterWhenFocusClears, setWillRecenterWhenFocusClears] =
     useState(false);
-  useHydratedEffect(() => {
+  useEffect(() => {
     if (!focus)
       return console.log(
         `[Map] Active range changed to "${filterRange}". \`focus\` was null`,
