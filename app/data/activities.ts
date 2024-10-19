@@ -41,10 +41,7 @@ const activities: Activity[] = [
       [114.312739, 22.59973],
       [114.307954, 22.592429],
     ],
-    categoryIds: [
-      // "walkway"
-      "walkway",
-    ],
+    categoryIds: ["walkway"],
     vocab: [
       { name: "Trail/Walk way", chinese: "栈道", pinyin: "Zhàndào" },
       { name: "distance", chinese: "距离", pinyin: "Jùlí" },
