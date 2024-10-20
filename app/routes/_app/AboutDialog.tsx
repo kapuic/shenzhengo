@@ -43,9 +43,11 @@ export default function AboutDialog({ children }: AboutDialogProps) {
                     <Logo />
                   </div>
                   <Dialog.Description>
-                    ShenzhenGo offers detailed information & guides of{" "}
-                    {places.length}+ places and attractions in Shenzhen, China
-                    for foreign tourists and residents.
+                    The first internationalized interactive map designed for a
+                    city in China, featuring rich points of interest
+                    information, searchable catalog, travel guides, and trip
+                    suggestions. Built to break down language barriers and make
+                    local tourism more accessible for foreigners.
                   </Dialog.Description>
                 </div>
                 <div className="flex flex-col gap-2">

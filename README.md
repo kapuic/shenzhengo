@@ -1,6 +1,6 @@
 # ShenzhenGo
 
-ShenzhenGo is an interactive online map promoting local tourism for foreign visitors in the Chinese city of Shenzhen. The app offers comprehensive information and curated guides of local places of interest, helping foreign residents and tourists discover the best Shenzhen has to offer.
+The first internationalized interactive map designed for a city in China, featuring rich points of interest information, searchable catalog, travel guides, and trip suggestions. Built to break down language barriers and make local tourism more accessible for foreigners.
 
 [Visit the live app at shenzhengo.net](https://shenzhengo.net/?utm_source=github&utm_medium=readme&utm_campaign=readme)
 

@@ -39,10 +39,12 @@ import AppMapContext from "./AppMapContext";
 import NavButton from "./NavButton";
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({ data }) => [
-  { title: "ShenzhenGo - Map of Shenzhen for Foreigners" },
+  {
+    title: "ShenzhenGo - Make Local Tourism More Accessible for Foreigners",
+  },
   {
     name: "description",
-    content: `ShenzhenGo offers detailed information & guides of ${data?.places.length}+ places and attractions in Shenzhen, China for foreign tourists and residents.`,
+    content: `The first internationalized interactive map for Shenzhen, China, featuring a searchable catalog of ${data?.places.length}+ places & attractions, travel guides, and trip suggestions.`,
   },
   { name: "color-scheme", content: "light dark" },
 ]);
