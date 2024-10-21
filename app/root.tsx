@@ -100,10 +100,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <Meta />
         <Links />
+        {/* Umami */}
         <script
           defer
-          data-domain="shenzhengo.net"
-          src="https://analytics.kapui.net/js/script.js"
+          data-domains="shenzhengo.net"
+          data-website-id="4c580f3b-90ad-48b2-94bf-5c73ed84041f"
+          src="https://u.kapui.net/script.js"
+        ></script>
+        {/* Umami (Rollup) */}
+        <script
+          defer
+          data-domains="shenzhengo.net"
+          data-tag="shenzhengo"
+          data-website-id="7673cd48-b55a-4d7a-80bf-a676a8bb0a19"
+          src="https://u.kapui.net/script.js"
+        ></script>
+        {/* Plausible */}
+        <script
+          defer
+          data-domain="shenzhengo.net,rollup.kapui.net"
+          src="https://p.kapui.net/js/script.js"
         ></script>
       </head>
       <body>
